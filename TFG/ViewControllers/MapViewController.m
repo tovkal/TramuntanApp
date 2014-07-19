@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MapViewController.h"
 
-@interface ViewController ()
+@interface MapViewController ()
 
 @end
 
-@implementation ViewController
+@implementation MapViewController
 
 - (void)viewDidLoad
 {

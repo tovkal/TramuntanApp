@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Map-->
+        <!--Map View Controller - Map-->
         <scene sceneID="pXv-2Y-445">
             <objects>
-                <viewController id="uZ4-38-kXM" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="uZ4-38-kXM" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tSo-tt-A7q"/>
                         <viewControllerLayoutGuide type="bottom" id="A66-8N-FGr"/>
