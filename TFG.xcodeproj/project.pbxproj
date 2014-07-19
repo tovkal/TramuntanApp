@@ -28,6 +28,9 @@
 		95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA9B197ADCF900721CEC /* TargetShape.m */; };
 		95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DF13F7197ADDE000991AAD /* QuartzCore.framework */; };
 		95DF13FB197ADF6600991AAD /* APBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF13FA197ADF6600991AAD /* APBSettingsViewController.m */; };
+		95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95DF13FD197AEED000991AAD /* muntanyes_dev.xml */; };
+		95DF1403197AEED000991AAD /* APBXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF13FF197AEED000991AAD /* APBXMLElement.m */; };
+		95DF1404197AEED000991AAD /* APBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF1401197AEED000991AAD /* APBXMLParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,11 @@
 		95DF13F7197ADDE000991AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		95DF13F9197ADF6600991AAD /* APBSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APBSettingsViewController.h; sourceTree = "<group>"; };
 		95DF13FA197ADF6600991AAD /* APBSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APBSettingsViewController.m; sourceTree = "<group>"; };
+		95DF13FD197AEED000991AAD /* muntanyes_dev.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = muntanyes_dev.xml; sourceTree = "<group>"; };
+		95DF13FE197AEED000991AAD /* APBXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APBXMLElement.h; sourceTree = "<group>"; };
+		95DF13FF197AEED000991AAD /* APBXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APBXMLElement.m; sourceTree = "<group>"; };
+		95DF1400197AEED000991AAD /* APBXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APBXMLParser.h; sourceTree = "<group>"; };
+		95DF1401197AEED000991AAD /* APBXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APBXMLParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +146,7 @@
 				95C6EA85197AD7CD00721CEC /* ViewControllers */,
 				95C6EA8E197AD9F100721CEC /* AR */,
 				95C6EA96197ADCE600721CEC /* Graphics */,
+				95DF13FC197AEEC700991AAD /* XML */,
 				95C6EA94197ADCB400721CEC /* Main.storyboard */,
 				95C6EA5F197AD7C300721CEC /* AppDelegate.h */,
 				95C6EA60197AD7C300721CEC /* AppDelegate.m */,
@@ -207,6 +216,18 @@
 				95C6EA9B197ADCF900721CEC /* TargetShape.m */,
 			);
 			path = Graphics;
+			sourceTree = "<group>";
+		};
+		95DF13FC197AEEC700991AAD /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				95DF13FD197AEED000991AAD /* muntanyes_dev.xml */,
+				95DF13FE197AEED000991AAD /* APBXMLElement.h */,
+				95DF13FF197AEED000991AAD /* APBXMLElement.m */,
+				95DF1400197AEED000991AAD /* APBXMLParser.h */,
+				95DF1401197AEED000991AAD /* APBXMLParser.m */,
+			);
+			path = XML;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +308,7 @@
 			files = (
 				95C6EA69197AD7C300721CEC /* Images.xcassets in Resources */,
 				95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */,
+				95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */,
 				95C6EA95197ADCB400721CEC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,11 +328,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DF1404197AEED000991AAD /* APBXMLParser.m in Sources */,
 				95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */,
 				95DF13FB197ADF6600991AAD /* APBSettingsViewController.m in Sources */,
 				95C6EA99197ADCF300721CEC /* Triangle.m in Sources */,
 				95C6EA91197ADA0500721CEC /* PointOfInterest.m in Sources */,
 				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
+				95DF1403197AEED000991AAD /* APBXMLElement.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,
 				95C6EA8A197AD7CD00721CEC /* ARViewController.m in Sources */,
 				95C6EA8B197AD7CD00721CEC /* MapViewController.m in Sources */,
