@@ -13,7 +13,6 @@
 		95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA59197AD7C300721CEC /* InfoPlist.strings */; };
 		95C6EA5D197AD7C300721CEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA5C197AD7C300721CEC /* main.m */; };
 		95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA60197AD7C300721CEC /* AppDelegate.m */; };
-		95C6EA64197AD7C300721CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA62197AD7C300721CEC /* Main.storyboard */; };
 		95C6EA67197AD7C300721CEC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA66197AD7C300721CEC /* ViewController.m */; };
 		95C6EA69197AD7C300721CEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA68197AD7C300721CEC /* Images.xcassets */; };
 		95C6EA70197AD7C300721CEC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA6F197AD7C300721CEC /* XCTest.framework */; };
@@ -21,6 +20,9 @@
 		95C6EA72197AD7C300721CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA54197AD7C300721CEC /* UIKit.framework */; };
 		95C6EA7A197AD7C300721CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA78197AD7C300721CEC /* InfoPlist.strings */; };
 		95C6EA7C197AD7C300721CEC /* TFGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA7B197AD7C300721CEC /* TFGTests.m */; };
+		95C6EA8A197AD7CD00721CEC /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA87197AD7CD00721CEC /* ARViewController.m */; };
+		95C6EA8B197AD7CD00721CEC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA89197AD7CD00721CEC /* ViewController.m */; };
+		CC45994DE62162F116504E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC459B59671CB48AC2E2AF82 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +46,6 @@
 		95C6EA5E197AD7C300721CEC /* TFG-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFG-Prefix.pch"; sourceTree = "<group>"; };
 		95C6EA5F197AD7C300721CEC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95C6EA60197AD7C300721CEC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		95C6EA63197AD7C300721CEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95C6EA65197AD7C300721CEC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		95C6EA66197AD7C300721CEC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		95C6EA68197AD7C300721CEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -53,6 +54,11 @@
 		95C6EA77197AD7C300721CEC /* TFGTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFGTests-Info.plist"; sourceTree = "<group>"; };
 		95C6EA79197AD7C300721CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		95C6EA7B197AD7C300721CEC /* TFGTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFGTests.m; sourceTree = "<group>"; };
+		95C6EA86197AD7CD00721CEC /* ARViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
+		95C6EA87197AD7CD00721CEC /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
+		95C6EA88197AD7CD00721CEC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		95C6EA89197AD7CD00721CEC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CC459B59671CB48AC2E2AF82 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,9 +118,9 @@
 		95C6EA56197AD7C300721CEC /* TFG */ = {
 			isa = PBXGroup;
 			children = (
+				95C6EA85197AD7CD00721CEC /* Views */,
 				95C6EA5F197AD7C300721CEC /* AppDelegate.h */,
 				95C6EA60197AD7C300721CEC /* AppDelegate.m */,
-				95C6EA62197AD7C300721CEC /* Main.storyboard */,
 				95C6EA65197AD7C300721CEC /* ViewController.h */,
 				95C6EA66197AD7C300721CEC /* ViewController.m */,
 				95C6EA68197AD7C300721CEC /* Images.xcassets */,
@@ -150,6 +156,18 @@
 				95C6EA78197AD7C300721CEC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		95C6EA85197AD7CD00721CEC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				95C6EA86197AD7CD00721CEC /* ARViewController.h */,
+				95C6EA87197AD7CD00721CEC /* ARViewController.m */,
+				95C6EA88197AD7CD00721CEC /* ViewController.h */,
+				95C6EA89197AD7CD00721CEC /* ViewController.m */,
+				CC459B59671CB48AC2E2AF82 /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,7 +248,7 @@
 			files = (
 				95C6EA69197AD7C300721CEC /* Images.xcassets in Resources */,
 				95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */,
-				95C6EA64197AD7C300721CEC /* Main.storyboard in Resources */,
+				CC45994DE62162F116504E31 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +270,8 @@
 				95C6EA67197AD7C300721CEC /* ViewController.m in Sources */,
 				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,
+				95C6EA8A197AD7CD00721CEC /* ARViewController.m in Sources */,
+				95C6EA8B197AD7CD00721CEC /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +300,6 @@
 				95C6EA5A197AD7C300721CEC /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		95C6EA62197AD7C300721CEC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				95C6EA63197AD7C300721CEC /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		95C6EA78197AD7C300721CEC /* InfoPlist.strings */ = {
