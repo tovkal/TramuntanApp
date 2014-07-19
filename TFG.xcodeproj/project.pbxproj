@@ -13,7 +13,6 @@
 		95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA59197AD7C300721CEC /* InfoPlist.strings */; };
 		95C6EA5D197AD7C300721CEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA5C197AD7C300721CEC /* main.m */; };
 		95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA60197AD7C300721CEC /* AppDelegate.m */; };
-		95C6EA67197AD7C300721CEC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA66197AD7C300721CEC /* ViewController.m */; };
 		95C6EA69197AD7C300721CEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA68197AD7C300721CEC /* Images.xcassets */; };
 		95C6EA70197AD7C300721CEC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA6F197AD7C300721CEC /* XCTest.framework */; };
 		95C6EA71197AD7C300721CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA50197AD7C300721CEC /* Foundation.framework */; };
@@ -22,7 +21,12 @@
 		95C6EA7C197AD7C300721CEC /* TFGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA7B197AD7C300721CEC /* TFGTests.m */; };
 		95C6EA8A197AD7CD00721CEC /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA87197AD7CD00721CEC /* ARViewController.m */; };
 		95C6EA8B197AD7CD00721CEC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA89197AD7CD00721CEC /* ViewController.m */; };
-		CC45994DE62162F116504E31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC459B59671CB48AC2E2AF82 /* Main.storyboard */; };
+		95C6EA91197ADA0500721CEC /* PointOfInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA90197ADA0500721CEC /* PointOfInterest.m */; };
+		95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA92197ADA8C00721CEC /* CoreLocation.framework */; };
+		95C6EA95197ADCB400721CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA94197ADCB400721CEC /* Main.storyboard */; };
+		95C6EA99197ADCF300721CEC /* Triangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA98197ADCF300721CEC /* Triangle.m */; };
+		95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA9B197ADCF900721CEC /* TargetShape.m */; };
+		95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DF13F7197ADDE000991AAD /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +50,6 @@
 		95C6EA5E197AD7C300721CEC /* TFG-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFG-Prefix.pch"; sourceTree = "<group>"; };
 		95C6EA5F197AD7C300721CEC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95C6EA60197AD7C300721CEC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		95C6EA65197AD7C300721CEC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		95C6EA66197AD7C300721CEC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		95C6EA68197AD7C300721CEC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		95C6EA6E197AD7C300721CEC /* TFGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C6EA6F197AD7C300721CEC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -58,7 +60,15 @@
 		95C6EA87197AD7CD00721CEC /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
 		95C6EA88197AD7CD00721CEC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		95C6EA89197AD7CD00721CEC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CC459B59671CB48AC2E2AF82 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		95C6EA8F197ADA0500721CEC /* PointOfInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointOfInterest.h; sourceTree = "<group>"; };
+		95C6EA90197ADA0500721CEC /* PointOfInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointOfInterest.m; sourceTree = "<group>"; };
+		95C6EA92197ADA8C00721CEC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		95C6EA94197ADCB400721CEC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		95C6EA97197ADCF300721CEC /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
+		95C6EA98197ADCF300721CEC /* Triangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Triangle.m; sourceTree = "<group>"; };
+		95C6EA9A197ADCF900721CEC /* TargetShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetShape.h; sourceTree = "<group>"; };
+		95C6EA9B197ADCF900721CEC /* TargetShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetShape.m; sourceTree = "<group>"; };
+		95DF13F7197ADDE000991AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */,
+				95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */,
 				95C6EA53197AD7C300721CEC /* CoreGraphics.framework in Frameworks */,
 				95C6EA55197AD7C300721CEC /* UIKit.framework in Frameworks */,
 				95C6EA51197AD7C300721CEC /* Foundation.framework in Frameworks */,
@@ -107,6 +119,8 @@
 		95C6EA4F197AD7C300721CEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95DF13F7197ADDE000991AAD /* QuartzCore.framework */,
+				95C6EA92197ADA8C00721CEC /* CoreLocation.framework */,
 				95C6EA50197AD7C300721CEC /* Foundation.framework */,
 				95C6EA52197AD7C300721CEC /* CoreGraphics.framework */,
 				95C6EA54197AD7C300721CEC /* UIKit.framework */,
@@ -118,11 +132,12 @@
 		95C6EA56197AD7C300721CEC /* TFG */ = {
 			isa = PBXGroup;
 			children = (
-				95C6EA85197AD7CD00721CEC /* Views */,
+				95C6EA85197AD7CD00721CEC /* ViewControllers */,
+				95C6EA8E197AD9F100721CEC /* AR */,
+				95C6EA96197ADCE600721CEC /* Graphics */,
+				95C6EA94197ADCB400721CEC /* Main.storyboard */,
 				95C6EA5F197AD7C300721CEC /* AppDelegate.h */,
 				95C6EA60197AD7C300721CEC /* AppDelegate.m */,
-				95C6EA65197AD7C300721CEC /* ViewController.h */,
-				95C6EA66197AD7C300721CEC /* ViewController.m */,
 				95C6EA68197AD7C300721CEC /* Images.xcassets */,
 				95C6EA57197AD7C300721CEC /* Supporting Files */,
 			);
@@ -158,16 +173,35 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		95C6EA85197AD7CD00721CEC /* Views */ = {
+		95C6EA85197AD7CD00721CEC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				95C6EA86197AD7CD00721CEC /* ARViewController.h */,
 				95C6EA87197AD7CD00721CEC /* ARViewController.m */,
 				95C6EA88197AD7CD00721CEC /* ViewController.h */,
 				95C6EA89197AD7CD00721CEC /* ViewController.m */,
-				CC459B59671CB48AC2E2AF82 /* Main.storyboard */,
 			);
-			path = Views;
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		95C6EA8E197AD9F100721CEC /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				95C6EA8F197ADA0500721CEC /* PointOfInterest.h */,
+				95C6EA90197ADA0500721CEC /* PointOfInterest.m */,
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
+		95C6EA96197ADCE600721CEC /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				95C6EA97197ADCF300721CEC /* Triangle.h */,
+				95C6EA98197ADCF300721CEC /* Triangle.m */,
+				95C6EA9A197ADCF900721CEC /* TargetShape.h */,
+				95C6EA9B197ADCF900721CEC /* TargetShape.m */,
+			);
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +282,7 @@
 			files = (
 				95C6EA69197AD7C300721CEC /* Images.xcassets in Resources */,
 				95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */,
-				CC45994DE62162F116504E31 /* Main.storyboard in Resources */,
+				95C6EA95197ADCB400721CEC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +301,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95C6EA67197AD7C300721CEC /* ViewController.m in Sources */,
+				95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */,
+				95C6EA99197ADCF300721CEC /* Triangle.m in Sources */,
+				95C6EA91197ADA0500721CEC /* PointOfInterest.m in Sources */,
 				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,
 				95C6EA8A197AD7CD00721CEC /* ARViewController.m in Sources */,
@@ -468,6 +504,7 @@
 				95C6EA81197AD7C300721CEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		95C6EA82197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFGTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +513,7 @@
 				95C6EA84197AD7C300721CEC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

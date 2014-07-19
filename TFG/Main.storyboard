@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="XD3-TD-S0S">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller - Map-->
+        <scene sceneID="pXv-2Y-445">
+            <objects>
+                <viewController id="uZ4-38-kXM" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tSo-tt-A7q"/>
+                        <viewControllerLayoutGuide type="bottom" id="A66-8N-FGr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G6C-9z-rFv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map view is not avaliable." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="108" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-FR-Jyq">
+                                <rect key="frame" x="106" y="248" width="108" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="pD1-An-djO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="centerX" secondItem="G6C-9z-rFv" secondAttribute="centerX" id="R3C-la-3SX"/>
+                            <constraint firstItem="A66-8N-FGr" firstAttribute="top" secondItem="HqO-FR-Jyq" secondAttribute="bottom" constant="200" id="iWu-Zs-uzz"/>
+                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="top" secondItem="tSo-tt-A7q" secondAttribute="bottom" constant="228" id="rrc-Lz-Ce0"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" id="2sd-jz-B1R"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WyX-eW-1J0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799" y="-525"/>
+        </scene>
+        <!--View Controller - Settings-->
+        <scene sceneID="kKA-8S-9Qu">
+            <objects>
+                <viewController id="KNM-h6-WF4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tCS-7d-Hn6"/>
+                        <viewControllerLayoutGuide type="bottom" id="gvI-IC-lju"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eFh-oc-UFv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lYo-4t-kNa">
+                                <rect key="frame" x="251" y="55" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location debug" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt8-am-rb4">
+                                <rect key="frame" x="20" y="60" width="121" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="121" id="jig-NG-CcT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lYo-4t-kNa" firstAttribute="top" secondItem="tCS-7d-Hn6" secondAttribute="bottom" constant="35" id="4fB-0J-Bli"/>
+                            <constraint firstAttribute="trailing" secondItem="lYo-4t-kNa" secondAttribute="trailing" constant="20" symbolic="YES" id="Q0F-av-odd"/>
+                            <constraint firstItem="lYo-4t-kNa" firstAttribute="centerY" secondItem="Kt8-am-rb4" secondAttribute="centerY" id="Yww-7R-bls"/>
+                            <constraint firstItem="Kt8-am-rb4" firstAttribute="leading" secondItem="eFh-oc-UFv" secondAttribute="leading" constant="20" symbolic="YES" id="kuR-Xb-EvC"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" id="ajA-rQ-vdj"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oE9-2M-KdF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799" y="821"/>
+        </scene>
+        <!--View Controller - AR-->
+        <scene sceneID="dHY-ol-pS9">
+            <objects>
+                <viewController id="6kP-Y0-Xuq" customClass="ARViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qgm-Mp-c4a"/>
+                        <viewControllerLayoutGuide type="bottom" id="27J-Z6-cYm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MHh-UC-I1e">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AR view is not avaliable." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="108" translatesAutoresizingMaskIntoConstraints="NO" id="3BR-yi-MX2">
+                                <rect key="frame" x="106" y="248" width="108" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="KA4-Oh-kRg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3BR-yi-MX2" firstAttribute="top" secondItem="Qgm-Mp-c4a" secondAttribute="bottom" constant="228" id="41D-Kt-PjR"/>
+                            <constraint firstItem="27J-Z6-cYm" firstAttribute="top" secondItem="3BR-yi-MX2" secondAttribute="bottom" constant="200" id="UZ1-wA-MMv"/>
+                            <constraint firstItem="3BR-yi-MX2" firstAttribute="centerX" secondItem="MHh-UC-I1e" secondAttribute="centerX" id="xwq-tV-u49"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="AR" id="nd4-3P-gM0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g9E-b1-HeD" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799" y="148"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="1ha-0p-9U6">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="XD3-TD-S0S" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="rcF-Rp-hFY">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="uZ4-38-kXM" kind="relationship" relationship="viewControllers" id="QOG-s0-HNe"/>
+                        <segue destination="6kP-Y0-Xuq" kind="relationship" relationship="viewControllers" id="ozG-8E-mMC"/>
+                        <segue destination="KNM-h6-WF4" kind="relationship" relationship="viewControllers" id="fxP-6X-N6j"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eOr-s2-2PR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="266" y="-219"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
