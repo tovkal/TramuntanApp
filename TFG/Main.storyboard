@@ -17,10 +17,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map view is not avaliable." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="108" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-FR-Jyq">
-                                <rect key="frame" x="106" y="248" width="108" height="71"/>
+                                <rect key="frame" x="106" y="262" width="108" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="pD1-An-djO"/>
+                                    <constraint firstAttribute="width" constant="108" id="zCT-k5-DMS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -29,9 +29,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="centerX" secondItem="G6C-9z-rFv" secondAttribute="centerX" id="R3C-la-3SX"/>
-                            <constraint firstItem="A66-8N-FGr" firstAttribute="top" secondItem="HqO-FR-Jyq" secondAttribute="bottom" constant="200" id="iWu-Zs-uzz"/>
-                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="top" secondItem="tSo-tt-A7q" secondAttribute="bottom" constant="228" id="rrc-Lz-Ce0"/>
+                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="top" secondItem="tSo-tt-A7q" secondAttribute="bottom" constant="242" id="ABC-fR-IeF"/>
+                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="centerX" secondItem="G6C-9z-rFv" secondAttribute="centerX" id="XPt-dD-bI3"/>
+                            <constraint firstItem="A66-8N-FGr" firstAttribute="top" secondItem="HqO-FR-Jyq" secondAttribute="bottom" constant="214" id="rHx-H8-AaV"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="2sd-jz-B1R"/>
@@ -94,10 +94,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AR view is not avaliable." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="108" translatesAutoresizingMaskIntoConstraints="NO" id="3BR-yi-MX2">
-                                <rect key="frame" x="106" y="248" width="108" height="71"/>
+                                <rect key="frame" x="106" y="262" width="108" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="KA4-Oh-kRg"/>
+                                    <constraint firstAttribute="width" constant="108" id="QHo-5C-lir"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -106,9 +106,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3BR-yi-MX2" firstAttribute="top" secondItem="Qgm-Mp-c4a" secondAttribute="bottom" constant="228" id="41D-Kt-PjR"/>
-                            <constraint firstItem="27J-Z6-cYm" firstAttribute="top" secondItem="3BR-yi-MX2" secondAttribute="bottom" constant="200" id="UZ1-wA-MMv"/>
-                            <constraint firstItem="3BR-yi-MX2" firstAttribute="centerX" secondItem="MHh-UC-I1e" secondAttribute="centerX" id="xwq-tV-u49"/>
+                            <constraint firstItem="3BR-yi-MX2" firstAttribute="centerX" secondItem="MHh-UC-I1e" secondAttribute="centerX" id="HZh-gY-xXr"/>
+                            <constraint firstItem="3BR-yi-MX2" firstAttribute="top" secondItem="Qgm-Mp-c4a" secondAttribute="bottom" constant="242" id="S1A-yB-92h"/>
+                            <constraint firstItem="27J-Z6-cYm" firstAttribute="top" secondItem="3BR-yi-MX2" secondAttribute="bottom" constant="214" id="Xxt-Ev-M3t"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="AR" id="nd4-3P-gM0"/>

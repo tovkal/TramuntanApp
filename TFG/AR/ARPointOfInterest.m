@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-#import "PointOfInterest.h"
+#import "ARPointOfInterest.h"
 
-@implementation PointOfInterest
+@implementation ARPointOfInterest
 
 @end

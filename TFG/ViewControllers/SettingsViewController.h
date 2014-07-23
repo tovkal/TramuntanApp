@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface APBSettingsViewController : UIViewController <UITabBarControllerDelegate>
+@interface SettingsViewController : UIViewController <UITabBarControllerDelegate>
 
 @end

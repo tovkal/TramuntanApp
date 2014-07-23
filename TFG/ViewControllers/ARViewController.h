@@ -1,14 +1,14 @@
 //
-//  APBViewController.h
-//  ARTest1
+//  AugmentedRealityViewController.h
+//  TFG
 //
-//  Created by Tovkal on 02/07/14.
+//  Created by Tovkal on 19/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
+#import "ARPointOfInterestDelegate.h"
 
-@interface ARViewController : UIViewController
+@interface ARViewController : UIViewController <ARPointOfInterestDelegate>
+@property BOOL locationDebug;
 
 @end

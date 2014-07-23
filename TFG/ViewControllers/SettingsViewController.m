@@ -6,18 +6,17 @@
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-#import "APBSettingsViewController.h"
-#import "APBViewController.h"
+#import "SettingsViewController.h"
+#import "ARViewController.h"
 
-@interface APBSettingsViewController ()
+@interface SettingsViewController ()
 @property BOOL locationDebug;
 @end
 
-@implementation APBSettingsViewController
+@implementation SettingsViewController
 
-- (void)viewDidLoad
+- (void)loadView
 {
-    [super viewDidLoad];
     self.locationDebug = NO;
     
     self.tabBarController.delegate = self;
@@ -32,7 +31,7 @@
 {
     
     if (viewController.tabBarItem.tag == 1) {
-        APBViewController *vc = (APBViewController *) [tabBarController.viewControllers objectAtIndex:0]; //Segon de sa llista de sa tab bar
+        ARViewController *vc = (ARViewController *) [tabBarController.viewControllers objectAtIndex:0]; //Segon de sa llista de sa tab bar
     
         vc.locationDebug = self.locationDebug;
     }

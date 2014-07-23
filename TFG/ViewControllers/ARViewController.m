@@ -1,185 +1,74 @@
 //
-//  APBViewController.m
-//  ARTest1
+//  AugmentedRealityViewController.m
+//  TFG
 //
-//  Created by Tovkal on 02/07/14.
+//  Created by Tovkal on 19/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
 #import "ARViewController.h"
+#import "ARController.h"
+#import "TargetShape.h"
 
 @interface ARViewController ()
-// Session management.
-@property (nonatomic) dispatch_queue_t sessionQueue; // Communicate with the session and other session objects on this queue.
-@property (strong, nonatomic) AVCaptureSession *captureSession;
-@property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
-@property (strong, nonatomic) AVCaptureDevice *videoDeviceInput;
+@property (strong, nonatomic) ARController *ARController;
+@property (weak, nonatomic) CAShapeLayer *targetLayer;
 
 @end
 
 @implementation ARViewController
 
-- (void)viewDidLoad
+- (void)loadView
 {
-    [super viewDidLoad];
-    
-    dispatch_queue_t sessionQueue = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL);
-    [self setSessionQueue:sessionQueue];
-    
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(focusAndExposeTap:)];
-    tapRecognizer.numberOfTapsRequired = 1;
-    
-    [self.view addGestureRecognizer:tapRecognizer];
-
-    
-    [self initCapture];
+	self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	
+	self.ARController = [[ARController alloc] initWithViewController:self];
+	
+	[self drawTarget];
 }
 
-- (void)initCapture
+- (void)drawTarget
 {
-    AVCaptureDevice *inputDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    AVCaptureDeviceInput *captureInput = [AVCaptureDeviceInput deviceInputWithDevice:inputDevice error:nil];
+    [self.targetLayer removeFromSuperlayer];
     
-    self.videoDeviceInput = inputDevice;
+    CGRect bounds = self.view.bounds;
+    CGPoint center = CGPointMake((bounds.size.width/(2+bounds.origin.x)), (bounds.size.height/(2+bounds.origin.y)));
+    CAShapeLayer *targetLayer = [TargetShape createTargetView:center];
     
-    if (!captureInput) {
-        return;
-    }
+    self.targetLayer = targetLayer;
     
-    AVCaptureVideoDataOutput *captureOutput = [[AVCaptureVideoDataOutput alloc] init];
-    
-    /* captureOutput:didOutputSampleBuffer:fromConnection delegate method !*/
-    //[captureOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
-    NSString* key = (NSString*)kCVPixelBufferPixelFormatTypeKey;
-    NSNumber* value = [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA];
-    NSDictionary* videoSettings = [NSDictionary dictionaryWithObject:value forKey:key];
-    
-    [captureOutput setVideoSettings:videoSettings];
-    
-    self.captureSession = [[AVCaptureSession alloc] init];
-    
-    NSString *preset = 0;
-    
-    if (!preset) {
-        preset = AVCaptureSessionPresetMedium;
-    }
-    
-    self.captureSession.sessionPreset = preset;
-    
-    if ([self.captureSession canAddInput:captureInput]) {
-        [self.captureSession addInput:captureInput];
-    }
-    
-    if ([self.captureSession canAddOutput:captureOutput]) {
-        [self.captureSession addOutput:captureOutput];
-    }
-    
-    
-    //handle prevLayer
-    if (!self.captureVideoPreviewLayer) {
-        self.captureVideoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
-    }
-    
-    //if you want to adjust the previewlayer frame, here!
-    self.captureVideoPreviewLayer.frame = self.view.bounds;
-    self.captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    [self.view.layer addSublayer: self.captureVideoPreviewLayer];
-    [self.captureSession startRunning];
-    
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    [self.view.layer addSublayer:targetLayer];
     
 }
 
-- (void) orientationChanged:(NSNotification *)notification
+- (void)didReceiveMemoryWarning
 {
-    CGRect bounds = CGRectMake(0, 0, 1, 1);
-    
-    int xInt = 0;
-    int yInt = 0;
-    
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        //its iphone
-        CGSize result = [[UIScreen mainScreen] bounds].size;
-        if(result.height == 480) {
-            // iPhone Classic
-            xInt = 320;
-            yInt = 480;
-        }
-        else if(result.height == 568) {
-            // iPhone 5
-            xInt = 320;
-            yInt = 568;
-        }
-    } else {
-        //its ipad
-        xInt = 768;
-        yInt = 1024;
-    }
-    
-    UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-    
-    BOOL rotate = YES;
-    
-    switch (orientation) {
-        case UIDeviceOrientationLandscapeLeft:
-            bounds = CGRectMake(0, 0, yInt, xInt);
-            self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI + M_PI_2); // 270 degress
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            bounds = CGRectMake(0, 0, yInt, xInt);
-            self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI_2); // 90 degrees
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            rotate = NO;
-            //bounds = CGRectMake(0, 0, xInt, yInt);
-            //self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI); // 180 degrees
-            break;
-        default:
-            bounds = CGRectMake(0, 0, xInt, yInt);
-            self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(0.0);
-            break;
-    }
-    
-    if (rotate) {
-        self.captureVideoPreviewLayer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-    }
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Tap-to-focus
+#pragma mark - ARDelegate
 
-- (IBAction)focusAndExposeTap:(UIGestureRecognizer *)gestureRecognizer
+- (NSMutableArray *)poiData
 {
-    CGPoint devicePoint = [(AVCaptureVideoPreviewLayer *) self.captureVideoPreviewLayer captureDevicePointOfInterestForPoint:[gestureRecognizer locationInView:[gestureRecognizer view]]];
-    [self focusWithMode:AVCaptureFocusModeAutoFocus exposeWithMode:AVCaptureExposureModeAutoExpose atDevicePoint:devicePoint monitorSubjectAreaChange:YES];
+	NSMutableArray *data = [[NSMutableArray alloc] init];
+	
+	
+	
+	return data;
 }
 
-- (void)focusWithMode:(AVCaptureFocusMode)focusMode exposeWithMode:(AVCaptureExposureMode)exposureMode atDevicePoint:(CGPoint)point monitorSubjectAreaChange:(BOOL)monitorSubjectAreaChange
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    dispatch_async([self sessionQueue], ^{
-        AVCaptureDevice *device = self.videoDeviceInput;
-        NSError *error = nil;
-        if ([device lockForConfiguration:&error])
-        {
-            if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:focusMode])
-            {
-                [device setFocusMode:focusMode];
-                [device setFocusPointOfInterest:point];
-            }
-            if ([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:exposureMode])
-            {
-                [device setExposureMode:exposureMode];
-                [device setExposurePointOfInterest:point];
-            }
-            [device setSubjectAreaChangeMonitoringEnabled:monitorSubjectAreaChange];
-            [device unlockForConfiguration];
-        }
-        else
-        {
-            NSLog(@"%@", error);
-        }
-    });
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
+
 
 
 @end
