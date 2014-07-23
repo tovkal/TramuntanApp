@@ -1,16 +1,14 @@
 //
-//  ARController.m
+//  ARView.m
 //  TFG
 //
-//  Created by Tovkal on 21/07/14.
+//  Created by Tovkal on 23/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-#import "ARController.h"
+#import "ARView.h"
 
-@interface ARController()
-
-@property (strong, nonatomic) UIViewController *parentViewController;
+@interface ARView()
 
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) AVCaptureDevice *videoDeviceInput;
@@ -18,18 +16,18 @@
 
 @end
 
-@implementation ARController
+@implementation ARView
 
-- (id)initWithViewController:(UIViewController *)viewController
+- (id)initWithFrame:(CGRect)frame
 {
-	self.parentViewController = viewController;
-	
-	[self startCamera];
-		
-	return self;
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initCamera];
+    }
+    return self;
 }
 
-- (void)startCamera
+- (void)initCamera
 {
 	AVCaptureDevice *inputDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	NSError *deviceInputError = nil;
@@ -66,18 +64,16 @@
         [self.captureSession addOutput:captureOutput];
     }
     
-    
     //handle prevLayer
     if (!self.captureVideoPreviewLayer) {
         self.captureVideoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
     }
     
     //if you want to adjust the previewlayer frame, here!
-    self.captureVideoPreviewLayer.frame = self.parentViewController.view.bounds;
+    self.captureVideoPreviewLayer.frame = self.bounds;
     self.captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    [self.parentViewController.view.layer addSublayer: self.captureVideoPreviewLayer];
+    [self.layer addSublayer: self.captureVideoPreviewLayer];
     [self.captureSession startRunning];
-
 }
 
 @end

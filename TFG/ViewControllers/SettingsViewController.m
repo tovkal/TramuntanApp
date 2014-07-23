@@ -7,7 +7,7 @@
 //
 
 #import "SettingsViewController.h"
-#import "ARViewController.h"
+#import "MyARViewController.h"
 
 @interface SettingsViewController ()
 @property BOOL locationDebug;
@@ -31,7 +31,7 @@
 {
     
     if (viewController.tabBarItem.tag == 1) {
-        ARViewController *vc = (ARViewController *) [tabBarController.viewControllers objectAtIndex:0]; //Segon de sa llista de sa tab bar
+        MyARViewController *vc = (MyARViewController *) [tabBarController.viewControllers objectAtIndex:0]; //Segon de sa llista de sa tab bar
     
         vc.locationDebug = self.locationDebug;
     }
