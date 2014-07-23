@@ -16,12 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map view is not avaliable." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="108" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-FR-Jyq">
-                                <rect key="frame" x="106" y="262" width="108" height="43"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map view is not avaliable." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="102" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-FR-Jyq">
+                                <rect key="frame" x="109" y="263" width="102" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="zCT-k5-DMS"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,9 +26,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="top" secondItem="tSo-tt-A7q" secondAttribute="bottom" constant="242" id="ABC-fR-IeF"/>
-                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="centerX" secondItem="G6C-9z-rFv" secondAttribute="centerX" id="XPt-dD-bI3"/>
-                            <constraint firstItem="A66-8N-FGr" firstAttribute="top" secondItem="HqO-FR-Jyq" secondAttribute="bottom" constant="214" id="rHx-H8-AaV"/>
+                            <constraint firstItem="A66-8N-FGr" firstAttribute="top" secondItem="HqO-FR-Jyq" secondAttribute="bottom" constant="215" id="4k5-Eq-PJt"/>
+                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="centerX" secondItem="G6C-9z-rFv" secondAttribute="centerX" id="he1-la-HbV"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="2sd-jz-B1R"/>
