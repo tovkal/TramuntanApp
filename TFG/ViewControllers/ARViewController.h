@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-#import "ARPointOfInterestDelegate.h"
+#import "ARPointOfInterest.h"
 #import <CoreLocation/CoreLocation.h>
 #import "ARCoreLocationController.h"
 

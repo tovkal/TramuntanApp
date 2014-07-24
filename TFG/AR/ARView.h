@@ -10,5 +10,6 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface ARView : UIView
-
+- (void)drawTarget;
+- (void)removeTarget;
 @end

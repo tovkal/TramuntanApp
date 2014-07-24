@@ -11,6 +11,8 @@
 #import "ARView.h"
 
 @interface ARViewController ()
+@property (strong, nonatomic) ARView *myView;
+
 @property (strong, nonatomic) ARCoreLocationController *clController;
 @end
 
@@ -18,8 +20,10 @@
 
 - (void)viewDidLoad
 {
-	self.view = [[ARView alloc] initWithFrame:self.view.frame];
-	
+	self.myView = [[ARView alloc] initWithFrame:self.view.frame];
+	self.view = self.myView;	
+	[self.myView drawTarget];
+		
 	[self setupDelegates];
 }
 

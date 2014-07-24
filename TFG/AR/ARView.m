@@ -7,12 +7,16 @@
 //
 
 #import "ARView.h"
+#import "TargetShape.h"
 
 @interface ARView()
 
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) AVCaptureDevice *videoDeviceInput;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
+
+//Target
+@property (weak, nonatomic) CAShapeLayer *targetLayer;
 
 @end
 
@@ -143,6 +147,26 @@
     if (rotate) {
         self.captureVideoPreviewLayer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     }
+}
+
+- (void)drawTarget
+{
+	[self removeTarget];
+	
+	CGRect bounds = self.bounds;
+    CGPoint center = CGPointMake((bounds.size.width/(2+bounds.origin.x)), (bounds.size.height/(2+bounds.origin.y)));
+    CAShapeLayer *targetLayer = [TargetShape createTargetView:center];
+    
+    self.targetLayer = targetLayer;
+    
+    [self.layer addSublayer:targetLayer];
+}
+
+- (void)removeTarget
+{
+	if (self.targetLayer != nil) {
+		[self.targetLayer removeFromSuperlayer];
+	}
 }
 
 @end

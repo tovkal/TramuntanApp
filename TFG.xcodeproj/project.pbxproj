@@ -46,7 +46,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		95677BD81980205400BB66E3 /* ARPointOfInterestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPointOfInterestDelegate.h; sourceTree = "<group>"; };
 		95677BDB1980312000BB66E3 /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARView.h; sourceTree = "<group>"; };
 		95677BDC1980312000BB66E3 /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARView.m; sourceTree = "<group>"; };
 		95677BDE19803ED000BB66E3 /* ARCoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoreLocationController.h; sourceTree = "<group>"; };
@@ -129,9 +128,17 @@
 			children = (
 				95C6EA8F197ADA0500721CEC /* ARPointOfInterest.h */,
 				95C6EA90197ADA0500721CEC /* ARPointOfInterest.m */,
-				95677BD81980205400BB66E3 /* ARPointOfInterestDelegate.h */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		95AC7FF4198184C000F783D7 /* CoreLocation */ = {
+			isa = PBXGroup;
+			children = (
+				95677BDE19803ED000BB66E3 /* ARCoreLocationController.h */,
+				95677BDF19803ED000BB66E3 /* ARCoreLocationController.m */,
+			);
+			name = CoreLocation;
 			sourceTree = "<group>";
 		};
 		95C6EA44197AD7C300721CEC = {
@@ -229,8 +236,7 @@
 			children = (
 				95AC7FEB198175FD00F783D7 /* Model */,
 				95AC7FEA198175EF00F783D7 /* View */,
-				95677BDE19803ED000BB66E3 /* ARCoreLocationController.h */,
-				95677BDF19803ED000BB66E3 /* ARCoreLocationController.m */,
+				95AC7FF4198184C000F783D7 /* CoreLocation */,
 			);
 			path = AR;
 			sourceTree = "<group>";

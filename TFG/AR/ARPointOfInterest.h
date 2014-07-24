@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
+@protocol ARPointOfInterestDelegate
+
+- (NSMutableArray *)poiData;
+
+@end
+
 @interface ARPointOfInterest : NSObject
 
 @property (nonatomic) double distance;
