@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="799" y="821"/>
         </scene>
-        <!--MyAR View Controller - AR-->
+        <!--View Controller - AR-->
         <scene sceneID="dHY-ol-pS9">
             <objects>
-                <viewController id="6kP-Y0-Xuq" customClass="MyARViewController" sceneMemberID="viewController">
+                <viewController id="6kP-Y0-Xuq" customClass="ARViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Qgm-Mp-c4a"/>
                         <viewControllerLayoutGuide type="bottom" id="27J-Z6-cYm"/>

@@ -7,8 +7,10 @@
 //
 
 #import "ARPointOfInterestDelegate.h"
+#import <CoreLocation/CoreLocation.h>
+#import "ARCoreLocationController.h"
 
-@interface MyARViewController : UIViewController <ARPointOfInterestDelegate>
+@interface ARViewController : UIViewController <CLLocationManagerDelegate, ARPointOfInterestDelegate, ARCLDelegate>
 @property BOOL locationDebug;
 
 @end
