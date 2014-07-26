@@ -1,6 +1,6 @@
 //
 //  APBSettingsViewController.m
-//  ARTest2
+//  TFG
 //
 //  Created by Tovkal on 10/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
@@ -10,13 +10,17 @@
 #import "ARViewController.h"
 
 @interface SettingsViewController ()
+
 @property BOOL locationDebug;
+
 @end
 
 @implementation SettingsViewController
 
-- (void)loadView
+- (void)viewDidLoad
 {
+	[super viewDidLoad];
+	
     self.locationDebug = NO;
     
     self.tabBarController.delegate = self;
@@ -31,7 +35,7 @@
 {
     
     if (viewController.tabBarItem.tag == 1) {
-        ARViewController *vc = (ARViewController *) [tabBarController.viewControllers objectAtIndex:0]; //Segon de sa llista de sa tab bar
+        ARViewController *vc = (ARViewController *) [tabBarController.viewControllers objectAtIndex:1]; //Segon de sa llista de sa tab bar
     
         vc.locationDebug = self.locationDebug;
     }

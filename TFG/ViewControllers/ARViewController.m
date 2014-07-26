@@ -8,12 +8,12 @@
 
 #import "ARViewController.h"
 #import "TargetShape.h"
-#import "ARView.h"
 
 @interface ARViewController ()
 @property (strong, nonatomic) ARView *myView;
 
-@property (strong, nonatomic) ARCoreLocationController *clController;
+@property (strong, nonatomic) ARCoreLocationController *coreLocationController;
+@property (strong, nonatomic) ARCoreMotionController *coreMotionControlller;
 
 //TODO temporary
 @property (weak, nonatomic) CAShapeLayer *targetLayer;
@@ -39,9 +39,13 @@
 
 - (void) setupDelegates
 {
-	self.clController = [[ARCoreLocationController alloc] init];
-	self.clController.delegate = self;
-	[self.clController setup];
+	self.coreLocationController = [[ARCoreLocationController alloc] init];
+	self.coreLocationController.delegate = self;
+	[self.coreLocationController setup];
+	
+	self.coreMotionControlller = [[ARCoreMotionController alloc] init];
+	self.coreMotionControlller.delegate = self;
+	[self.coreMotionControlller setup];
 }
 
 #pragma mark - ARDelegate
@@ -58,8 +62,22 @@
 - (void)didFindLocation:(CLLocation *)location
 {
 	if (self.locationDebug){
-		NSLog(@"%@", location);
+		NSLog(@"location: %@", location);
 	}
+}
+
+- (void)didUpdateHeading:(CLHeading *)heading
+{
+	if (self.locationDebug) {
+		NSLog(@"heading: %@", heading);
+	}
+}
+
+#pragma mark - ARCMDelegate
+
+- (void)gotNewValues:(CMAttitude *)attitude
+{
+	NSLog(@"attitude: %@", attitude);
 }
 
 #pragma mark - Target view TEMPORARY

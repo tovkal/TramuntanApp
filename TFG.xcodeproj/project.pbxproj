@@ -10,6 +10,7 @@
 		953FB5161983F91D00D2CE2F /* ARCoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB50F1983F91D00D2CE2F /* ARCoreLocationController.m */; };
 		953FB5171983F91D00D2CE2F /* ARPointOfInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5121983F91D00D2CE2F /* ARPointOfInterest.m */; };
 		953FB5181983F91D00D2CE2F /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5151983F91D00D2CE2F /* ARView.m */; };
+		9577266A1984453E008A5246 /* ARCoreMotionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 957726691984453E008A5246 /* ARCoreMotionController.m */; };
 		95C6EA51197AD7C300721CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA50197AD7C300721CEC /* Foundation.framework */; };
 		95C6EA53197AD7C300721CEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA52197AD7C300721CEC /* CoreGraphics.framework */; };
 		95C6EA55197AD7C300721CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA54197AD7C300721CEC /* UIKit.framework */; };
@@ -52,6 +53,8 @@
 		953FB5121983F91D00D2CE2F /* ARPointOfInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARPointOfInterest.m; sourceTree = "<group>"; };
 		953FB5141983F91D00D2CE2F /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARView.h; sourceTree = "<group>"; };
 		953FB5151983F91D00D2CE2F /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARView.m; sourceTree = "<group>"; };
+		957726681984453E008A5246 /* ARCoreMotionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoreMotionController.h; sourceTree = "<group>"; };
+		957726691984453E008A5246 /* ARCoreMotionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoreMotionController.m; sourceTree = "<group>"; };
 		95C6EA4D197AD7C300721CEC /* TFG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C6EA50197AD7C300721CEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95C6EA52197AD7C300721CEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,6 +122,8 @@
 			children = (
 				953FB50E1983F91D00D2CE2F /* ARCoreLocationController.h */,
 				953FB50F1983F91D00D2CE2F /* ARCoreLocationController.m */,
+				957726681984453E008A5246 /* ARCoreMotionController.h */,
+				957726691984453E008A5246 /* ARCoreMotionController.m */,
 			);
 			name = "Location & Motion Controllers";
 			path = "TFG/AR-Framework/Location & Motion Controllers";
@@ -373,6 +378,7 @@
 				953FB5181983F91D00D2CE2F /* ARView.m in Sources */,
 				953FB5171983F91D00D2CE2F /* ARPointOfInterest.m in Sources */,
 				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
+				9577266A1984453E008A5246 /* ARCoreMotionController.m in Sources */,
 				95DF1403197AEED000991AAD /* APBXMLElement.m in Sources */,
 				95FBAC00197AF30700160544 /* ARViewController.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,

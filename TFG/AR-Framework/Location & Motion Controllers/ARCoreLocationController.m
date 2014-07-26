@@ -28,8 +28,10 @@
 	
 	//TODO test if this filter is enough
 	self.locationManager.distanceFilter = 10; //meters
-	
+		
 	[self.locationManager startUpdatingLocation];
+	[self.locationManager startUpdatingHeading];
+	
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -39,11 +41,20 @@
 	if (self.lastLocation) {
 		NSLog(@"Distance betwen last and newest location: %f", [self.lastLocation distanceFromLocation:location]);
 	}
-	
+		
 	self.lastLocation = location;
 	
 	[self.delegate performSelector:@selector(didFindLocation:) withObject:location];
 	
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
+{
+	[self.delegate performSelector:@selector(didUpdateHeading:) withObject:newHeading];
+}
+
+- (BOOL)locationManagerShouldDisplayHeadingCalibration: (CLLocationManager *)manager {
+    return YES;
 }
 
 @end

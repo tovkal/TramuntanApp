@@ -36,10 +36,10 @@
             </objects>
             <point key="canvasLocation" x="799" y="-525"/>
         </scene>
-        <!--View Controller - Settings-->
+        <!--Settings View Controller - Settings-->
         <scene sceneID="kKA-8S-9Qu">
             <objects>
-                <viewController id="KNM-h6-WF4" sceneMemberID="viewController">
+                <viewController id="KNM-h6-WF4" customClass="SettingsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tCS-7d-Hn6"/>
                         <viewControllerLayoutGuide type="bottom" id="gvI-IC-lju"/>
@@ -51,6 +51,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lYo-4t-kNa">
                                 <rect key="frame" x="251" y="55" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="didChange:" destination="KNM-h6-WF4" eventType="valueChanged" id="qpX-Ey-njs"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location debug" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kt8-am-rb4">
                                 <rect key="frame" x="20" y="60" width="121" height="21"/>
@@ -107,7 +110,7 @@
                             <constraint firstItem="27J-Z6-cYm" firstAttribute="top" secondItem="3BR-yi-MX2" secondAttribute="bottom" constant="214" id="Xxt-Ev-M3t"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="AR" id="nd4-3P-gM0"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="AR" id="nd4-3P-gM0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9E-b1-HeD" sceneMemberID="firstResponder"/>
             </objects>
