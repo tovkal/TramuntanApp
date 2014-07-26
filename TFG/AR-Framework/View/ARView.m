@@ -97,7 +97,7 @@
 	xInt = screenSize.width;
 	yInt = screenSize.height;
 	
-    //TODO Test it works on iPad, don't know why there are all this cases.
+    //TODO Test if it works on iPad. I think there's no need to hardcode the screen sizes.
 	
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 //        //its iphone
