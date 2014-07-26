@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		95677BDD1980312000BB66E3 /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 95677BDC1980312000BB66E3 /* ARView.m */; };
-		95677BE019803ED000BB66E3 /* ARCoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95677BDF19803ED000BB66E3 /* ARCoreLocationController.m */; };
+		952F2A881983EA39008F389C /* ARCoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 952F2A811983EA39008F389C /* ARCoreLocationController.m */; };
+		952F2A891983EA39008F389C /* ARPointOfInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 952F2A841983EA39008F389C /* ARPointOfInterest.m */; };
+		952F2A8A1983EA39008F389C /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 952F2A871983EA39008F389C /* ARView.m */; };
 		95C6EA51197AD7C300721CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA50197AD7C300721CEC /* Foundation.framework */; };
 		95C6EA53197AD7C300721CEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA52197AD7C300721CEC /* CoreGraphics.framework */; };
 		95C6EA55197AD7C300721CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA54197AD7C300721CEC /* UIKit.framework */; };
@@ -22,7 +23,6 @@
 		95C6EA7A197AD7C300721CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA78197AD7C300721CEC /* InfoPlist.strings */; };
 		95C6EA7C197AD7C300721CEC /* TFGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA7B197AD7C300721CEC /* TFGTests.m */; };
 		95C6EA8B197AD7CD00721CEC /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA89197AD7CD00721CEC /* MapViewController.m */; };
-		95C6EA91197ADA0500721CEC /* ARPointOfInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA90197ADA0500721CEC /* ARPointOfInterest.m */; };
 		95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA92197ADA8C00721CEC /* CoreLocation.framework */; };
 		95C6EA95197ADCB400721CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA94197ADCB400721CEC /* Main.storyboard */; };
 		95C6EA99197ADCF300721CEC /* Triangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA98197ADCF300721CEC /* Triangle.m */; };
@@ -46,10 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		95677BDB1980312000BB66E3 /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARView.h; sourceTree = "<group>"; };
-		95677BDC1980312000BB66E3 /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARView.m; sourceTree = "<group>"; };
-		95677BDE19803ED000BB66E3 /* ARCoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoreLocationController.h; sourceTree = "<group>"; };
-		95677BDF19803ED000BB66E3 /* ARCoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoreLocationController.m; sourceTree = "<group>"; };
+		952F2A801983EA39008F389C /* ARCoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoreLocationController.h; sourceTree = "<group>"; };
+		952F2A811983EA39008F389C /* ARCoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoreLocationController.m; sourceTree = "<group>"; };
+		952F2A831983EA39008F389C /* ARPointOfInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPointOfInterest.h; sourceTree = "<group>"; };
+		952F2A841983EA39008F389C /* ARPointOfInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARPointOfInterest.m; sourceTree = "<group>"; };
+		952F2A861983EA39008F389C /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARView.h; sourceTree = "<group>"; };
+		952F2A871983EA39008F389C /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARView.m; sourceTree = "<group>"; };
 		95C6EA4D197AD7C300721CEC /* TFG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C6EA50197AD7C300721CEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95C6EA52197AD7C300721CEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,8 +70,6 @@
 		95C6EA7B197AD7C300721CEC /* TFGTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFGTests.m; sourceTree = "<group>"; };
 		95C6EA88197AD7CD00721CEC /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		95C6EA89197AD7CD00721CEC /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		95C6EA8F197ADA0500721CEC /* ARPointOfInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPointOfInterest.h; sourceTree = "<group>"; };
-		95C6EA90197ADA0500721CEC /* ARPointOfInterest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARPointOfInterest.m; sourceTree = "<group>"; };
 		95C6EA92197ADA8C00721CEC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		95C6EA94197ADCB400721CEC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		95C6EA97197ADCF300721CEC /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
@@ -122,31 +122,31 @@
 			path = AR;
 			sourceTree = "<group>";
 		};
-		95AC7FEA198175EF00F783D7 /* View */ = {
+		952F2A7F1983EA39008F389C /* Location & Motion Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				95677BDB1980312000BB66E3 /* ARView.h */,
-				95677BDC1980312000BB66E3 /* ARView.m */,
+				952F2A801983EA39008F389C /* ARCoreLocationController.h */,
+				952F2A811983EA39008F389C /* ARCoreLocationController.m */,
 			);
-			name = View;
+			path = "Location & Motion Controllers";
 			sourceTree = "<group>";
 		};
-		95AC7FEB198175FD00F783D7 /* Model */ = {
+		952F2A821983EA39008F389C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				95C6EA8F197ADA0500721CEC /* ARPointOfInterest.h */,
-				95C6EA90197ADA0500721CEC /* ARPointOfInterest.m */,
+				952F2A831983EA39008F389C /* ARPointOfInterest.h */,
+				952F2A841983EA39008F389C /* ARPointOfInterest.m */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		95AC7FF4198184C000F783D7 /* CoreLocation */ = {
+		952F2A851983EA39008F389C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				95677BDE19803ED000BB66E3 /* ARCoreLocationController.h */,
-				95677BDF19803ED000BB66E3 /* ARCoreLocationController.m */,
+				952F2A861983EA39008F389C /* ARView.h */,
+				952F2A871983EA39008F389C /* ARView.m */,
 			);
-			name = CoreLocation;
+			path = View;
 			sourceTree = "<group>";
 		};
 		95C6EA44197AD7C300721CEC = {
@@ -243,9 +243,9 @@
 		95C6EA8E197AD9F100721CEC /* AR */ = {
 			isa = PBXGroup;
 			children = (
-				95AC7FEB198175FD00F783D7 /* Model */,
-				95AC7FEA198175EF00F783D7 /* View */,
-				95AC7FF4198184C000F783D7 /* CoreLocation */,
+				952F2A7F1983EA39008F389C /* Location & Motion Controllers */,
+				952F2A821983EA39008F389C /* Model */,
+				952F2A851983EA39008F389C /* View */,
 			);
 			path = AR;
 			sourceTree = "<group>";
@@ -371,13 +371,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95677BE019803ED000BB66E3 /* ARCoreLocationController.m in Sources */,
 				95DF1404197AEED000991AAD /* APBXMLParser.m in Sources */,
 				95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */,
 				95DF13FB197ADF6600991AAD /* SettingsViewController.m in Sources */,
 				95C6EA99197ADCF300721CEC /* Triangle.m in Sources */,
-				95677BDD1980312000BB66E3 /* ARView.m in Sources */,
-				95C6EA91197ADA0500721CEC /* ARPointOfInterest.m in Sources */,
+				952F2A881983EA39008F389C /* ARCoreLocationController.m in Sources */,
+				952F2A8A1983EA39008F389C /* ARView.m in Sources */,
+				952F2A891983EA39008F389C /* ARPointOfInterest.m in Sources */,
 				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
 				95DF1403197AEED000991AAD /* APBXMLElement.m in Sources */,
 				95FBAC00197AF30700160544 /* ARViewController.m in Sources */,
