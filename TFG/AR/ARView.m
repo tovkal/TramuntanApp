@@ -81,6 +81,11 @@
 	
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+	
+	//If view starts in landscape, rotate the AV view.
+	if ([[UIDevice currentDevice] orientation] != UIDeviceOrientationPortrait) {
+		[self orientationChanged:nil];
+	}
 }
 
 - (void)orientationChanged:(NSNotification *)notification
@@ -146,6 +151,9 @@
     
     if (rotate) {
         self.captureVideoPreviewLayer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+		
+		//Redraw on rotation
+		[self drawTarget];
     }
 }
 

@@ -114,6 +114,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		952F2A721983B4DD008F389C /* CoreMotion */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CoreMotion;
+			path = AR;
+			sourceTree = "<group>";
+		};
 		95AC7FEA198175EF00F783D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +186,7 @@
 			children = (
 				95C6EA85197AD7CD00721CEC /* ViewControllers */,
 				95C6EA8E197AD9F100721CEC /* AR */,
+				952F2A721983B4DD008F389C /* CoreMotion */,
 				95C6EA96197ADCE600721CEC /* Graphics */,
 				95DF13FC197AEEC700991AAD /* XML */,
 				95C6EA94197ADCB400721CEC /* Main.storyboard */,

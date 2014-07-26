@@ -27,6 +27,12 @@
 	[self setupDelegates];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	//When the view is setup, draw target because if we do it before and the view starts in landscape the target will not be drawn properly as view.bounds are not correct yet
+	[self.myView drawTarget];
+}
+
 - (void) setupDelegates
 {
 	self.clController = [[ARCoreLocationController alloc] init];
