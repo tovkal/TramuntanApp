@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9515217A1984F364002244D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951521791984F364002244D8 /* AVFoundation.framework */; };
 		953FB5161983F91D00D2CE2F /* ARCoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB50F1983F91D00D2CE2F /* ARCoreLocationController.m */; };
 		953FB5171983F91D00D2CE2F /* ARPointOfInterest.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5121983F91D00D2CE2F /* ARPointOfInterest.m */; };
 		953FB5181983F91D00D2CE2F /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5151983F91D00D2CE2F /* ARView.m */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		951521791984F364002244D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		953FB50E1983F91D00D2CE2F /* ARCoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCoreLocationController.h; sourceTree = "<group>"; };
 		953FB50F1983F91D00D2CE2F /* ARCoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCoreLocationController.m; sourceTree = "<group>"; };
 		953FB5111983F91D00D2CE2F /* ARPointOfInterest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPointOfInterest.h; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9515217A1984F364002244D8 /* AVFoundation.framework in Frameworks */,
 				95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */,
 				95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */,
 				95C6EA53197AD7C300721CEC /* CoreGraphics.framework in Frameworks */,
@@ -171,6 +174,7 @@
 		95C6EA4F197AD7C300721CEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				951521791984F364002244D8 /* AVFoundation.framework */,
 				95DF13F7197ADDE000991AAD /* QuartzCore.framework */,
 				95C6EA92197ADA8C00721CEC /* CoreLocation.framework */,
 				95C6EA50197AD7C300721CEC /* Foundation.framework */,
@@ -502,6 +506,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
 				INFOPLIST_FILE = "TFG/TFG-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -515,6 +520,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
 				INFOPLIST_FILE = "TFG/TFG-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

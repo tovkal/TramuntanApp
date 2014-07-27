@@ -13,5 +13,7 @@
 @interface ARViewController : UIViewController <CLLocationManagerDelegate, ARCLDelegate, ARCMDelegate>
 
 @property BOOL locationDebug;
+@property BOOL headingDebug;
+@property BOOL altitudeDebug;
 
 @end

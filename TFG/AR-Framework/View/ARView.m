@@ -1,6 +1,6 @@
 //
 //  ARView.m
-//  TFG
+//  AR-Framework
 //
 //  Created by Tovkal on 23/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
@@ -11,10 +11,11 @@
 
 @interface ARView()
 
+@property (strong, nonatomic) UIView *captureView;
+
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) AVCaptureDevice *videoDeviceInput;
-@property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureVideoPreviewLayer;
-
+@property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureLayer;
 @end
 
 @implementation ARView
@@ -23,12 +24,20 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initCamera];
+		[self initialize];
     }
     return self;
 }
 
-- (void)initCamera
+- (void)initialize
+{
+	self.captureView = [[UIView alloc] initWithFrame:self.bounds];
+	self.captureView.bounds = self.bounds;
+	[self addSubview:self.captureView];
+	[self sendSubviewToBack:self.captureView];
+}
+
+- (void)start
 {
 	AVCaptureDevice *inputDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
 	NSError *deviceInputError = nil;
@@ -66,15 +75,19 @@
     }
     
     //handle prevLayer
-    if (!self.captureVideoPreviewLayer) {
-        self.captureVideoPreviewLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
+    if (!self.captureLayer) {
+        self.captureLayer = [AVCaptureVideoPreviewLayer layerWithSession:self.captureSession];
     }
     
     //if you want to adjust the previewlayer frame, here!
-    self.captureVideoPreviewLayer.frame = self.bounds;
-    self.captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    [self.layer addSublayer: self.captureVideoPreviewLayer];
-    [self.captureSession startRunning];
+	self.captureLayer.frame = self.captureView.bounds;
+    self.captureLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    [self.captureView.layer addSublayer: self.captureLayer];
+    
+	// Start the session. This is done asychronously since -startRunning doesn't return until the session is running.
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		[self.captureSession startRunning];
+	});
 	
 	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
@@ -83,6 +96,16 @@
 	if ([[UIDevice currentDevice] orientation] != UIDeviceOrientationPortrait) {
 		[self orientationChanged:nil];
 	}
+}
+
+- (void)stop
+{
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		[self.captureSession stopRunning];
+	});
+	[self.captureLayer removeFromSuperlayer];
+	self.captureSession = nil;
+	self.captureLayer = nil;
 }
 
 - (void)orientationChanged:(NSNotification *)notification
@@ -125,11 +148,11 @@
     switch (orientation) {
         case UIDeviceOrientationLandscapeLeft:
             bounds = CGRectMake(0, 0, yInt, xInt);
-            self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI + M_PI_2); // 270 degress
+            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(M_PI + M_PI_2); // 270 degress
             break;
         case UIDeviceOrientationLandscapeRight:
             bounds = CGRectMake(0, 0, yInt, xInt);
-            self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI_2); // 90 degrees
+            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(M_PI_2); // 90 degrees
             break;
         case UIDeviceOrientationPortraitUpsideDown:
             rotate = NO;
@@ -142,12 +165,12 @@
 			break;
         default: //Portrait
             bounds = CGRectMake(0, 0, xInt, yInt);
-            self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(0.0);
+            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(0.0);
             break;
     }
     
     if (rotate) {
-        self.captureVideoPreviewLayer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+        self.captureLayer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     }
 }
 

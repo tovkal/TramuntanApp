@@ -1,6 +1,6 @@
 //
 //  ARCoreMotionController.m
-//  TFG
+//  AR-Framework
 //
 //  Created by Tovkal on 26/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
@@ -12,14 +12,16 @@
 
 @property (strong, nonatomic) CMMotionManager *coreMotionManager;
 
+@property (strong, nonatomic) NSTimer *timer;
+
 @end
 
 @implementation ARCoreMotionController
 
-- (void)setup
+- (void)start
 {
 	self.coreMotionManager = [[CMMotionManager alloc] init];
-	[NSTimer scheduledTimerWithTimeInterval:0.1
+	self.timer = [NSTimer scheduledTimerWithTimeInterval:0.1
 									 target:self
 								   selector:@selector(gotValues)
 								   userInfo:nil
@@ -27,6 +29,13 @@
 	self.coreMotionManager.deviceMotionUpdateInterval = 0.05; //seconds
 	[self.coreMotionManager startDeviceMotionUpdates];
 	
+}
+
+- (void)stop
+{
+	[self.timer invalidate];
+	[self.coreMotionManager stopDeviceMotionUpdates];
+	self.coreMotionManager = nil;
 }
 
 - (void)gotValues

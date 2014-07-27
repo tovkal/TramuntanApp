@@ -1,6 +1,6 @@
 //
 //  ARCoreLocationController.m
-//  TFG
+//  AR-Framework
 //
 //  Created by Tovkal on 23/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
@@ -17,12 +17,9 @@
 
 @implementation ARCoreLocationController
 
-- (void)setup
+- (void)start
 {
-	if (self.locationManager == nil) {
-		self.locationManager = [[CLLocationManager alloc] init];
-	}
-	
+	self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.delegate = self;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	
@@ -32,6 +29,13 @@
 	[self.locationManager startUpdatingLocation];
 	[self.locationManager startUpdatingHeading];
 	
+}
+
+- (void)stop
+{
+	[self.locationManager stopUpdatingLocation];
+	[self.locationManager stopUpdatingHeading];
+	self.locationManager = nil;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations

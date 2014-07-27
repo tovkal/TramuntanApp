@@ -8,6 +8,8 @@
 
 #import "ARViewController.h"
 #import "TargetShape.h"
+#import "APBXMLElement.h"
+#import "APBXMLParser.h"
 
 @interface ARViewController ()
 @property (strong, nonatomic) ARView *myView;
@@ -18,34 +20,60 @@
 //TODO temporary
 @property (weak, nonatomic) CAShapeLayer *targetLayer;
 
+//Array for XML Data
+@property (strong, nonatomic) NSMutableArray *data;
+
 @end
 
 @implementation ARViewController
 
 - (void)viewDidLoad
 {
+	[super viewDidLoad];
 	self.myView = [[ARView alloc] initWithFrame:self.view.frame];
-	self.view = self.myView;	
-	
-		
-	[self setupDelegates];
+	self.view = self.myView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	//When the view is setup, draw target because if we do it before and the view starts in landscape the target will not be drawn properly as view.bounds are not correct yet
+	[super viewWillAppear:animated];
+	[self.myView start];
+	[self startLocation];
+	[self startMotion];
 	[self drawTarget];
 }
 
-- (void) setupDelegates
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+	[self.myView stop];
+	[self stopLocation];
+	[self stopMotion];
+}
+
+- (void)startLocation
 {
 	self.coreLocationController = [[ARCoreLocationController alloc] init];
 	self.coreLocationController.delegate = self;
-	[self.coreLocationController setup];
-	
+	[self.coreLocationController start];
+}
+
+- (void)stopLocation
+{
+	[self.coreLocationController stop];
+}
+
+- (void)startMotion
+{
 	self.coreMotionControlller = [[ARCoreMotionController alloc] init];
 	self.coreMotionControlller.delegate = self;
-	[self.coreMotionControlller setup];
+	[self.coreMotionControlller start];
+
+}
+
+- (void)stopMotion
+{
+	[self.coreMotionControlller stop];
 }
 
 #pragma mark - ARDelegate
@@ -68,7 +96,7 @@
 
 - (void)didUpdateHeading:(CLHeading *)heading
 {
-	if (self.locationDebug) {
+	if (self.headingDebug) {
 		NSLog(@"heading: %@", heading);
 	}
 }
@@ -77,7 +105,9 @@
 
 - (void)gotNewValues:(CMAttitude *)attitude
 {
-	NSLog(@"attitude: %@", attitude);
+	if (self.altitudeDebug) {
+		NSLog(@"attitude: %@", attitude);
+	}
 }
 
 #pragma mark - Target view TEMPORARY
@@ -105,6 +135,67 @@
 	if (self.targetLayer != nil) {
 		[self.targetLayer removeFromSuperlayer];
 	}
+}
+
+- (void)doNothing:(ARView *)arView{}
+
+#pragma mark - XML Data
+
+- (void)parseXML
+{
+	APBXMLParser *parser  = [[APBXMLParser alloc] init];
+	APBXMLElement *rootElement = [parser parseXML:@"muntanyes_dev"];
+	
+	[self toArray:rootElement];
+}
+
+- (void)toArray:(APBXMLElement *)rootElement
+{
+	APBXMLElement *database = rootElement.subElements[1];
+	
+	for (APBXMLElement *mountainElement in database.subElements) {
+		
+		NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+		
+		NSArray *attributeArray = @[@"name", @"alt_name", @"lat", @"lon", @"alt_lat", @"alt_lon", @"ele", @"alt_ele", @"postal_code"];
+		
+		for (APBXMLElement *attribute in mountainElement.subElements) {
+			NSArray *values = [attribute.attributes allValues];
+			NSInteger item = [attributeArray indexOfObject:values[0]];
+			
+			switch (item) {
+				case 0: //name
+				case 1: //alt_name
+				case 2: //lat
+				case 3: //lon
+				case 4: //alt_lat
+				case 5: //alt_lon
+				case 6: //ele
+				case 7: //alt:ele
+					[dictionary setObject:attribute.text forKey:attributeArray[item]];
+					break;
+				case 8: //postal code
+					[dictionary setObject:[attribute.text componentsSeparatedByString:@", "] forKey:attributeArray[item]];
+					break;
+				case NSIntegerMax: break;
+				default:
+					NSLog(@"Error converting XML Data to Array, attribute key not found: %@", attribute.attributes);
+					break;
+			}
+		}
+		
+		[self.data addObject:dictionary];
+		
+	}
+}
+
+- (NSMutableArray *)data
+{
+	if (_data == nil) {
+		_data = [[NSMutableArray alloc] init];
+	}
+	
+	return _data;
 }
 
 @end

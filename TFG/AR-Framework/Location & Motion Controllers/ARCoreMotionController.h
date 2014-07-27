@@ -1,6 +1,6 @@
 //
 //  ARCoreMotionController.h
-//  TFG
+//  AR-Framework
 //
 //  Created by Tovkal on 26/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
@@ -18,6 +18,7 @@
 
 @property (assign, nonatomic) id<ARCMDelegate> delegate;
 
-- (void)setup;
+- (void)start;
+- (void)stop;
 
 @end

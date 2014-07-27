@@ -48,7 +48,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lYo-4t-kNa">
+                            <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lYo-4t-kNa">
                                 <rect key="frame" x="251" y="55" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
@@ -59,22 +59,57 @@
                                 <rect key="frame" x="20" y="60" width="121" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="121" id="jig-NG-CcT"/>
+                                    <constraint firstAttribute="width" constant="121" id="CS0-Dn-GRK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heading debug" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFW-IS-4wd">
+                                <rect key="frame" x="20" y="99" width="121" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude debug" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hf-CS-qMG">
+                                <rect key="frame" x="20" y="138" width="121" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YwO-P1-9bS">
+                                <rect key="frame" x="251" y="94" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rfA-SA-fOb">
+                                <rect key="frame" x="251" y="133" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lYo-4t-kNa" firstAttribute="top" secondItem="tCS-7d-Hn6" secondAttribute="bottom" constant="35" id="4fB-0J-Bli"/>
-                            <constraint firstAttribute="trailing" secondItem="lYo-4t-kNa" secondAttribute="trailing" constant="20" symbolic="YES" id="Q0F-av-odd"/>
-                            <constraint firstItem="lYo-4t-kNa" firstAttribute="centerY" secondItem="Kt8-am-rb4" secondAttribute="centerY" id="Yww-7R-bls"/>
-                            <constraint firstItem="Kt8-am-rb4" firstAttribute="leading" secondItem="eFh-oc-UFv" secondAttribute="leading" constant="20" symbolic="YES" id="kuR-Xb-EvC"/>
+                            <constraint firstItem="dFW-IS-4wd" firstAttribute="trailing" secondItem="Kt8-am-rb4" secondAttribute="trailing" id="1Md-3j-NXV"/>
+                            <constraint firstItem="YwO-P1-9bS" firstAttribute="top" secondItem="lYo-4t-kNa" secondAttribute="bottom" constant="8" symbolic="YES" id="1QU-71-wTQ"/>
+                            <constraint firstItem="lYo-4t-kNa" firstAttribute="leading" secondItem="YwO-P1-9bS" secondAttribute="leading" id="43K-lx-mQj"/>
+                            <constraint firstItem="YwO-P1-9bS" firstAttribute="centerY" secondItem="dFW-IS-4wd" secondAttribute="centerY" id="7Ne-r0-ljG"/>
+                            <constraint firstItem="lYo-4t-kNa" firstAttribute="top" secondItem="tCS-7d-Hn6" secondAttribute="bottom" constant="35" id="FjT-GL-vxP"/>
+                            <constraint firstItem="rfA-SA-fOb" firstAttribute="leading" secondItem="YwO-P1-9bS" secondAttribute="leading" id="G8Q-4J-8wG"/>
+                            <constraint firstItem="Kt8-am-rb4" firstAttribute="centerY" secondItem="lYo-4t-kNa" secondAttribute="centerY" id="GJe-gp-koW"/>
+                            <constraint firstItem="Kt8-am-rb4" firstAttribute="leading" secondItem="eFh-oc-UFv" secondAttribute="leading" constant="20" symbolic="YES" id="HOy-Q3-cgA"/>
+                            <constraint firstItem="dFW-IS-4wd" firstAttribute="leading" secondItem="1Hf-CS-qMG" secondAttribute="leading" id="L9K-7L-ELF"/>
+                            <constraint firstItem="dFW-IS-4wd" firstAttribute="trailing" secondItem="1Hf-CS-qMG" secondAttribute="trailing" id="YQq-k3-WZA"/>
+                            <constraint firstAttribute="trailing" secondItem="lYo-4t-kNa" secondAttribute="trailing" constant="20" symbolic="YES" id="ag5-X2-5gn"/>
+                            <constraint firstItem="rfA-SA-fOb" firstAttribute="centerY" secondItem="1Hf-CS-qMG" secondAttribute="centerY" id="fTG-Aq-gn6"/>
+                            <constraint firstItem="rfA-SA-fOb" firstAttribute="top" secondItem="YwO-P1-9bS" secondAttribute="bottom" constant="8" symbolic="YES" id="gmc-EU-Ts9"/>
+                            <constraint firstItem="Kt8-am-rb4" firstAttribute="leading" secondItem="dFW-IS-4wd" secondAttribute="leading" id="zup-PY-yJo"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" id="ajA-rQ-vdj"/>
+                    <connections>
+                        <outlet property="headingDebug" destination="YwO-P1-9bS" id="kPg-Z5-mTb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oE9-2M-KdF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

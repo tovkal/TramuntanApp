@@ -1,6 +1,6 @@
 //
 //  PointOfInterest.h
-//  TFG
+//  AR-Framework
 //
 //  Created by Tovkal on 19/07/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
@@ -18,7 +18,7 @@
 @interface ARPointOfInterest : NSObject
 
 @property (nonatomic) double distance;
-@property (nonatomic) double attitude;
+@property (nonatomic) double altitude;
 @property (nonatomic) double azimuth;
 
 @property (strong, nonatomic) CLLocation *geographicLocation;
