@@ -27,14 +27,12 @@
 	self.locationManager.distanceFilter = 10; //meters
 		
 	[self.locationManager startUpdatingLocation];
-	[self.locationManager startUpdatingHeading];
 	
 }
 
 - (void)stop
 {
 	[self.locationManager stopUpdatingLocation];
-	[self.locationManager stopUpdatingHeading];
 	self.locationManager = nil;
 }
 
@@ -50,15 +48,6 @@
 	
 	[self.delegate performSelector:@selector(didFindLocation:) withObject:location];
 	
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
-{
-	[self.delegate performSelector:@selector(didUpdateHeading:) withObject:newHeading];
-}
-
-- (BOOL)locationManagerShouldDisplayHeadingCalibration: (CLLocationManager *)manager {
-    return YES;
 }
 
 @end

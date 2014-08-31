@@ -10,12 +10,11 @@
 #import "TargetShape.h"
 #import "APBXMLElement.h"
 #import "APBXMLParser.h"
+#import "Mountain.h"
+#import "ARController.h"
 
 @interface ARViewController ()
-@property (strong, nonatomic) ARView *myView;
-
-@property (strong, nonatomic) ARCoreLocationController *coreLocationController;
-@property (strong, nonatomic) ARCoreMotionController *coreMotionControlller;
+@property (strong, nonatomic) ARController *ar;
 
 //TODO temporary
 @property (weak, nonatomic) CAShapeLayer *targetLayer;
@@ -30,50 +29,25 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	self.myView = [[ARView alloc] initWithFrame:self.view.frame];
-	self.view = self.myView;
+	self.ar = [[ARController alloc] initWithFrame:self.view.frame];
+	self.view = self.ar.arView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	[self.myView start];
-	[self startLocation];
-	[self startMotion];
 	[self drawTarget];
+	
+	[self.ar startAR];
+	
+	[self parseXML];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	[self.myView stop];
-	[self stopLocation];
-	[self stopMotion];
-}
-
-- (void)startLocation
-{
-	self.coreLocationController = [[ARCoreLocationController alloc] init];
-	self.coreLocationController.delegate = self;
-	[self.coreLocationController start];
-}
-
-- (void)stopLocation
-{
-	[self.coreLocationController stop];
-}
-
-- (void)startMotion
-{
-	self.coreMotionControlller = [[ARCoreMotionController alloc] init];
-	self.coreMotionControlller.delegate = self;
-	[self.coreMotionControlller start];
-
-}
-
-- (void)stopMotion
-{
-	[self.coreMotionControlller stop];
+	
+	[self.ar startAR];
 }
 
 #pragma mark - ARDelegate
@@ -83,31 +57,6 @@
 	NSMutableArray *data = [[NSMutableArray alloc] init];
 	
 	return data;
-}
-
-#pragma mark - ARCLDelegate
-
-- (void)didFindLocation:(CLLocation *)location
-{
-	if (self.locationDebug){
-		NSLog(@"location: %@", location);
-	}
-}
-
-- (void)didUpdateHeading:(CLHeading *)heading
-{
-	if (self.headingDebug) {
-		NSLog(@"heading: %@", heading);
-	}
-}
-
-#pragma mark - ARCMDelegate
-
-- (void)gotNewValues:(CMAttitude *)attitude
-{
-	if (self.altitudeDebug) {
-		NSLog(@"attitude: %@", attitude);
-	}
 }
 
 #pragma mark - Target view TEMPORARY

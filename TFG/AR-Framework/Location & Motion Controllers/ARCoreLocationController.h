@@ -11,7 +11,6 @@
 @protocol ARCLDelegate <NSObject>
 
 - (void)didFindLocation:	(CLLocation *)	location;
-- (void)didUpdateHeading:	(CLHeading *)	heading;
 
 @end
 

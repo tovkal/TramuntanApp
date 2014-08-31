@@ -10,4 +10,15 @@
 
 @implementation ARPointOfInterest
 
+- (id) initWithView:(UIView *)view atLat:(double)lat andLon:(double)lon withAltitude:(double)altitude
+{
+	self = [super init];
+	self.view = view;
+	self.location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
+	self.altitude = altitude;
+	
+	return self;
+}
+
+
 @end
