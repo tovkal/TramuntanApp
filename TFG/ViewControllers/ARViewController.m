@@ -29,18 +29,21 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	self.ar = [[ARController alloc] initWithFrame:self.view.frame];
+	self.ar = [[ARController alloc] initWithBounds:self.view.bounds];
 	self.view = self.ar.arView;
+	
+	[self parseXML];
+	
+	[self initARData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	
 	[self drawTarget];
 	
 	[self.ar startAR];
-	
-	[self parseXML];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -120,7 +123,7 @@
 				case 4: //alt_lat
 				case 5: //alt_lon
 				case 6: //ele
-				case 7: //alt:ele
+				case 7: //alt_ele
 					[dictionary setObject:attribute.text forKey:attributeArray[item]];
 					break;
 				case 8: //postal code
@@ -145,6 +148,40 @@
 	}
 	
 	return _data;
+}
+
+- (void)initARData
+{
+	NSMutableArray *mountainArray = [[NSMutableArray alloc] init];
+	for (NSDictionary *mountain in self.data) {
+		
+		UILabel *label = [[UILabel alloc] init];
+		label.adjustsFontSizeToFitWidth = NO;
+		label.opaque = NO;
+		label.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.5f];
+		label.center = CGPointMake(200.0f, 200.0f);
+		label.textAlignment = NSTextAlignmentCenter;
+		label.textColor = [UIColor whiteColor];
+		label.attributedText = [[NSAttributedString alloc] initWithString:[mountain valueForKey:@"name"]];
+		CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}];
+		label.bounds = CGRectMake(0.0f, 0.0f, size.width, size.height);
+
+		
+		Mountain *m = [[Mountain alloc] initWithName:[mountain valueForKey:@"name"]
+									 alternativeName:[mountain valueForKey:@"alt_name"]
+												 lat:[[mountain valueForKey:@"lat"] doubleValue]
+												 lon:[[mountain valueForKey:@"lon"] doubleValue]
+									  alternativeLat:[[mountain valueForKey:@"alt_lat"] doubleValue]
+									  alternativeLon:[[mountain valueForKey:@"alt_lon"] doubleValue]
+												 alt:[[mountain valueForKey:@"ele"] doubleValue]
+								 alternativeAltitude:[[mountain valueForKey:@"alt_ele"] doubleValue]
+										  postalCode:[mountain valueForKey:@"postal code"]
+											withView:label];
+		
+		[mountainArray addObject:m];
+	}
+	
+	self.ar.pointsOfInterest = mountainArray;
 }
 
 @end

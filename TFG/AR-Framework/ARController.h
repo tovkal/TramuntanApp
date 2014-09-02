@@ -12,11 +12,13 @@
 #import "ARCoreMotionController.h"
 #import "ARPointOfInterest.h"
 
-@interface ARController : NSObject <CLLocationManagerDelegate, ARCLDelegate, ARCMDelegate>
+@interface ARController : NSObject <ARCLDelegate, ARCMDelegate>
 
 @property (strong, nonatomic) ARView *arView;
 
-- (id) initWithFrame:(CGRect)frame;
+@property (strong, nonatomic) NSArray *pointsOfInterest;
+
+- (id) initWithBounds:(CGRect)bounds;
 - (void) startAR;
 - (void) stopAR;
 

@@ -10,7 +10,7 @@
 
 @implementation ARPointOfInterest
 
-- (id) initWithView:(UIView *)view atLat:(double)lat andLon:(double)lon withAltitude:(double)altitude
+- (id) initWithName:(NSString *)name atLat:(double)lat andLon:(double)lon withAltitude:(double)altitude withView:(UIView *)view
 {
 	self = [super init];
 	self.view = view;

@@ -8,6 +8,8 @@
 
 #import "ARView.h"
 #import "TargetShape.h"
+#import "ARPointOfInterest.h"
+#import "ARUtils.h"
 
 @interface ARView()
 
@@ -17,6 +19,8 @@
 @property (strong, nonatomic) AVCaptureDevice *videoDeviceInput;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureLayer;
 @end
+
+mat4f_t projectionTransform;
 
 @implementation ARView
 
@@ -96,6 +100,11 @@
 	if ([[UIDevice currentDevice] orientation] != UIDeviceOrientationPortrait) {
 		[self orientationChanged:nil];
 	}
+	
+	
+	// Initialize projection matrix
+	//Fov angle from: http://stackoverflow.com/a/3594424/1283228
+	createProjectionMatrix(projectionTransform, 61.4f*DEGREES_TO_RADIANS, self.bounds.size.width*1.0f / self.bounds.size.height, 0.25f, 1000.0f);
 }
 
 - (void)stop
@@ -172,6 +181,32 @@
     if (rotate) {
         self.captureLayer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     }
+}
+
+- (void)drawRect:(CGRect)rect
+{
+	if (placesOfInterestCoordinates == nil) {
+		return;
+	}
+	
+	mat4f_t projectionCameraTransform;
+	multiplyMatrixAndMatrix(projectionCameraTransform, projectionTransform, cameraTransform);
+	
+	int i = 0;
+	for (ARPointOfInterest *poi in [self.pointsOfInterest objectEnumerator]) {
+		vec4f_t v;
+		multiplyMatrixAndVector(v, projectionCameraTransform, placesOfInterestCoordinates[i]);
+		
+		float x = (v[0] / v[3] + 1.0f) * 0.5f;
+		float y = (v[1] / v[3] + 1.0f) * 0.5f;
+		if (v[2] < 0.0f) {
+			poi.view.center = CGPointMake(x*self.bounds.size.width, self.bounds.size.height-y*self.bounds.size.height);
+			poi.view.hidden = NO;
+		} else {
+			poi.view.hidden = YES;
+		}
+		i++;
+	}
 }
 
 @end

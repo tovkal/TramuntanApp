@@ -17,10 +17,11 @@
 
 @interface ARPointOfInterest : NSObject
 
+@property (strong, nonatomic) NSString *name;
 @property (nonatomic) double altitude;
 @property (strong, nonatomic) CLLocation *location;
 @property (strong, nonatomic) UIView *view;
 
-- (id) initWithView:(UIView *)view atLat:(double)lat andLon:(double)lon withAltitude:(double)altitude;
+- (id) initWithName:(NSString *)name atLat:(double)lat andLon:(double)lon withAltitude:(double)altitude withView:(UIView *)view ;
 
 @end
