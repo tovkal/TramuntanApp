@@ -30,6 +30,8 @@
 
 @implementation ARView
 
+#pragma mark - Inits
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -127,6 +129,8 @@
 	[self stopDisplayLink];
 }
 
+#pragma mark Display link
+
 - (void)startDisplayLink
 {
 	self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(onDisplayLink:)];
@@ -146,6 +150,29 @@
 	if (a != nil) {
 		CMRotationMatrix r = a.rotationMatrix;
 		transformFromCMRotationMatrix(cameraTransform, &r);
+
+		
+		
+		/*UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+		float deviceOrientationRadians = 0.0f;
+		if (orientation == UIDeviceOrientationLandscapeLeft) {
+			deviceOrientationRadians = M_PI_2;
+		}
+		if (orientation == UIDeviceOrientationLandscapeRight) {
+			deviceOrientationRadians = -M_PI_2;
+		}
+		if (orientation == UIDeviceOrientationPortraitUpsideDown) {
+			deviceOrientationRadians = M_PI;
+		}
+		
+		vec4f_t rotation;
+		
+		rotation[0] = deviceOrientationRadians;
+		rotation[1] = 0.0f;
+		rotation[2] = 0.0f;
+		rotation[3] = 1.0f;	*/	
+		
+		
 		[self setNeedsDisplay];
 	}
 }
@@ -219,7 +246,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-	if (self.pointsOfInterestCoordinates == nil) {
+	if (pointsOfInterestCoordinates == nil) {
 		return;
 	}
 	
@@ -229,10 +256,8 @@
 	int i = 0;
 	for (Mountain *poi in [self.pointsOfInterest objectEnumerator]) {
 		vec4f_t v;
-		
-		vec4f_t *poiCoordinates = [ARUtils getCoordinatesForIndex:i inArray:self.pointsOfInterestCoordinates];
-		
-		multiplyMatrixAndVector(v, projectionCameraTransform, poiCoordinates[i]);
+				
+		multiplyMatrixAndVector(v, projectionCameraTransform, pointsOfInterestCoordinates[i]);
 		
 		float x = (v[0] / v[3] + 1.0f) * 0.5f;
 		float y = (v[1] / v[3] + 1.0f) * 0.5f;

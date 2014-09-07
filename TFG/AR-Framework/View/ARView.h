@@ -18,9 +18,12 @@
 @end
 
 @interface ARView : UIView
+{
+	@public
+	vec4f_t *pointsOfInterestCoordinates;
+}
 
 @property (strong, nonatomic) NSArray *pointsOfInterest;
-@property (strong, nonatomic) NSArray *pointsOfInterestCoordinates;
 
 @property (assign, nonatomic) id<AttitudeDelegate> delegate;
 

@@ -13,6 +13,9 @@
 #import "Mountain.h"
 
 @interface ARViewController ()
+{
+	vec4f_t *pointsOfInterestCoordinates;
+}
 
 //TODO temporary
 @property (weak, nonatomic) CAShapeLayer *targetLayer;
@@ -27,9 +30,6 @@
 
 //Motion
 @property (strong, nonatomic) CMMotionManager *motionManager;
-
-//POIs
-@property (strong, nonatomic) NSMutableArray *pointsOfInterestCoordinates;
 
 @end
 
@@ -253,11 +253,11 @@
 
 - (void)updatePointsOfInterestCoordinates
 {
-	if (self.pointsOfInterestCoordinates != nil) {
-		self.pointsOfInterestCoordinates = nil;
+	if (pointsOfInterestCoordinates != NULL) {
+		free(pointsOfInterestCoordinates);
 	}
 	
-	self.pointsOfInterestCoordinates = [[NSMutableArray alloc] initWithCapacity:[self.pointsOfInterest count]];
+	pointsOfInterestCoordinates = (vec4f_t *)malloc(sizeof(vec4f_t)*self.pointsOfInterest.count);
 	
 	int i = 0;
 	
@@ -280,9 +280,10 @@
 		latLonToEcef(poi.location.coordinate.latitude, poi.location.coordinate.longitude, poi.altitude, &poiX, &poiY, &poiZ);
 		ecefToEnu(self.location.coordinate.latitude, self.location.coordinate.longitude, myX, myY, myZ, poiX, poiY, poiZ, &e, &n, &u);
 		
-		NSArray *coordinates = @[[NSNumber numberWithDouble:n], [NSNumber numberWithDouble:-e], [NSNumber numberWithDouble:u], [NSNumber numberWithDouble:1.0]];
-		
-		[self.pointsOfInterestCoordinates addObject:coordinates];
+		pointsOfInterestCoordinates[i][0] = (float)n;
+		pointsOfInterestCoordinates[i][1] = -(float)e;
+		pointsOfInterestCoordinates[i][2] = (float)u;
+		pointsOfInterestCoordinates[i][3] = 1.0f;
 		
 		// Add struct containing distance and index to orderedDistances
 		DistanceAndIndex distanceAndIndex;
@@ -313,7 +314,7 @@
 		[view addSubview:poi.view];
 	}
 	
-	view.pointsOfInterestCoordinates = self.pointsOfInterestCoordinates;
+	view->pointsOfInterestCoordinates = pointsOfInterestCoordinates;
 
 }
 

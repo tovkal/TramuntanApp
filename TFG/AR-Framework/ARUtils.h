@@ -20,7 +20,7 @@ typedef float vec4f_t[4];	// 4D vector
 
 @interface ARUtils : NSObject
 
-+ (vec4f_t *)getCoordinatesForIndex:(int)i inArray:(NSArray *)array;
+//+ (vec4f_t *)getCoordinatesForIndex:(int)i inArray:(NSArray *)array;
 
 + (BOOL) rotationMatrixIsEmpty:(CMRotationMatrix)r;
 

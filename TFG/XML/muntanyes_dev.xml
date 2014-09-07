@@ -54,5 +54,47 @@
             <column name="ele_source">NULL</column>
             <column name="postal_code">07018</column>
         </table>
+        <table name="muntanyes6">
+            <column name="id">2175845</column>
+            <column name="name">Puig de Son Espanyol</column>
+            <column name="alt_name">Puig des Corral Fals</column>
+            <column name="lat">39.6439214070001</column>
+            <column name="lon">2.63452117100007</column>
+            <column name="alt_lat">39.6439214070001</column>
+            <column name="alt_lon">2.63452117100007</column>
+            <column name="ele">209.35</column>
+            <column name="alt_ele">209</column>
+            <column name="source">BTN25</column>
+            <column name="ele_source">NULL</column>
+            <column name="postal_code">07040</column>
+        </table>
+        <table name="muntanyes6">
+            <column name="id">2157962</column>
+            <column name="name">Puig Major</column>
+            <column name="alt_name">NULL</column>
+            <column name="lat">39.808105448</column>
+            <column name="lon">2.79431146500008</column>
+            <column name="alt_lat">39.808105448</column>
+            <column name="alt_lon">2.79431146500008</column>
+            <column name="ele">1436</column>
+            <column name="alt_ele">NULL</column>
+            <column name="source">NGCE</column>
+            <column name="ele_source">NULL</column>
+            <column name="postal_code">07019</column>
+        </table>
+        <table name="muntanyes6">
+            <column name="id">2175830</column>
+            <column name="name">Pujol des Gat</column>
+            <column name="alt_name">Puntals de Valldurgent</column>
+            <column name="lat">39.590271617</column>
+            <column name="lon">2.56347608800007</column>
+            <column name="alt_lat">39.590271617</column>
+            <column name="alt_lon">2.56347608800007</column>
+            <column name="ele">509.46</column>
+            <column name="alt_ele">511</column>
+            <column name="source">BTN25</column>
+            <column name="ele_source">NULL</column>
+            <column name="postal_code">07011, 07040</column>
+        </table>
     </database>
 </pma_xml_export>
