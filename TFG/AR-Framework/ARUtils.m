@@ -10,6 +10,39 @@
 
 @implementation ARUtils
 
+#pragma mark - ARView helpers
+
++ (vec4f_t *)getCoordinatesForIndex:(int)i inArray:(NSArray *)array;
+{
+	vec4f_t *coordinates = malloc(sizeof(vec4f_t));
+	
+	NSArray *poiCoordinates = [array objectAtIndex:i];
+	
+	coordinates[0][0] = [[poiCoordinates objectAtIndex:0] floatValue];
+	coordinates[0][1] = [[poiCoordinates objectAtIndex:1] floatValue];
+	coordinates[0][2] = [[poiCoordinates objectAtIndex:2] floatValue];
+	coordinates[0][3] = [[poiCoordinates objectAtIndex:3] floatValue];
+	
+	return coordinates;
+}
+
+#pragma mark - Matrix helpers
+
++ (BOOL) rotationMatrixIsEmpty:(CMRotationMatrix)r
+{	
+	double m = 0.0;
+	
+	m += r.m11 + r.m12 + r.m13;
+	m += r.m21 + r.m22 + r.m23;
+	m += r.m31 + r.m32 + r.m33;
+	
+	if (m == 0.0) {
+		return YES;
+	}
+	
+	return NO;
+}
+
 #pragma mark - Math functions
 // Creates a projection matrix using the given y-axis field-of-view, aspect ratio, and near and far clipping planes
 void createProjectionMatrix(mat4f_t mout, float fovy, float aspect, float zNear, float zFar)

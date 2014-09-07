@@ -20,6 +20,10 @@ typedef float vec4f_t[4];	// 4D vector
 
 @interface ARUtils : NSObject
 
++ (vec4f_t *)getCoordinatesForIndex:(int)i inArray:(NSArray *)array;
+
++ (BOOL) rotationMatrixIsEmpty:(CMRotationMatrix)r;
+
 // Creates a projection matrix using the given y-axis field-of-view, aspect ratio, and near and far clipping planes
 void createProjectionMatrix(mat4f_t mout, float fovy, float aspect, float zNear, float zFar);
 

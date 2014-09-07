@@ -8,19 +8,25 @@
 
 #import "ARView.h"
 #import "TargetShape.h"
-#import "ARPointOfInterest.h"
+#import "Mountain.h"
 #import "ARUtils.h"
 
 @interface ARView()
+{
+	mat4f_t projectionTransform;
+	mat4f_t cameraTransform;
+}
 
 @property (strong, nonatomic) UIView *captureView;
 
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 @property (strong, nonatomic) AVCaptureDevice *videoDeviceInput;
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureLayer;
+
+@property (strong, nonatomic) CADisplayLink *displayLink;
+
 @end
 
-mat4f_t projectionTransform;
 
 @implementation ARView
 
@@ -39,6 +45,11 @@ mat4f_t projectionTransform;
 	self.captureView.bounds = self.bounds;
 	[self addSubview:self.captureView];
 	[self sendSubviewToBack:self.captureView];
+	
+	// Initialize projection matrix
+	//Fov angle from: http://stackoverflow.com/a/3594424/1283228
+	createProjectionMatrix(projectionTransform, 61.4f*DEGREES_TO_RADIANS, self.bounds.size.width*1.0f / self.bounds.size.height, 0.25f, 1000.0f);
+
 }
 
 - (void)start
@@ -101,10 +112,7 @@ mat4f_t projectionTransform;
 		[self orientationChanged:nil];
 	}
 	
-	
-	// Initialize projection matrix
-	//Fov angle from: http://stackoverflow.com/a/3594424/1283228
-	createProjectionMatrix(projectionTransform, 61.4f*DEGREES_TO_RADIANS, self.bounds.size.width*1.0f / self.bounds.size.height, 0.25f, 1000.0f);
+	[self startDisplayLink];
 }
 
 - (void)stop
@@ -115,8 +123,34 @@ mat4f_t projectionTransform;
 	[self.captureLayer removeFromSuperlayer];
 	self.captureSession = nil;
 	self.captureLayer = nil;
+	
+	[self stopDisplayLink];
 }
 
+- (void)startDisplayLink
+{
+	self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(onDisplayLink:)];
+	[self.displayLink setFrameInterval:1];
+	[self.displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+- (void)stopDisplayLink
+{
+	[self.displayLink invalidate];
+	self.displayLink = nil;
+}
+
+- (void)onDisplayLink:(id)sender
+{
+	CMAttitude *a = [self.delegate performSelector:@selector(fetchAttitude)];
+	if (a != nil) {
+		CMRotationMatrix r = a.rotationMatrix;
+		transformFromCMRotationMatrix(cameraTransform, &r);
+		[self setNeedsDisplay];
+	}
+}
+
+#pragma mark - View
 - (void)orientationChanged:(NSNotification *)notification
 {
 	CGRect bounds = CGRectMake(0, 0, 1, 1);
@@ -185,7 +219,7 @@ mat4f_t projectionTransform;
 
 - (void)drawRect:(CGRect)rect
 {
-	if (placesOfInterestCoordinates == nil) {
+	if (self.pointsOfInterestCoordinates == nil) {
 		return;
 	}
 	
@@ -193,9 +227,12 @@ mat4f_t projectionTransform;
 	multiplyMatrixAndMatrix(projectionCameraTransform, projectionTransform, cameraTransform);
 	
 	int i = 0;
-	for (ARPointOfInterest *poi in [self.pointsOfInterest objectEnumerator]) {
+	for (Mountain *poi in [self.pointsOfInterest objectEnumerator]) {
 		vec4f_t v;
-		multiplyMatrixAndVector(v, projectionCameraTransform, placesOfInterestCoordinates[i]);
+		
+		vec4f_t *poiCoordinates = [ARUtils getCoordinatesForIndex:i inArray:self.pointsOfInterestCoordinates];
+		
+		multiplyMatrixAndVector(v, projectionCameraTransform, poiCoordinates[i]);
 		
 		float x = (v[0] / v[3] + 1.0f) * 0.5f;
 		float y = (v[1] / v[3] + 1.0f) * 0.5f;

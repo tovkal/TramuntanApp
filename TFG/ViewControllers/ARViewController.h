@@ -6,7 +6,11 @@
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-@interface ARViewController : UIViewController
+#import <CoreLocation/CoreLocation.h>
+#import <CoreMotion/CoreMotion.h>
+#import "ARView.h"
+
+@interface ARViewController : UIViewController <CLLocationManagerDelegate, AttitudeDelegate>
 
 @property BOOL locationDebug;
 @property BOOL headingDebug;
