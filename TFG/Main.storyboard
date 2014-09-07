@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Map view is not avaliable." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="102" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-FR-Jyq">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map view is not avaliable." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="102" translatesAutoresizingMaskIntoConstraints="NO" id="HqO-FR-Jyq">
                                 <rect key="frame" x="109" y="263" width="102" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -26,8 +26,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="A66-8N-FGr" firstAttribute="top" secondItem="HqO-FR-Jyq" secondAttribute="bottom" constant="215" id="4k5-Eq-PJt"/>
-                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="centerX" secondItem="G6C-9z-rFv" secondAttribute="centerX" id="he1-la-HbV"/>
+                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="top" secondItem="tSo-tt-A7q" secondAttribute="bottom" constant="243" id="KPB-AW-QUr"/>
+                            <constraint firstItem="HqO-FR-Jyq" firstAttribute="centerX" secondItem="G6C-9z-rFv" secondAttribute="centerX" id="LXo-ve-cXG"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" id="2sd-jz-B1R"/>
@@ -134,7 +134,7 @@
                                 <rect key="frame" x="106" y="262" width="108" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="QHo-5C-lir"/>
+                                    <constraint firstAttribute="width" constant="108" id="A9o-mG-MRi"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -143,9 +143,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3BR-yi-MX2" firstAttribute="centerX" secondItem="MHh-UC-I1e" secondAttribute="centerX" id="HZh-gY-xXr"/>
-                            <constraint firstItem="3BR-yi-MX2" firstAttribute="top" secondItem="Qgm-Mp-c4a" secondAttribute="bottom" constant="242" id="S1A-yB-92h"/>
-                            <constraint firstItem="27J-Z6-cYm" firstAttribute="top" secondItem="3BR-yi-MX2" secondAttribute="bottom" constant="214" id="Xxt-Ev-M3t"/>
+                            <constraint firstItem="3BR-yi-MX2" firstAttribute="centerX" secondItem="MHh-UC-I1e" secondAttribute="centerX" id="X84-Bd-awu"/>
+                            <constraint firstItem="27J-Z6-cYm" firstAttribute="top" secondItem="3BR-yi-MX2" secondAttribute="bottom" constant="214" id="Yi8-Ja-yTb"/>
+                            <constraint firstItem="3BR-yi-MX2" firstAttribute="top" secondItem="Qgm-Mp-c4a" secondAttribute="bottom" constant="242" id="stK-6P-PK2"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="AR" id="nd4-3P-gM0"/>

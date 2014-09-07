@@ -31,6 +31,11 @@
 //Motion
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
+//GPS views
+@property (strong, nonatomic) IBOutlet UILabel *gpsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *horAccLabel;
+@property (strong, nonatomic) IBOutlet UILabel *verAccLabel;
+
 @end
 
 @implementation ARViewController
@@ -39,7 +44,6 @@
 {
 	[super viewDidLoad];
 	
-	//ARView *arView = (ARView *)self.view;
 	ARView *arView = [[ARView alloc] initWithFrame:self.view.frame];
 	arView.delegate = self;
 	self.view = arView;
@@ -56,6 +60,8 @@
 	
 	[self drawTarget];
 	
+	[self initGPSMessage];
+		
 	ARView *arView = (ARView *)self.view;
 	[arView start];
 	[self startLocation];
@@ -218,9 +224,89 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
 	self.location = [locations lastObject];
-	if (self.pointsOfInterest != nil) {
+	
+	[self showGPSMessage];
+	
+	if (self.pointsOfInterest != nil && [self haveRequiredGPSAccuracy]) {
 		[self updatePointsOfInterestCoordinates];
 	}
+}
+
+- (BOOL)haveRequiredGPSAccuracy
+{
+	if (self.location.verticalAccuracy < 15 && self.location.horizontalAccuracy < 20) {
+		[self removeGPSMessage];
+		return YES;
+	}
+	
+	return NO;
+}
+
+
+- (void)initGPSMessage
+{
+	//20, 20
+	UILabel *label = [[UILabel alloc] init];
+	label.adjustsFontSizeToFitWidth = NO;
+	label.opaque = NO;
+	label.backgroundColor = [UIColor clearColor];
+	label.center = CGPointMake(100.0f, 30.0f);
+	label.textAlignment = NSTextAlignmentLeft;
+	label.textColor = [UIColor redColor];
+	label.text = @"Getting good GPS fix...";
+	CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}];
+	label.bounds = CGRectMake(0.0f, 0.0f, size.width, size.height);
+	
+	self.gpsLabel = label;
+	[self.view addSubview:self.gpsLabel];
+	
+	UILabel *label2 = [[UILabel alloc] init];
+	label2.adjustsFontSizeToFitWidth = NO;
+	label2.opaque = NO;
+	label2.backgroundColor = [UIColor clearColor];
+	label2.center = CGPointMake(100.0f, 50.0f);
+	label2.textAlignment = NSTextAlignmentLeft;
+	label2.textColor = [UIColor redColor];
+	label2.text = @"Hor. Acc. = 0000m";
+	CGSize size2 = [label2.text sizeWithAttributes:@{NSFontAttributeName: label2.font}];
+	label2.bounds = CGRectMake(0.0f, 0.0f, size.width, size2.height);
+
+	self.horAccLabel = label2;
+	[self.view addSubview:self.horAccLabel];
+	
+	UILabel *label3 = [[UILabel alloc] init];
+	label3.adjustsFontSizeToFitWidth = NO;
+	label3.opaque = NO;
+	label3.backgroundColor = [UIColor clearColor];
+	label3.center = CGPointMake(100.0f, 70.0f);
+	label3.textAlignment = NSTextAlignmentLeft;
+	label3.textColor = [UIColor redColor];
+	label3.text = @"Ver. Acc. = 0000m";
+	CGSize size3 = [label3.text sizeWithAttributes:@{NSFontAttributeName: label3.font}];
+	label3.bounds = CGRectMake(0.0f, 0.0f, size.width, size3.height);
+	
+	self.verAccLabel = label3;
+	[self.view addSubview:self.verAccLabel];
+
+}
+
+
+- (void)showGPSMessage
+{
+	NSLog(@"Showing");
+	[self.gpsLabel		setHidden:NO];
+	self.horAccLabel.text = [NSString stringWithFormat:@"Hor. Acc. = %f", self.location.horizontalAccuracy];
+	[self.horAccLabel	setHidden:NO];
+	self.verAccLabel.text = [NSString stringWithFormat:@"Ver. Acc. = %f", self.location.verticalAccuracy];
+	[self.verAccLabel	setHidden:NO];
+}
+
+- (void)removeGPSMessage
+{
+	NSLog(@"Hidden");
+	[self.gpsLabel		setHidden:YES];
+	[self.horAccLabel	setHidden:YES];
+	[self.verAccLabel	setHidden:YES];
 }
 
 #pragma mark - Core Motion
