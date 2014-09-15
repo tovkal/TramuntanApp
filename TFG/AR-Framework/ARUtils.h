@@ -31,6 +31,8 @@ void createProjectionMatrix(mat4f_t mout, float fovy, float aspect, float zNear,
 void multiplyMatrixAndVector(vec4f_t vout, const mat4f_t m, const vec4f_t v);
 void multiplyMatrixAndMatrix(mat4f_t c, const mat4f_t a, const mat4f_t b);
 
+void makeRotationMatrix(mat4f_t mout, const float radians, const float x, const float y, const float z);
+
 // Initialize mout to be an affine transform corresponding to the same rotation specified by m
 void transformFromCMRotationMatrix(vec4f_t mout, const CMRotationMatrix *m);
 

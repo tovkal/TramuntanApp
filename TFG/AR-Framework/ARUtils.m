@@ -7,6 +7,7 @@
 //
 
 #import "ARUtils.h"
+#import "UIDeviceHardware.h"
 
 @implementation ARUtils
 
@@ -91,6 +92,37 @@ void multiplyMatrixAndMatrix(mat4f_t c, const mat4f_t a, const mat4f_t b)
 			}
 		}
 	}
+}
+
+void makeRotationMatrix(mat4f_t mout, const float radians, const float x, const float y, const float z)
+{
+	
+	memset(mout, 0, 16*sizeof(float));
+	
+	float cos = cosf(radians);
+	float cosp = 1.0f - cos;
+	float sin = sinf(radians);
+	
+	mout[0] = cos + cosp * x * x;
+	mout[1] = cosp * x * y + z * sin;
+	mout[2] = cosp * x * z - y * sin;
+	mout[3] = 0.0f;
+	
+	mout[4] = cosp * x * y - z * sin;
+	mout[5] = cos + cosp * y * y;
+	mout[6] = cosp * y * z + x * sin;
+	mout[7] = 0.0f;
+	
+	mout[8] = cosp * x * z + y * sin;
+	mout[9] = cosp * y * z - x * sin;
+	mout[10] = cos + cosp * z * z;
+	mout[11] = 0.0f;
+	
+	mout[12] = 0.0f;
+	mout[13] = 0.0f;
+	mout[14] = 0.0f;
+	mout[15] = 1.0f;
+
 }
 
 // Initialize mout to be an affine transform corresponding to the same rotation specified by m

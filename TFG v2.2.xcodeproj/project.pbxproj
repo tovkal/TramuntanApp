@@ -12,6 +12,7 @@
 		959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959023C119A12BEF00ACDD5F /* Images.xcassets */; };
 		95AAAC2B19B36CB900B2D82C /* ARUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAAC2A19B36CB900B2D82C /* ARUtils.m */; };
 		95AAAC3219B3727300B2D82C /* Mountain.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAAC3119B3727300B2D82C /* Mountain.m */; };
+		95C4F39919C21AA9009CC1C5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C4F39819C21AA9009CC1C5 /* GLKit.framework */; };
 		95C6EA51197AD7C300721CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA50197AD7C300721CEC /* Foundation.framework */; };
 		95C6EA53197AD7C300721CEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA52197AD7C300721CEC /* CoreGraphics.framework */; };
 		95C6EA55197AD7C300721CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA54197AD7C300721CEC /* UIKit.framework */; };
@@ -28,6 +29,7 @@
 		95C6EA95197ADCB400721CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA94197ADCB400721CEC /* Main.storyboard */; };
 		95C6EA99197ADCF300721CEC /* Triangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA98197ADCF300721CEC /* Triangle.m */; };
 		95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA9B197ADCF900721CEC /* TargetShape.m */; };
+		95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */; };
 		95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DF13F7197ADDE000991AAD /* QuartzCore.framework */; };
 		95DF13FB197ADF6600991AAD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF13FA197ADF6600991AAD /* SettingsViewController.m */; };
 		95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95DF13FD197AEED000991AAD /* muntanyes_dev.xml */; };
@@ -55,6 +57,7 @@
 		95AAAC2A19B36CB900B2D82C /* ARUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARUtils.m; path = "TFG/AR-Framework/ARUtils.m"; sourceTree = SOURCE_ROOT; };
 		95AAAC3019B3727300B2D82C /* Mountain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mountain.h; path = TFG/Model/Mountain.h; sourceTree = SOURCE_ROOT; };
 		95AAAC3119B3727300B2D82C /* Mountain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mountain.m; path = TFG/Model/Mountain.m; sourceTree = SOURCE_ROOT; };
+		95C4F39819C21AA9009CC1C5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		95C6EA4D197AD7C300721CEC /* TFG v2.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TFG v2.2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C6EA50197AD7C300721CEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95C6EA52197AD7C300721CEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -78,6 +81,8 @@
 		95C6EA98197ADCF300721CEC /* Triangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Triangle.m; sourceTree = "<group>"; };
 		95C6EA9A197ADCF900721CEC /* TargetShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetShape.h; sourceTree = "<group>"; };
 		95C6EA9B197ADCF900721CEC /* TargetShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetShape.m; sourceTree = "<group>"; };
+		95D3FE7319C7725000B82EBB /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
+		95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		95DF13F7197ADDE000991AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		95DF13F9197ADF6600991AAD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		95DF13FA197ADF6600991AAD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -95,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95C4F39919C21AA9009CC1C5 /* GLKit.framework in Frameworks */,
 				9515217A1984F364002244D8 /* AVFoundation.framework in Frameworks */,
 				95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */,
 				95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */,
@@ -149,6 +155,7 @@
 		95C6EA4F197AD7C300721CEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95C4F39819C21AA9009CC1C5 /* GLKit.framework */,
 				951521791984F364002244D8 /* AVFoundation.framework */,
 				95DF13F7197ADDE000991AAD /* QuartzCore.framework */,
 				95C6EA92197ADA8C00721CEC /* CoreLocation.framework */,
@@ -171,6 +178,7 @@
 				95AAAC2A19B36CB900B2D82C /* ARUtils.m */,
 				95C6EA96197ADCE600721CEC /* Graphics */,
 				95DF13FC197AEEC700991AAD /* XML */,
+				95D3FE7219C7723D00B82EBB /* Utils */,
 				95C6EA94197ADCB400721CEC /* Main.storyboard */,
 				95C6EA5F197AD7C300721CEC /* AppDelegate.h */,
 				95C6EA60197AD7C300721CEC /* AppDelegate.m */,
@@ -231,6 +239,15 @@
 				95C6EA9B197ADCF900721CEC /* TargetShape.m */,
 			);
 			path = Graphics;
+			sourceTree = "<group>";
+		};
+		95D3FE7219C7723D00B82EBB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				95D3FE7319C7725000B82EBB /* UIDeviceHardware.h */,
+				95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		95DF13FC197AEEC700991AAD /* XML */ = {
@@ -351,6 +368,7 @@
 				95AAAC2B19B36CB900B2D82C /* ARUtils.m in Sources */,
 				953FB5181983F91D00D2CE2F /* ARView.m in Sources */,
 				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
+				95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */,
 				95DF1403197AEED000991AAD /* APBXMLElement.m in Sources */,
 				95FBAC00197AF30700160544 /* ARViewController.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,

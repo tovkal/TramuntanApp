@@ -96,5 +96,19 @@
             <column name="ele_source">NULL</column>
             <column name="postal_code">07011, 07040</column>
         </table>
+        <table name="muntanyes6">
+            <column name="id">2158703</column>
+            <column name="name">Sa Galera</column>
+            <column name="alt_name">NULL</column>
+            <column name="lat">39.747497465</column>
+            <column name="lon">2.67169181900005</column>
+            <column name="alt_lat">39.747497465</column>
+            <column name="alt_lon">2.67169181900005</column>
+            <column name="ele">930.78</column>
+            <column name="alt_ele">932</column>
+            <column name="source">BTN25</column>
+            <column name="ele_source">NULL</column>
+            <column name="postal_code">07018</column>
+        </table>
     </database>
 </pma_xml_export>

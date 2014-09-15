@@ -293,7 +293,6 @@
 
 - (void)showGPSMessage
 {
-	NSLog(@"Showing");
 	[self.gpsLabel		setHidden:NO];
 	self.horAccLabel.text = [NSString stringWithFormat:@"Hor. Acc. = %f", self.location.horizontalAccuracy];
 	[self.horAccLabel	setHidden:NO];
@@ -303,7 +302,6 @@
 
 - (void)removeGPSMessage
 {
-	NSLog(@"Hidden");
 	[self.gpsLabel		setHidden:YES];
 	[self.horAccLabel	setHidden:YES];
 	[self.verAccLabel	setHidden:YES];

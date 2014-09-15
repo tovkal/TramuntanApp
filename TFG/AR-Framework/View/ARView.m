@@ -10,6 +10,8 @@
 #import "TargetShape.h"
 #import "Mountain.h"
 #import "ARUtils.h"
+#import <GLKit/GLKit.h>
+#import "UIDeviceHardware.h"
 
 @interface ARView()
 {
@@ -24,6 +26,9 @@
 @property (strong, nonatomic) AVCaptureVideoPreviewLayer *captureLayer;
 
 @property (strong, nonatomic) CADisplayLink *displayLink;
+
+@property (nonatomic) double horizontalFOV;
+@property (nonatomic) double verticalFOV;
 
 @end
 
@@ -48,9 +53,9 @@
 	[self addSubview:self.captureView];
 	[self sendSubviewToBack:self.captureView];
 	
+	[self setFOV];
 	// Initialize projection matrix
-	//Fov angle from: http://stackoverflow.com/a/3594424/1283228
-	createProjectionMatrix(projectionTransform, 61.4f*DEGREES_TO_RADIANS, self.bounds.size.width*1.0f / self.bounds.size.height, 0.25f, 1000.0f);
+	[self createProjectionMatrixWithCurrentOrientation:UIDeviceOrientationPortrait];
 
 }
 
@@ -150,31 +155,89 @@
 	if (a != nil) {
 		CMRotationMatrix r = a.rotationMatrix;
 		transformFromCMRotationMatrix(cameraTransform, &r);
-
 		
 		
-		/*UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+		//Landscape support from: http://stackoverflow.com/a/15457305/1283228
+		UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
 		float deviceOrientationRadians = 0.0f;
 		if (orientation == UIDeviceOrientationLandscapeLeft) {
 			deviceOrientationRadians = M_PI_2;
-		}
-		if (orientation == UIDeviceOrientationLandscapeRight) {
+		} else if (orientation == UIDeviceOrientationLandscapeRight) {
 			deviceOrientationRadians = -M_PI_2;
 		}
-		if (orientation == UIDeviceOrientationPortraitUpsideDown) {
-			deviceOrientationRadians = M_PI;
-		}
 		
-		vec4f_t rotation;
+		[self createProjectionMatrixWithCurrentOrientation:orientation];
+				
+		mat4f_t rotation;
 		
-		rotation[0] = deviceOrientationRadians;
-		rotation[1] = 0.0f;
-		rotation[2] = 0.0f;
-		rotation[3] = 1.0f;	*/	
+		makeRotationMatrix(rotation, deviceOrientationRadians, 0.0f, 0.0f, 1.0f);
 		
+		GLKMatrix4 baseRotation = GLKMatrix4MakeRotation(deviceOrientationRadians, 0.0f, 0.0f, 1.0f);
+		GLKMatrix4 deviceMotionAttitudeMatrix = GLKMatrix4Make(r.m11, r.m21, r.m31, 0.0f,
+															   r.m12, r.m22, r.m32, 0.0f,
+															   r.m13, r.m23, r.m33, 0.0f,
+															   0.0f, 0.0f, 0.0f, 1.0f);
+		deviceMotionAttitudeMatrix = GLKMatrix4Multiply(baseRotation, deviceMotionAttitudeMatrix);
+		
+		//Aquesta fun no fa lo que toca, retorna tot 0s o algo aixi. Comparar amb multy
+		//multiplyMatrixAndMatrix(cameraTransform, cameraTransform, rotation);
+		
+		cameraTransform[0] = deviceMotionAttitudeMatrix.m00;
+		cameraTransform[1] = deviceMotionAttitudeMatrix.m01;
+		cameraTransform[2] = deviceMotionAttitudeMatrix.m02;
+		cameraTransform[3] = deviceMotionAttitudeMatrix.m03;
+		
+		cameraTransform[4] = deviceMotionAttitudeMatrix.m10;
+		cameraTransform[5] = deviceMotionAttitudeMatrix.m11;
+		cameraTransform[6] = deviceMotionAttitudeMatrix.m12;
+		cameraTransform[7] = deviceMotionAttitudeMatrix.m13;
+		
+		cameraTransform[8] = deviceMotionAttitudeMatrix.m20;
+		cameraTransform[9] = deviceMotionAttitudeMatrix.m21;
+		cameraTransform[10] = deviceMotionAttitudeMatrix.m22;
+		cameraTransform[11] = deviceMotionAttitudeMatrix.m23;
+		
+		cameraTransform[12] = deviceMotionAttitudeMatrix.m30;
+		cameraTransform[13] = deviceMotionAttitudeMatrix.m31;
+		cameraTransform[14] = deviceMotionAttitudeMatrix.m32;
+		cameraTransform[15] = deviceMotionAttitudeMatrix.m33;
 		
 		[self setNeedsDisplay];
 	}
+}
+
+- (void)createProjectionMatrixWithCurrentOrientation:(UIDeviceOrientation)orientation
+{
+	if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
+		createProjectionMatrix(projectionTransform, self.verticalFOV * DEGREES_TO_RADIANS, self.bounds.size.width / self.bounds.size.height, 0.25f, 1000.0f);
+	} else if (orientation == UIDeviceOrientationPortrait) {
+		createProjectionMatrix(projectionTransform, self.horizontalFOV * DEGREES_TO_RADIANS, self.bounds.size.width / self.bounds.size.height, 0.25f, 1000.0f);
+	}
+}
+
+- (void)setFOV
+{
+	//Fov angle from: http://stackoverflow.com/a/3594424/1283228
+	NSString *device = [UIDeviceHardware platformStringSimple];
+	if ([device isEqualToString:@"iPhone 4"]) {
+		self.horizontalFOV = 60.8;
+		self.verticalFOV = 47.5;
+	} else if ([device isEqualToString:@"iPhone 4S"]) {
+		self.horizontalFOV = 55.7;
+		self.verticalFOV = 43.2;
+	} else if ([device isEqualToString:@"iPhone 5"]) { //Not sure
+		self.horizontalFOV = 61.4;
+		self.verticalFOV = 48.0;
+	} else if([device isEqualToString:@"iPhone 5c"]) { //Not sure
+		self.horizontalFOV = 61.4;
+		self.verticalFOV = 48.0;
+	} else if ([device isEqualToString:@"iPhone 5s"]) {
+		self.horizontalFOV = 61.4;
+		self.verticalFOV = 48.0;
+	}
+	
+	
+	NSLog(@"This is a %@ with horFOV %f and verFOV %f", device, self.horizontalFOV, self.verticalFOV);
 }
 
 #pragma mark - View
@@ -191,7 +254,6 @@
 	yInt = screenSize.height;
 	
     //TODO Test if it works on iPad. I think there's no need to hardcode the screen sizes.
-	
 //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 //        //its iphone
 //        CGSize result = [[UIScreen mainScreen] bounds].size;
