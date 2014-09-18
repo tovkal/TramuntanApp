@@ -207,12 +207,55 @@
 	self.locationManager = [[CLLocationManager alloc] init];
 	self.locationManager.delegate = self;
 	self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-	
-	//TODO test if this filter is enough
 	self.locationManager.distanceFilter = 10; //meters
-	
-	[self.locationManager startUpdatingLocation];
 
+	CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+	
+	if (status == kCLAuthorizationStatusNotDetermined) {
+		[self.locationManager requestWhenInUseAuthorization];
+		NSLog(@"Requesting permission");
+	} else if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways) {
+		[self.locationManager startUpdatingLocation];
+	} else if (status == kCLAuthorizationStatusRestricted || status == kCLAuthorizationStatusDenied) {
+		NSLog(@"Don't have Location permission");
+	}
+	
+//	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+//		NSLog(@"No location services permissions, no party");
+//	} else {
+//		
+//		if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+//			[self.locationManager requestWhenInUseAuthorization];
+//		}
+//		
+//		if ([CLLocationManager locationServicesEnabled]) {
+//			
+//			//TODO test if this filter is enough
+//			
+//			[self.locationManager startUpdatingLocation];
+//		} else {
+//			NSLog(@"Location services denied, can't do no do");
+//		}
+//	}
+//	
+//	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+//		NSLog(@"wee");
+//	}
+
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+	switch (status) {
+		case kCLAuthorizationStatusAuthorizedAlways:
+		case kCLAuthorizationStatusAuthorizedWhenInUse:
+			[self startLocation];
+			break;
+		case kCLAuthorizationStatusNotDetermined:
+			[self.locationManager requestWhenInUseAuthorization];
+		default:
+			break;
+	}
 }
 
 - (void)stopLocation
