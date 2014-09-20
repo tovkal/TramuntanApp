@@ -296,7 +296,11 @@
 			rotate = NO;
 			break;
         default: //Portrait
-            bounds = CGRectMake(0, 0, xInt, yInt);
+			if (xInt > yInt) {
+				bounds = CGRectMake(0, 0, yInt, xInt);
+			} else {
+				bounds = CGRectMake(0, 0, xInt, yInt);
+			}
             self.captureLayer.affineTransform = CGAffineTransformMakeRotation(0.0);
             break;
     }
