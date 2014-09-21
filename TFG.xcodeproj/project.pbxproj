@@ -272,8 +272,8 @@
 				95C6EA49197AD7C300721CEC /* Sources */,
 				95C6EA4A197AD7C300721CEC /* Frameworks */,
 				95C6EA4B197AD7C300721CEC /* Resources */,
-				959033D619CDFC5D00B8688C /* ShellScript */,
 				959033D719CE117E00B8688C /* ShellScript */,
+				959033D619CDFC5D00B8688C /* ShellScript */,
 			);
 			buildRules = (
 			);

@@ -76,6 +76,7 @@
 	[arView stop];
 	[self startLocation];
 	[self stopMotion];
+	[self removeGPSMessage];
 }
 
 #pragma mark - Target view TEMPORARY
@@ -272,13 +273,15 @@
 	
 	if (self.pointsOfInterest != nil && [self haveRequiredGPSAccuracy]) {
 		[self updatePointsOfInterestCoordinates];
+	} else {
+		[self showGPSMessage];
 	}
 }
 
 - (BOOL)haveRequiredGPSAccuracy
 {
 	if (self.location.verticalAccuracy < 15 && self.location.horizontalAccuracy < 20) {
-		[self removeGPSMessage];
+		[self hideGPSMessage];
 		return YES;
 	}
 	
@@ -299,6 +302,7 @@
 	label.text = @"Getting good GPS fix...";
 	CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}];
 	label.bounds = CGRectMake(0.0f, 0.0f, size.width, size.height);
+	label.hidden = YES;
 	
 	self.gpsLabel = label;
 	[self.view addSubview:self.gpsLabel];
@@ -313,6 +317,7 @@
 	label2.text = @"Hor. Acc. = 0000m";
 	CGSize size2 = [label2.text sizeWithAttributes:@{NSFontAttributeName: label2.font}];
 	label2.bounds = CGRectMake(0.0f, 0.0f, size.width, size2.height);
+	label2.hidden = YES;
 
 	self.horAccLabel = label2;
 	[self.view addSubview:self.horAccLabel];
@@ -327,6 +332,7 @@
 	label3.text = @"Ver. Acc. = 0000m";
 	CGSize size3 = [label3.text sizeWithAttributes:@{NSFontAttributeName: label3.font}];
 	label3.bounds = CGRectMake(0.0f, 0.0f, size.width, size3.height);
+	label3.hidden = YES;
 	
 	self.verAccLabel = label3;
 	[self.view addSubview:self.verAccLabel];
@@ -343,11 +349,18 @@
 	[self.verAccLabel	setHidden:NO];
 }
 
-- (void)removeGPSMessage
+- (void)hideGPSMessage
 {
 	[self.gpsLabel		setHidden:YES];
 	[self.horAccLabel	setHidden:YES];
 	[self.verAccLabel	setHidden:YES];
+}
+
+- (void)removeGPSMessage
+{
+	self.gpsLabel = nil;
+	self.horAccLabel = nil;
+	self.verAccLabel = nil;
 }
 
 #pragma mark - Core Motion
