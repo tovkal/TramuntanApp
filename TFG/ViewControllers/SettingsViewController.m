@@ -49,7 +49,7 @@
 {
     
     if (viewController.tabBarItem.tag == 1) {
-        ARViewController *vc = (ARViewController *) [tabBarController.viewControllers objectAtIndex:1]; //Segon de sa llista de sa tab bar
+        ARViewController *vc = (ARViewController *) [tabBarController.viewControllers objectAtIndex:0]; //Primer de sa llista de sa tab bar
     
         vc.locationDebug = self.locationDebug;
 		vc.headingDebug = self.headingDebug;

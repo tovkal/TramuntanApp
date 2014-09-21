@@ -58,19 +58,19 @@
 		95AAAC3019B3727300B2D82C /* Mountain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mountain.h; path = TFG/Model/Mountain.h; sourceTree = SOURCE_ROOT; };
 		95AAAC3119B3727300B2D82C /* Mountain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mountain.m; path = TFG/Model/Mountain.m; sourceTree = SOURCE_ROOT; };
 		95C4F39819C21AA9009CC1C5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		95C6EA4D197AD7C300721CEC /* TFG v2.2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TFG v2.2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C6EA4D197AD7C300721CEC /* TFG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C6EA50197AD7C300721CEC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		95C6EA52197AD7C300721CEC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		95C6EA54197AD7C300721CEC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		95C6EA58197AD7C300721CEC /* TFG v2.2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFG v2.2-Info.plist"; sourceTree = "<group>"; };
+		95C6EA58197AD7C300721CEC /* TFG-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFG-Info.plist"; sourceTree = "<group>"; };
 		95C6EA5A197AD7C300721CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		95C6EA5C197AD7C300721CEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		95C6EA5E197AD7C300721CEC /* TFG v2.2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFG v2.2-Prefix.pch"; sourceTree = "<group>"; };
+		95C6EA5E197AD7C300721CEC /* TFG-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFG-Prefix.pch"; sourceTree = "<group>"; };
 		95C6EA5F197AD7C300721CEC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95C6EA60197AD7C300721CEC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		95C6EA6E197AD7C300721CEC /* TFG v2.2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TFG v2.2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C6EA6E197AD7C300721CEC /* TFGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C6EA6F197AD7C300721CEC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		95C6EA77197AD7C300721CEC /* TFG v2.2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFG v2.2Tests-Info.plist"; sourceTree = "<group>"; };
+		95C6EA77197AD7C300721CEC /* TFGTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TFGTests-Info.plist"; sourceTree = "<group>"; };
 		95C6EA79197AD7C300721CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		95C6EA7B197AD7C300721CEC /* TFGTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TFGTests.m; sourceTree = "<group>"; };
 		95C6EA88197AD7CD00721CEC /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 		95C6EA4E197AD7C300721CEC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				95C6EA4D197AD7C300721CEC /* TFG v2.2.app */,
-				95C6EA6E197AD7C300721CEC /* TFG v2.2Tests.xctest */,
+				95C6EA4D197AD7C300721CEC /* TFG.app */,
+				95C6EA6E197AD7C300721CEC /* TFGTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -191,10 +191,10 @@
 		95C6EA57197AD7C300721CEC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				95C6EA58197AD7C300721CEC /* TFG v2.2-Info.plist */,
+				95C6EA58197AD7C300721CEC /* TFG-Info.plist */,
 				95C6EA59197AD7C300721CEC /* InfoPlist.strings */,
 				95C6EA5C197AD7C300721CEC /* main.m */,
-				95C6EA5E197AD7C300721CEC /* TFG v2.2-Prefix.pch */,
+				95C6EA5E197AD7C300721CEC /* TFG-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 		95C6EA76197AD7C300721CEC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				95C6EA77197AD7C300721CEC /* TFG v2.2Tests-Info.plist */,
+				95C6EA77197AD7C300721CEC /* TFGTests-Info.plist */,
 				95C6EA78197AD7C300721CEC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -265,26 +265,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		95C6EA4C197AD7C300721CEC /* TFG v2.2 */ = {
+		95C6EA4C197AD7C300721CEC /* TFG */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 95C6EA7F197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFG v2.2" */;
+			buildConfigurationList = 95C6EA7F197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFG" */;
 			buildPhases = (
 				95C6EA49197AD7C300721CEC /* Sources */,
 				95C6EA4A197AD7C300721CEC /* Frameworks */,
 				95C6EA4B197AD7C300721CEC /* Resources */,
+				959033D619CDFC5D00B8688C /* ShellScript */,
+				959033D719CE117E00B8688C /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "TFG v2.2";
+			name = TFG;
 			productName = TFG;
-			productReference = 95C6EA4D197AD7C300721CEC /* TFG v2.2.app */;
+			productReference = 95C6EA4D197AD7C300721CEC /* TFG.app */;
 			productType = "com.apple.product-type.application";
 		};
-		95C6EA6D197AD7C300721CEC /* TFG v2.2Tests */ = {
+		95C6EA6D197AD7C300721CEC /* TFGTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 95C6EA82197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFG v2.2Tests" */;
+			buildConfigurationList = 95C6EA82197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFGTests" */;
 			buildPhases = (
 				95C6EA6A197AD7C300721CEC /* Sources */,
 				95C6EA6B197AD7C300721CEC /* Frameworks */,
@@ -295,9 +297,9 @@
 			dependencies = (
 				95C6EA74197AD7C300721CEC /* PBXTargetDependency */,
 			);
-			name = "TFG v2.2Tests";
+			name = TFGTests;
 			productName = TFGTests;
-			productReference = 95C6EA6E197AD7C300721CEC /* TFG v2.2Tests.xctest */;
+			productReference = 95C6EA6E197AD7C300721CEC /* TFGTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -317,7 +319,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 95C6EA48197AD7C300721CEC /* Build configuration list for PBXProject "TFG v2.2" */;
+			buildConfigurationList = 95C6EA48197AD7C300721CEC /* Build configuration list for PBXProject "TFG" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -330,8 +332,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				95C6EA4C197AD7C300721CEC /* TFG v2.2 */,
-				95C6EA6D197AD7C300721CEC /* TFG v2.2Tests */,
+				95C6EA4C197AD7C300721CEC /* TFG */,
+				95C6EA6D197AD7C300721CEC /* TFGTests */,
 			);
 		};
 /* End PBXProject section */
@@ -357,6 +359,35 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		959033D619CDFC5D00B8688C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/IconVersioning.sh\"";
+		};
+		959033D719CE117E00B8688C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/BuildCounter.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		95C6EA49197AD7C300721CEC /* Sources */ = {
@@ -392,7 +423,7 @@
 /* Begin PBXTargetDependency section */
 		95C6EA74197AD7C300721CEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 95C6EA4C197AD7C300721CEC /* TFG v2.2 */;
+			target = 95C6EA4C197AD7C300721CEC /* TFG */;
 			targetProxy = 95C6EA73197AD7C300721CEC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -449,7 +480,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -481,7 +512,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -494,10 +525,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TFG/TFG v2.2-Prefix.pch";
-				INFOPLIST_FILE = "TFG/TFG v2.2-Info.plist";
+				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
+				INFOPLIST_FILE = "TFG/TFG-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = "TFG v2.2";
+				PRODUCT_NAME = TFG;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -509,10 +540,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TFG/TFG v2.2-Prefix.pch";
-				INFOPLIST_FILE = "TFG/TFG v2.2-Info.plist";
+				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
+				INFOPLIST_FILE = "TFG/TFG-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_NAME = "TFG v2.2";
+				PRODUCT_NAME = TFG;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -532,8 +563,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "TFGTests/TFG v2.2Tests-Info.plist";
-				PRODUCT_NAME = "TFG v2.2Tests";
+				INFOPLIST_FILE = "TFGTests/TFGTests-Info.plist";
+				PRODUCT_NAME = TFGTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -550,8 +581,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
-				INFOPLIST_FILE = "TFGTests/TFG v2.2Tests-Info.plist";
-				PRODUCT_NAME = "TFG v2.2Tests";
+				INFOPLIST_FILE = "TFGTests/TFGTests-Info.plist";
+				PRODUCT_NAME = TFGTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -560,7 +591,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		95C6EA48197AD7C300721CEC /* Build configuration list for PBXProject "TFG v2.2" */ = {
+		95C6EA48197AD7C300721CEC /* Build configuration list for PBXProject "TFG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95C6EA7D197AD7C300721CEC /* Debug */,
@@ -569,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		95C6EA7F197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFG v2.2" */ = {
+		95C6EA7F197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFG" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95C6EA80197AD7C300721CEC /* Debug */,
@@ -578,7 +609,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		95C6EA82197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFG v2.2Tests" */ = {
+		95C6EA82197AD7C300721CEC /* Build configuration list for PBXNativeTarget "TFGTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95C6EA83197AD7C300721CEC /* Debug */,

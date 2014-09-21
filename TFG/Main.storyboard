@@ -29,11 +29,11 @@
                             <constraint firstItem="HqO-FR-Jyq" firstAttribute="centerX" secondItem="G6C-9z-rFv" secondAttribute="centerX" id="LXo-ve-cXG"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="2sd-jz-B1R"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Map" id="2sd-jz-B1R"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WyX-eW-1J0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="-525"/>
+            <point key="canvasLocation" x="799" y="124"/>
         </scene>
         <!--Settings-->
         <scene sceneID="kKA-8S-9Qu">
@@ -105,7 +105,7 @@
                             <constraint firstItem="Kt8-am-rb4" firstAttribute="leading" secondItem="eFh-oc-UFv" secondAttribute="leading" constant="20" symbolic="YES" id="yfO-u4-nXE"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="ajA-rQ-vdj"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="Settings" id="ajA-rQ-vdj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oE9-2M-KdF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -144,7 +144,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g9E-b1-HeD" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="148"/>
+            <point key="canvasLocation" x="799" y="-555"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="1ha-0p-9U6">
@@ -158,12 +158,13 @@
                     </tabBar>
                     <connections>
                         <segue destination="6kP-Y0-Xuq" kind="relationship" relationship="viewControllers" id="ozG-8E-mMC"/>
-                        <segue destination="KNM-h6-WF4" kind="relationship" relationship="viewControllers" id="fxP-6X-N6j"/>
+                        <segue destination="uZ4-38-kXM" kind="relationship" relationship="viewControllers" id="J4q-Em-3d9"/>
+                        <segue destination="KNM-h6-WF4" kind="relationship" relationship="viewControllers" id="fHb-1B-7hr"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOr-s2-2PR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="266" y="-219"/>
+            <point key="canvasLocation" x="285" y="124"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
