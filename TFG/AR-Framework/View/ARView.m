@@ -252,26 +252,6 @@
 	
 	xInt = screenSize.width;
 	yInt = screenSize.height;
-	
-    //TODO Test if it works on iPad. I think there's no need to hardcode the screen sizes.
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-//        //its iphone
-//        CGSize result = [[UIScreen mainScreen] bounds].size;
-//        if(result.height == 480) {
-//            // iPhone Classic
-//            xInt = 320;
-//            yInt = 480;
-//        }
-//        else if(result.height == 568) {
-//            // iPhone 5
-//            xInt = 320;
-//            yInt = 568;
-//        }
-//    } else {
-//        //its ipad
-//        xInt = 768;
-//        yInt = 1024;
-//    }
     
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
@@ -321,16 +301,23 @@
 	
 	int i = 0;
 	for (Mountain *poi in [self.pointsOfInterest objectEnumerator]) {
-		vec4f_t v;
-				
-		multiplyMatrixAndVector(v, projectionCameraTransform, pointsOfInterestCoordinates[i]);
 		
-		float x = (v[0] / v[3] + 1.0f) * 0.5f;
-		float y = (v[1] / v[3] + 1.0f) * 0.5f;
-		if (v[2] < 0.0f) {
-			poi.view.center = CGPointMake(x*self.bounds.size.width, self.bounds.size.height-y*self.bounds.size.height);
-			poi.view.hidden = NO;
+		if (self.radius > poi.distance) {
+			
+			vec4f_t v;
+			
+			multiplyMatrixAndVector(v, projectionCameraTransform, pointsOfInterestCoordinates[i]);
+			
+			float x = (v[0] / v[3] + 1.0f) * 0.5f;
+			float y = (v[1] / v[3] + 1.0f) * 0.5f;
+			if (v[2] < 0.0f) {
+				poi.view.center = CGPointMake(x*self.bounds.size.width, self.bounds.size.height-y*self.bounds.size.height);
+				poi.view.hidden = NO;
+			} else {
+				poi.view.hidden = YES;
+			}
 		} else {
+			//POI outside of radius
 			poi.view.hidden = YES;
 		}
 		i++;

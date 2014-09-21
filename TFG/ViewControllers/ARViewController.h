@@ -12,8 +12,10 @@
 
 @interface ARViewController : UIViewController <CLLocationManagerDelegate, AttitudeDelegate>
 
-@property BOOL locationDebug;
-@property BOOL headingDebug;
-@property BOOL altitudeDebug;
+@property BOOL debugLocation;
+@property BOOL debugAltitude;
+@property BOOL debugAttitude;
+
+@property float radius;
 
 @end

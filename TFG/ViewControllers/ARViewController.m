@@ -26,7 +26,7 @@
 
 //Location
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) CLLocation *location; //Device location
 
 //Motion
 @property (strong, nonatomic) CMMotionManager *motionManager;
@@ -74,7 +74,7 @@
 	
 	ARView *arView = (ARView *)self.view;
 	[arView stop];
-	[self startLocation];
+	[self stopLocation];
 	[self stopMotion];
 	[self removeGPSMessage];
 }
@@ -220,28 +220,6 @@
 	} else if (status == kCLAuthorizationStatusRestricted || status == kCLAuthorizationStatusDenied) {
 		NSLog(@"Don't have Location permission");
 	}
-	
-//	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
-//		NSLog(@"No location services permissions, no party");
-//	} else {
-//		
-//		if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-//			[self.locationManager requestWhenInUseAuthorization];
-//		}
-//		
-//		if ([CLLocationManager locationServicesEnabled]) {
-//			
-//			//TODO test if this filter is enough
-//			
-//			[self.locationManager startUpdatingLocation];
-//		} else {
-//			NSLog(@"Location services denied, can't do no do");
-//		}
-//	}
-//	
-//	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
-//		NSLog(@"wee");
-//	}
 
 }
 
@@ -269,6 +247,13 @@
 {
 	self.location = [locations lastObject];
 	
+	if (self.debugLocation) {
+		NSLog(@"Current location (lat, lon) = %f, %f; horizontal accuracy = %f", self.location.coordinate.latitude, self.location.coordinate.longitude, self.location.horizontalAccuracy);
+	}
+	if (self.debugAltitude) {
+		NSLog(@"Current altitude = %f, vertical accuracy = %f", self.location.altitude, self.location.verticalAccuracy);
+	}
+	
 	[self showGPSMessage];
 	
 	if (self.pointsOfInterest != nil && [self haveRequiredGPSAccuracy]) {
@@ -283,6 +268,8 @@
 	if (self.location.verticalAccuracy < 15 && self.location.horizontalAccuracy < 20) {
 		[self hideGPSMessage];
 		return YES;
+	} else {
+		NSLog(@"GPS accuracy not enough, is the GPSMessage showing?");
 	}
 	
 	return NO;
@@ -354,6 +341,7 @@
 	[self.gpsLabel		setHidden:YES];
 	[self.horAccLabel	setHidden:YES];
 	[self.verAccLabel	setHidden:YES];
+	NSLog(@"GPSMessage should now be hidden.");
 }
 
 - (void)removeGPSMessage
@@ -385,6 +373,9 @@
 
 - (CMAttitude *)fetchAttitude
 {
+	if (self.debugAttitude) {
+		NSLog(@"Fetching Attitude for View");
+	}
 	return self.motionManager.deviceMotion.attitude;
 }
 
@@ -430,6 +421,8 @@
 		distanceAndIndex.distance = sqrtf(n*n + e*e);
 		distanceAndIndex.index = i;
 		[orderedDistances insertObject:[NSData dataWithBytes:&distanceAndIndex length:sizeof(distanceAndIndex)] atIndex:i++];
+		
+		poi.distance = [self.location distanceFromLocation:poi.location] / 1000.0;
 	}
 	
 	// Sort orderedDistances in ascending order based on distance from the user
@@ -455,6 +448,12 @@
 	}
 	
 	view->pointsOfInterestCoordinates = pointsOfInterestCoordinates;
+	
+	if (self.radius == 0.0) {
+		view.radius = 30.0;
+	} else {
+		view.radius = self.radius;
+	}
 
 }
 

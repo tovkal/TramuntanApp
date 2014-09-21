@@ -27,6 +27,8 @@
 
 @property (assign, nonatomic) id<AttitudeDelegate> delegate;
 
+@property float radius;
+
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)start;
 - (void)stop;

@@ -26,12 +26,12 @@
 		95C6EA7C197AD7C300721CEC /* TFGTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA7B197AD7C300721CEC /* TFGTests.m */; };
 		95C6EA8B197AD7CD00721CEC /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA89197AD7CD00721CEC /* MapViewController.m */; };
 		95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA92197ADA8C00721CEC /* CoreLocation.framework */; };
-		95C6EA95197ADCB400721CEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA94197ADCB400721CEC /* Main.storyboard */; };
 		95C6EA99197ADCF300721CEC /* Triangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA98197ADCF300721CEC /* Triangle.m */; };
 		95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA9B197ADCF900721CEC /* TargetShape.m */; };
+		95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CF2B1F19CF2A7800312B49 /* Main.storyboard */; };
+		95CF2B2519CF2E6300312B49 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */; };
 		95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */; };
 		95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DF13F7197ADDE000991AAD /* QuartzCore.framework */; };
-		95DF13FB197ADF6600991AAD /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF13FA197ADF6600991AAD /* SettingsViewController.m */; };
 		95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95DF13FD197AEED000991AAD /* muntanyes_dev.xml */; };
 		95DF1403197AEED000991AAD /* APBXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF13FF197AEED000991AAD /* APBXMLElement.m */; };
 		95DF1404197AEED000991AAD /* APBXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF1401197AEED000991AAD /* APBXMLParser.m */; };
@@ -76,16 +76,16 @@
 		95C6EA88197AD7CD00721CEC /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		95C6EA89197AD7CD00721CEC /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		95C6EA92197ADA8C00721CEC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		95C6EA94197ADCB400721CEC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		95C6EA97197ADCF300721CEC /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
 		95C6EA98197ADCF300721CEC /* Triangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Triangle.m; sourceTree = "<group>"; };
 		95C6EA9A197ADCF900721CEC /* TargetShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetShape.h; sourceTree = "<group>"; };
 		95C6EA9B197ADCF900721CEC /* TargetShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetShape.m; sourceTree = "<group>"; };
+		95CF2B1F19CF2A7800312B49 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		95CF2B2119CF2B4A00312B49 /* TFG-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFG-Bridging-Header.h"; sourceTree = "<group>"; };
+		95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		95D3FE7319C7725000B82EBB /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		95DF13F7197ADDE000991AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		95DF13F9197ADF6600991AAD /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		95DF13FA197ADF6600991AAD /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		95DF13FD197AEED000991AAD /* muntanyes_dev.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = muntanyes_dev.xml; sourceTree = "<group>"; };
 		95DF13FE197AEED000991AAD /* APBXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APBXMLElement.h; sourceTree = "<group>"; };
 		95DF13FF197AEED000991AAD /* APBXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APBXMLElement.m; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 				95C6EA96197ADCE600721CEC /* Graphics */,
 				95DF13FC197AEEC700991AAD /* XML */,
 				95D3FE7219C7723D00B82EBB /* Utils */,
-				95C6EA94197ADCB400721CEC /* Main.storyboard */,
+				95CF2B1F19CF2A7800312B49 /* Main.storyboard */,
 				95C6EA5F197AD7C300721CEC /* AppDelegate.h */,
 				95C6EA60197AD7C300721CEC /* AppDelegate.m */,
 				959023C119A12BEF00ACDD5F /* Images.xcassets */,
@@ -222,10 +222,10 @@
 			children = (
 				95C6EA88197AD7CD00721CEC /* MapViewController.h */,
 				95C6EA89197AD7CD00721CEC /* MapViewController.m */,
-				95DF13F9197ADF6600991AAD /* SettingsViewController.h */,
-				95DF13FA197ADF6600991AAD /* SettingsViewController.m */,
+				95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */,
 				95FBABFE197AF30700160544 /* ARViewController.h */,
 				95FBABFF197AF30700160544 /* ARViewController.m */,
+				95CF2B2119CF2B4A00312B49 /* TFG-Bridging-Header.h */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 				95C6EA49197AD7C300721CEC /* Sources */,
 				95C6EA4A197AD7C300721CEC /* Frameworks */,
 				95C6EA4B197AD7C300721CEC /* Resources */,
-				959033D719CE117E00B8688C /* ShellScript */,
+				959033D719CE117E00B8688C /* Run Script */,
 				959033D619CDFC5D00B8688C /* ShellScript */,
 			);
 			buildRules = (
@@ -344,9 +344,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */,
+				95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */,
 				959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */,
 				95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */,
-				95C6EA95197ADCB400721CEC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,13 +374,14 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Scripts/IconVersioning.sh\"";
 		};
-		959033D719CE117E00B8688C /* ShellScript */ = {
+		959033D719CE117E00B8688C /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,13 +398,13 @@
 				95AAAC3219B3727300B2D82C /* Mountain.m in Sources */,
 				95DF1404197AEED000991AAD /* APBXMLParser.m in Sources */,
 				95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */,
-				95DF13FB197ADF6600991AAD /* SettingsViewController.m in Sources */,
 				95C6EA99197ADCF300721CEC /* Triangle.m in Sources */,
 				95AAAC2B19B36CB900B2D82C /* ARUtils.m in Sources */,
 				953FB5181983F91D00D2CE2F /* ARView.m in Sources */,
 				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
 				95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */,
 				95DF1403197AEED000991AAD /* APBXMLElement.m in Sources */,
+				95CF2B2519CF2E6300312B49 /* SettingsTableViewController.swift in Sources */,
 				95FBAC00197AF30700160544 /* ARViewController.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,
 				95C6EA8B197AD7CD00721CEC /* MapViewController.m in Sources */,
@@ -523,12 +524,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
 				INFOPLIST_FILE = "TFG/TFG-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = TFG;
+				SWIFT_OBJC_BRIDGING_HEADER = "TFG/ViewControllers/TFG-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -538,12 +543,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
 				INFOPLIST_FILE = "TFG/TFG-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = TFG;
+				SWIFT_OBJC_BRIDGING_HEADER = "TFG/ViewControllers/TFG-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
