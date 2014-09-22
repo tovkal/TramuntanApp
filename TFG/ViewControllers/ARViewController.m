@@ -36,6 +36,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *horAccLabel;
 @property (strong, nonatomic) IBOutlet UILabel *verAccLabel;
 
+@property (strong, nonatomic) ARView *arView;
+
 @end
 
 @implementation ARViewController
@@ -44,14 +46,14 @@
 {
 	[super viewDidLoad];
 	
-	ARView *arView = [[ARView alloc] initWithFrame:self.view.frame];
-	arView.delegate = self;
-	self.view = arView;
+	self.arView = [[ARView alloc] initWithFrame:self.view.frame];
+	self.arView.delegate = self;
+	self.view = self.arView;
 	
 	[self parseXML];
 	[self initARData];
 	
-	arView.pointsOfInterest = self.pointsOfInterest;
+	self.arView.pointsOfInterest = self.pointsOfInterest;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -62,8 +64,8 @@
 	
 	[self initGPSMessage];
 		
-	ARView *arView = (ARView *)self.view;
-	[arView start];
+	
+	[self.arView start];
 	[self startLocation];
 	[self startMotion];
 }
@@ -72,8 +74,7 @@
 {
 	[super viewWillDisappear:animated];
 	
-	ARView *arView = (ARView *)self.view;
-	[arView stop];
+	[self.arView stop];
 	[self stopLocation];
 	[self stopMotion];
 	[self removeGPSMessage];
@@ -269,7 +270,7 @@
 		[self hideGPSMessage];
 		return YES;
 	} else {
-		NSLog(@"GPS accuracy not enough, is the GPSMessage showing?");
+		NSLog(@"GPS accuracy not enough, the GPSMessage showing... right?");
 	}
 	
 	return NO;
@@ -341,7 +342,6 @@
 	[self.gpsLabel		setHidden:YES];
 	[self.horAccLabel	setHidden:YES];
 	[self.verAccLabel	setHidden:YES];
-	NSLog(@"GPSMessage should now be hidden.");
 }
 
 - (void)removeGPSMessage
