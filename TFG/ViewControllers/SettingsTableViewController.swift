@@ -13,6 +13,7 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
 	var debugLocation = false
 	var debugAltitude = false
 	var debugAttitude = false
+	var enableGPSMessage = true
 	
 	var radius: Float = 0.0
 	
@@ -48,6 +49,8 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
 			self.debugAltitude = sender.on ? true : false
 		case 3: //Attitude
 			self.debugAttitude = sender.on ? true : false
+		case 4: //Disable GPS Message
+			self.enableGPSMessage = sender.on ? true : false
 		default:
 			print("Switch unknown");
 		}
@@ -67,7 +70,7 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
 				vc.debugLocation = self.debugLocation
 				vc.debugAltitude = self.debugAltitude
 				vc.debugAttitude = self.debugAttitude
-				
+				vc.enableGPSMessage = self.enableGPSMessage;
 				vc.radius = radius
 			}
 		}

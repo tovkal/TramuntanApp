@@ -330,11 +330,13 @@
 
 - (void)showGPSMessage
 {
-	[self.gpsLabel		setHidden:NO];
-	self.horAccLabel.text = [NSString stringWithFormat:@"Hor. Acc. = %f", self.location.horizontalAccuracy];
-	[self.horAccLabel	setHidden:NO];
-	self.verAccLabel.text = [NSString stringWithFormat:@"Ver. Acc. = %f", self.location.verticalAccuracy];
-	[self.verAccLabel	setHidden:NO];
+	if (self.enableGPSMessage) {
+		[self.gpsLabel		setHidden:NO];
+		self.horAccLabel.text = [NSString stringWithFormat:@"Hor. Acc. = %f", self.location.horizontalAccuracy];
+		[self.horAccLabel	setHidden:NO];
+		self.verAccLabel.text = [NSString stringWithFormat:@"Ver. Acc. = %f", self.location.verticalAccuracy];
+		[self.verAccLabel	setHidden:NO];
+	}
 }
 
 - (void)hideGPSMessage

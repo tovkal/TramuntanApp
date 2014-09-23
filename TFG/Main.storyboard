@@ -192,6 +192,36 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MxA-lm-AFP">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MxA-lm-AFP" id="eXc-mt-ZwA">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZAz-i1-CXu">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchDidChange:" destination="VxJ-nd-ktG" eventType="valueChanged" id="Rbw-Eg-Gw0"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable GPS Message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5p-hS-PeG">
+                                                    <rect key="frame" x="8" y="11" width="171" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="171" id="HYx-fr-K7V"/>
+                                                        <constraint firstAttribute="height" constant="21" id="Vn5-E0-8eP"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="e5p-hS-PeG" firstAttribute="leading" secondItem="eXc-mt-ZwA" secondAttribute="leadingMargin" id="5Bl-Gz-Awa"/>
+                                                <constraint firstItem="ZAz-i1-CXu" firstAttribute="top" secondItem="eXc-mt-ZwA" secondAttribute="topMargin" constant="-2" id="A8b-ZI-tFp"/>
+                                                <constraint firstItem="ZAz-i1-CXu" firstAttribute="trailing" secondItem="eXc-mt-ZwA" secondAttribute="trailingMargin" id="W1a-Ue-jCE"/>
+                                                <constraint firstItem="e5p-hS-PeG" firstAttribute="top" secondItem="eXc-mt-ZwA" secondAttribute="topMargin" constant="3" id="hUQ-6q-f8B"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="General Settings" id="ZET-VI-CNE">
