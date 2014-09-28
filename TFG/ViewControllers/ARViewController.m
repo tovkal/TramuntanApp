@@ -266,6 +266,9 @@
 
 - (BOOL)haveRequiredGPSAccuracy
 {
+	if (!self.enableGPSMessage) { //TODO only for dev
+		return YES;
+	}
 	if (self.location.verticalAccuracy < 15 && self.location.horizontalAccuracy < 20) {
 		[self hideGPSMessage];
 		return YES;
