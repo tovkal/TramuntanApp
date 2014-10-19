@@ -7,7 +7,6 @@
 //
 
 #import "ARViewController.h"
-#import "TargetShape.h"
 #import "APBXMLElement.h"
 #import "APBXMLParser.h"
 #import "Mountain.h"
@@ -17,9 +16,6 @@
 {
 	vec4f_t *pointsOfInterestCoordinates;
 }
-
-//TODO temporary
-@property (weak, nonatomic) CAShapeLayer *targetLayer;
 
 //Array for XML Data
 @property (strong, nonatomic) NSMutableArray *data;
@@ -93,15 +89,7 @@
 - (void)drawTarget
 {
 	[self removeTarget];
-	
-	/*CGRect bounds = self.view.bounds;
-    CGPoint center = CGPointMake((bounds.size.width/(2+bounds.origin.x)), (bounds.size.height/(2+bounds.origin.y)));
-    CAShapeLayer *targetLayer = [TargetShape createTargetView:center];
-    
-    self.targetLayer = targetLayer;
-    
-    [self.view.layer addSublayer:targetLayer];*/
-	
+		
 	self.targetView = [[TargetView alloc] initWithFrame:self.view.frame];
 	[self.view addSubview:self.targetView];
     NSLog(@"Added target view, width = %f", self.targetView.width);
@@ -110,9 +98,6 @@
 
 - (void)removeTarget
 {
-	/*if (self.targetLayer != nil) {
-		[self.targetLayer removeFromSuperlayer];
-	}*/
 	if (self.targetView != nil) {
         NSLog(@"Removing target view");
 		[self.targetView removeFromSuperview];

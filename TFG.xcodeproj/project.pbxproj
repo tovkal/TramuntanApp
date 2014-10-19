@@ -28,7 +28,6 @@
 		95C6EA8B197AD7CD00721CEC /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA89197AD7CD00721CEC /* MapViewController.m */; };
 		95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA92197ADA8C00721CEC /* CoreLocation.framework */; };
 		95C6EA99197ADCF300721CEC /* Triangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA98197ADCF300721CEC /* Triangle.m */; };
-		95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA9B197ADCF900721CEC /* TargetShape.m */; };
 		95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CF2B1F19CF2A7800312B49 /* Main.storyboard */; };
 		95CF2B2519CF2E6300312B49 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */; };
 		95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */; };
@@ -80,8 +79,6 @@
 		95C6EA92197ADA8C00721CEC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		95C6EA97197ADCF300721CEC /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triangle.h; sourceTree = "<group>"; };
 		95C6EA98197ADCF300721CEC /* Triangle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Triangle.m; sourceTree = "<group>"; };
-		95C6EA9A197ADCF900721CEC /* TargetShape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TargetShape.h; sourceTree = "<group>"; };
-		95C6EA9B197ADCF900721CEC /* TargetShape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TargetShape.m; sourceTree = "<group>"; };
 		95CF2B1F19CF2A7800312B49 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		95CF2B2119CF2B4A00312B49 /* TFG-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFG-Bridging-Header.h"; sourceTree = "<group>"; };
 		95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
@@ -246,8 +243,6 @@
 			children = (
 				95C6EA97197ADCF300721CEC /* Triangle.h */,
 				95C6EA98197ADCF300721CEC /* Triangle.m */,
-				95C6EA9A197ADCF900721CEC /* TargetShape.h */,
-				95C6EA9B197ADCF900721CEC /* TargetShape.m */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -408,7 +403,6 @@
 			files = (
 				95AAAC3219B3727300B2D82C /* Mountain.m in Sources */,
 				95DF1404197AEED000991AAD /* APBXMLParser.m in Sources */,
-				95C6EA9C197ADCF900721CEC /* TargetShape.m in Sources */,
 				95C6EA99197ADCF300721CEC /* Triangle.m in Sources */,
 				95AAAC2B19B36CB900B2D82C /* ARUtils.m in Sources */,
 				953FB5181983F91D00D2CE2F /* ARView.m in Sources */,
