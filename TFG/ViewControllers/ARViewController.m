@@ -11,6 +11,7 @@
 #import "APBXMLElement.h"
 #import "APBXMLParser.h"
 #import "Mountain.h"
+#import "TFG-Swift.h"
 
 @interface ARViewController ()
 {
@@ -37,6 +38,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *verAccLabel;
 
 @property (strong, nonatomic) ARView *arView;
+
+@property (strong, nonatomic) TargetView *targetView;
 
 @end
 
@@ -91,19 +94,28 @@
 {
 	[self removeTarget];
 	
-	CGRect bounds = self.view.bounds;
+	/*CGRect bounds = self.view.bounds;
     CGPoint center = CGPointMake((bounds.size.width/(2+bounds.origin.x)), (bounds.size.height/(2+bounds.origin.y)));
     CAShapeLayer *targetLayer = [TargetShape createTargetView:center];
     
     self.targetLayer = targetLayer;
     
-    [self.view.layer addSublayer:targetLayer];
+    [self.view.layer addSublayer:targetLayer];*/
+	
+	self.targetView = [[TargetView alloc] initWithFrame:self.view.frame];
+	[self.view addSubview:self.targetView];
+    NSLog(@"Added target view, width = %f", self.targetView.width);
+	
 }
 
 - (void)removeTarget
 {
-	if (self.targetLayer != nil) {
+	/*if (self.targetLayer != nil) {
 		[self.targetLayer removeFromSuperlayer];
+	}*/
+	if (self.targetView != nil) {
+        NSLog(@"Removing target view");
+		[self.targetView removeFromSuperview];
 	}
 }
 

@@ -10,6 +10,8 @@
 
 @implementation TargetShape
 
+// TODO dashed rectangle. Use center to position. Diferent quan està apaisat? O sempre igual? UIBezierpath a una UIView
+
 + (CAShapeLayer *) createTargetView:(CGPoint)atLocation
 {
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];

@@ -10,6 +10,7 @@
 		9515217A1984F364002244D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951521791984F364002244D8 /* AVFoundation.framework */; };
 		953FB5181983F91D00D2CE2F /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5151983F91D00D2CE2F /* ARView.m */; };
 		959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959023C119A12BEF00ACDD5F /* Images.xcassets */; };
+		959BB5A819ED890E0088251D /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959BB5A719ED890E0088251D /* TargetView.swift */; };
 		95AAAC2B19B36CB900B2D82C /* ARUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAAC2A19B36CB900B2D82C /* ARUtils.m */; };
 		95AAAC3219B3727300B2D82C /* Mountain.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAAC3119B3727300B2D82C /* Mountain.m */; };
 		95C4F39919C21AA9009CC1C5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C4F39819C21AA9009CC1C5 /* GLKit.framework */; };
@@ -53,6 +54,7 @@
 		953FB5141983F91D00D2CE2F /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARView.h; path = "AR-Framework/View/ARView.h"; sourceTree = "<group>"; };
 		953FB5151983F91D00D2CE2F /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARView.m; path = "AR-Framework/View/ARView.m"; sourceTree = "<group>"; };
 		959023C119A12BEF00ACDD5F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		959BB5A719ED890E0088251D /* TargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
 		95AAAC2919B36CB900B2D82C /* ARUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARUtils.h; path = "TFG/AR-Framework/ARUtils.h"; sourceTree = SOURCE_ROOT; };
 		95AAAC2A19B36CB900B2D82C /* ARUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARUtils.m; path = "TFG/AR-Framework/ARUtils.m"; sourceTree = SOURCE_ROOT; };
 		95AAAC3019B3727300B2D82C /* Mountain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mountain.h; path = TFG/Model/Mountain.h; sourceTree = SOURCE_ROOT; };
@@ -123,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		959BB5A619ED89020088251D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				959BB5A719ED890E0088251D /* TargetView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		95AAAC2C19B3724800B2D82C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 			children = (
 				95C6EA85197AD7CD00721CEC /* ViewControllers */,
 				95AAAC2C19B3724800B2D82C /* Model */,
+				959BB5A619ED89020088251D /* Views */,
 				953FB5141983F91D00D2CE2F /* ARView.h */,
 				953FB5151983F91D00D2CE2F /* ARView.m */,
 				95AAAC2919B36CB900B2D82C /* ARUtils.h */,
@@ -408,6 +419,7 @@
 				95FBAC00197AF30700160544 /* ARViewController.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,
 				95C6EA8B197AD7CD00721CEC /* MapViewController.m in Sources */,
+				959BB5A819ED890E0088251D /* TargetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
