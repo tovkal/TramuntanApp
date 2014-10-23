@@ -7,7 +7,6 @@
 //
 
 #import "ARView.h"
-#import "TargetShape.h"
 #import "Mountain.h"
 #import "ARUtils.h"
 #import <GLKit/GLKit.h>

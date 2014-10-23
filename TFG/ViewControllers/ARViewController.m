@@ -53,6 +53,7 @@
 	[self initARData];
 	
 	self.arView.pointsOfInterest = self.pointsOfInterest;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -169,17 +170,8 @@
 {
 	NSMutableArray *mountainArray = [[NSMutableArray alloc] init];
 	for (NSDictionary *mountain in self.data) {
-		
-		UILabel *label = [[UILabel alloc] init];
-		label.adjustsFontSizeToFitWidth = NO;
-		label.opaque = NO;
-		label.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.5f];
-		label.center = CGPointMake(200.0f, 200.0f);
-		label.textAlignment = NSTextAlignmentCenter;
-		label.textColor = [UIColor whiteColor];
-		label.attributedText = [[NSAttributedString alloc] initWithString:[mountain valueForKey:@"name"]];
-		CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}];
-		label.bounds = CGRectMake(0.0f, 0.0f, size.width, size.height);
+		        
+        MountainUIImageView *mountainView = [[MountainUIImageView alloc] initWithPosition:self.view.center];
 
 		
 		Mountain *m = [[Mountain alloc] initWithName:[mountain valueForKey:@"name"]
@@ -191,7 +183,7 @@
 												 alt:[[mountain valueForKey:@"ele"] doubleValue]
 								 alternativeAltitude:[[mountain valueForKey:@"alt_ele"] doubleValue]
 										  postalCode:[mountain valueForKey:@"postal code"]
-											withView:label];
+											withView:mountainView];
 		
 		[mountainArray addObject:m];
 	}
