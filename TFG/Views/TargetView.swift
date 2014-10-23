@@ -14,6 +14,15 @@ class TargetView: UIView {
     let height: CGFloat = 50
     let cornerRadius: CGFloat = 10
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.opaque = false
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect)
