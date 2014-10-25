@@ -37,6 +37,8 @@
 
 @property (strong, nonatomic) TargetView *targetView;
 
+@property (strong, nonatomic) DetailView *detailView;
+
 @end
 
 @implementation ARViewController
@@ -52,9 +54,12 @@
 	[self parseXML];
 	[self initARData];
 	
+	[self setupDetailView];
+	
 	self.arView.pointsOfInterest = self.pointsOfInterest;
     
 }
+#define CGRectSetPos( r, x, y ) CGRectMake( x, y, r.size.width, r.size.height )
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -63,7 +68,9 @@
 	[self drawTarget];
 	
 	[self initGPSMessage];
-		
+	
+	[self setupDetailViewConstraints];
+	
 	
 	[self.arView start];
 	[self startLocation];
@@ -443,11 +450,30 @@
 	
 	view->pointsOfInterestCoordinates = pointsOfInterestCoordinates;
 	
+	// Set painting radius
 	if (self.radius == 0.0) {
 		view.radius = 30.0;
 	} else {
 		view.radius = self.radius;
 	}
+
+}
+
+#pragma mark - Detail View
+
+
+- (void) setupDetailView
+{
+	self.detailView =[[[NSBundle mainBundle] loadNibNamed:@"DetailView" owner:self options:nil] lastObject];
+	[self.view addSubview:self.detailView];
+}
+
+- (void) setupDetailViewConstraints
+{
+	id topGuide = self.topLayoutGuide;
+	NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_detailView, topGuide);
+	NSLayoutConstraint *constraint = [[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topGuide]-0-[_detailView]" options:0 metrics:nil views:viewsDictionary] firstObject];
+	[self.view addConstraint:constraint];
 
 }
 
