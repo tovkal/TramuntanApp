@@ -52,6 +52,9 @@
 	[self addSubview:self.captureView];
 	[self sendSubviewToBack:self.captureView];
 	
+	self.mountainContainer = [[UIView alloc] initWithFrame:self.bounds];
+	[self addSubview:self.mountainContainer];
+	
 	[self setFOV];
 	// Initialize projection matrix
 	[self createProjectionMatrixWithCurrentOrientation:UIDeviceOrientationPortrait];

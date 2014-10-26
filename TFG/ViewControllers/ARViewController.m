@@ -75,6 +75,11 @@
 	[self.arView start];
 	[self startLocation];
 	[self startMotion];
+	
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		[self startDetectingMountainInsideTarget];
+	});
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -98,10 +103,10 @@
 {
 	[self removeTarget];
 		
-	self.targetView = [[TargetView alloc] initWithFrame:self.view.frame];
+    self.targetView = [[TargetView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    self.targetView.opaque = NO;
+    self.targetView.center = CGPointMake((self.view.frame.origin.x + (self.view.frame.size.width / 2)), (self.view.frame.origin.y + (self.view.frame.size.height / 2)));
 	[self.view addSubview:self.targetView];
-    NSLog(@"Added target view, width = %f", self.targetView.width);
-	
 }
 
 - (void)removeTarget
@@ -445,7 +450,7 @@
 	for (NSData *d in [orderedDistances reverseObjectEnumerator]) {
 		const DistanceAndIndex *distanceAndIndex = (const DistanceAndIndex *)d.bytes;
 		Mountain *poi = (Mountain *)[self.pointsOfInterest objectAtIndex:distanceAndIndex->index];
-		[view addSubview:poi.view];
+		[view.mountainContainer addSubview:poi.view];
 	}
 	
 	view->pointsOfInterestCoordinates = pointsOfInterestCoordinates;
@@ -474,6 +479,31 @@
 	NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_detailView, topGuide);
 	NSLayoutConstraint *constraint = [[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topGuide]-0-[_detailView]" options:0 metrics:nil views:viewsDictionary] firstObject];
 	[self.view addConstraint:constraint];
+}
+
+- (BOOL)viewIntersectsWithAnotherView:(UIView *)selectedView
+{
+	ARView *view = (ARView *)self.view;
+	NSArray *subViewsInMountainContainerView = [view.mountainContainer subviews];
+	
+	for (UIView *aView in subViewsInMountainContainerView) {
+		
+		if (![selectedView isEqual:aView] && !aView.hidden) {
+			if (CGRectIntersectsRect(selectedView.frame, aView.frame)) {
+				return YES;
+			}
+		}
+	}
+	
+	return NO;
+}
+
+- (void)startDetectingMountainInsideTarget
+{
+	while (true) {
+		NSString *string = [self viewIntersectsWithAnotherView:self.targetView] ? @"Yes" : @"No";
+		NSLog(@"Coincideix = %@", string);
+	}
 }
 
 @end
