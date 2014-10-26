@@ -70,7 +70,7 @@
 	[self initGPSMessage];
 	
 	[self setupDetailViewConstraints];
-	
+	[self.detailView fadeOut];
 	
 	[self.arView start];
 	[self startLocation];
@@ -462,19 +462,18 @@
 #pragma mark - Detail View
 
 
-- (void) setupDetailView
+- (void)setupDetailView
 {
 	self.detailView =[[[NSBundle mainBundle] loadNibNamed:@"DetailView" owner:self options:nil] lastObject];
 	[self.view addSubview:self.detailView];
 }
 
-- (void) setupDetailViewConstraints
+- (void)setupDetailViewConstraints
 {
 	id topGuide = self.topLayoutGuide;
 	NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_detailView, topGuide);
 	NSLayoutConstraint *constraint = [[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topGuide]-0-[_detailView]" options:0 metrics:nil views:viewsDictionary] firstObject];
 	[self.view addConstraint:constraint];
-
 }
 
 @end

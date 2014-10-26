@@ -11,4 +11,10 @@ import UIKit
 class DetailView: UIView {
 	
 
+	func fadeOut() {
+		UIView.animateWithDuration(5, animations: {
+			self.alpha = 0.0
+		})
+
+	}
 }
