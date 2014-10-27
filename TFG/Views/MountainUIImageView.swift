@@ -10,7 +10,7 @@ import UIKit
 
 class MountainUIImageView: UIImageView {
     
-    init(position: CGPoint) {
+    override init() {
         let frame = CGRectMake(0, 0, 20, 20)
 
         super.init(frame: frame)
@@ -18,7 +18,6 @@ class MountainUIImageView: UIImageView {
         let image = UIImage(named: "Icon")
         self.contentMode = UIViewContentMode.ScaleAspectFill
         self.image = image
-        self.center = position
     }
 
     required init(coder aDecoder: NSCoder) {

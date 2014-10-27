@@ -10,11 +10,17 @@ import UIKit
 
 class DetailView: UIView {
 	
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var altitudeLabel: UILabel!
 
 	func fadeOut() {
-		UIView.animateWithDuration(5, animations: {
-			self.alpha = 0.0
-		})
+        UIView.animateWithDuration(5, animations: {
+            self.alpha = 0.0
+            }, completion: {
+                (value: Bool) in
+                self.hidden = true
+        })
 
 	}
 }

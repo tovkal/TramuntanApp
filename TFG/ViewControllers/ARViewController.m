@@ -183,7 +183,8 @@
 	NSMutableArray *mountainArray = [[NSMutableArray alloc] init];
 	for (NSDictionary *mountain in self.data) {
 		        
-        MountainUIImageView *mountainView = [[MountainUIImageView alloc] initWithPosition:self.view.center];
+        MountainUIImageView *mountainView = [[MountainUIImageView alloc] init];
+        mountainView.tag = [mountainArray count] + 1;
 
 		
 		Mountain *m = [[Mountain alloc] initWithName:[mountain valueForKey:@"name"]
@@ -445,7 +446,7 @@
 	}];
 	
 	ARView *view = (ARView *)self.view;
-	
+    
 	// Add subviews in descending Z-order so they overlap properly
 	for (NSData *d in [orderedDistances reverseObjectEnumerator]) {
 		const DistanceAndIndex *distanceAndIndex = (const DistanceAndIndex *)d.bytes;
@@ -481,28 +482,54 @@
 	[self.view addConstraint:constraint];
 }
 
-- (BOOL)viewIntersectsWithAnotherView:(UIView *)selectedView
+- (NSInteger)viewIntersectsWithAnotherView:(UIView *)selectedView
 {
 	ARView *view = (ARView *)self.view;
-	NSArray *subViewsInMountainContainerView = [view.mountainContainer subviews];
+	// Copy to avoid concurrency problems
+	__block NSArray *subViewsInMountainContainerView = nil;
+	dispatch_sync(dispatch_get_main_queue(), ^{
+		subViewsInMountainContainerView = [view.mountainContainer subviews]; // TODO too much memory? blocking much?
+	});
+    if (subViewsInMountainContainerView == nil) {
+        NSLog(@"PROBLEMA");
+    }
 	
 	for (UIView *aView in subViewsInMountainContainerView) {
 		
 		if (![selectedView isEqual:aView] && !aView.hidden) {
 			if (CGRectIntersectsRect(selectedView.frame, aView.frame)) {
-				return YES;
+				return aView.tag;
 			}
 		}
 	}
 	
-	return NO;
+	return 0;
 }
 
 - (void)startDetectingMountainInsideTarget
 {
 	while (true) {
-		NSString *string = [self viewIntersectsWithAnotherView:self.targetView] ? @"Yes" : @"No";
-		NSLog(@"Coincideix = %@", string);
+        NSInteger mountainPosition = [self viewIntersectsWithAnotherView:self.targetView];
+        
+        if (mountainPosition != 0) {
+			// Copy to avoid concurrency problems
+			NSArray *pointsOfInterest = self.pointsOfInterest; // TODO Check this does not consume too much memory
+            Mountain *targeted = [pointsOfInterest objectAtIndex:mountainPosition - 1];  //TODO This also changes during execution
+            
+			dispatch_sync(dispatch_get_main_queue(), ^{
+				self.detailView.nameLabel.text = targeted.name;
+				self.detailView.distanceLabel.text = [NSString stringWithFormat:@"%f", targeted.distance];
+				self.detailView.altitudeLabel.text = [NSString stringWithFormat:@"%f", targeted.altitude];
+				self.detailView.alpha = 1.0f;
+				self.detailView.hidden = NO;
+			});
+
+        } else if (mountainPosition == 0 && !self.detailView.hidden) {
+			dispatch_sync(dispatch_get_main_queue(), ^{
+				[self.detailView fadeOut]; // TODO Executes too quickly
+			});
+			
+        }
 	}
 }
 
