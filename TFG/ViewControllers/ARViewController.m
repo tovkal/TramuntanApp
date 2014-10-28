@@ -19,7 +19,7 @@
 
 //Array for XML Data
 @property (strong, nonatomic) NSMutableArray *data;
-@property (strong, nonatomic) NSArray *pointsOfInterest;
+@property (strong, atomic) NSArray *pointsOfInterest;
 
 //Location
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -487,7 +487,7 @@
 	// Copy to avoid concurrency problems
 	__block NSArray *subViewsInMountainContainerView = nil;
 	dispatch_sync(dispatch_get_main_queue(), ^{
-		subViewsInMountainContainerView = [view.mountainContainer subviews]; // TODO too much memory? blocking much?
+		subViewsInMountainContainerView = [[view.mountainContainer subviews] copy]; // TODO too much memory? blocking much?
 	});
     if (subViewsInMountainContainerView == nil) {
         NSLog(@"ContainerView reference is broken, can't look for target intersection.");
@@ -508,25 +508,25 @@
 - (void)startDetectingMountainInsideTarget
 {
 	while (true) {
-        NSInteger mountainPosition = [self viewIntersectsWithAnotherView:self.targetView];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self updateDetailViewForMountainIndex:mountainPosition];
-        });
+        NSInteger mountainIndex = [self viewIntersectsWithAnotherView:self.targetView];
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			[self updateDetailViewForMountainIndex:mountainIndex];
+		});
 	}
 }
 
 - (void)updateDetailViewForMountainIndex:(NSInteger)mountainIndex
 {
-    if (mountainIndex != 0) {
-        Mountain *targeted = [self.pointsOfInterest objectAtIndex:mountainIndex - 1];
-        self.detailView.nameLabel.text = targeted.name;
-        self.detailView.distanceLabel.text = [NSString stringWithFormat:@"%f", targeted.distance];
-        self.detailView.altitudeLabel.text = [NSString stringWithFormat:@"%f", targeted.altitude];
-        self.detailView.alpha = 1.0f;
-        self.detailView.hidden = NO;
-    } else if (mountainIndex == 0 && !self.detailView.hidden) {
-        [self.detailView fadeOut];
-    }
+	if (mountainIndex != 0) {
+		Mountain *targeted = [self.pointsOfInterest objectAtIndex:mountainIndex - 1];
+			self.detailView.nameLabel.text = targeted.name;
+			self.detailView.distanceLabel.text = [NSString stringWithFormat:@"%f", targeted.distance];
+			self.detailView.altitudeLabel.text = [NSString stringWithFormat:@"%f", targeted.altitude];
+			self.detailView.alpha = 1.0f;
+			self.detailView.hidden = NO;
+	} else if (mountainIndex == 0 && !self.detailView.hidden && self.detailView.isNotFadingOut) {
+			[self.detailView fadeOut];
+	}
 }
 
 @end

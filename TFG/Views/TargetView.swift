@@ -22,6 +22,7 @@ class TargetView: UIView {
         var rectangleView = UIBezierPath(roundedRect: CGRectMake(0, 0, width, height), cornerRadius: cornerRadius)
         var filling = UIColor.redColor()
         filling.setStroke()
+		rectangleView.lineWidth = 1.5
         rectangleView.stroke()
     }
 

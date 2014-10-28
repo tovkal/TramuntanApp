@@ -23,7 +23,7 @@
 	vec4f_t *pointsOfInterestCoordinates;
 }
 
-@property (strong, nonatomic) UIView *mountainContainer;
+@property (strong, atomic) UIView *mountainContainer;
 
 @property (strong, nonatomic) NSArray *pointsOfInterest;
 

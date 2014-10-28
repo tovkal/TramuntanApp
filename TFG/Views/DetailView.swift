@@ -13,14 +13,19 @@ class DetailView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var altitudeLabel: UILabel!
+	
+	var isNotFadingOut = true
 
 	func fadeOut() {
-        UIView.animateWithDuration(5, animations: {
-            self.alpha = 0.0
-            }, completion: {
-                (value: Bool) in
-                self.hidden = true
-        })
-
+		if (!self.hidden) {
+			UIView.animateWithDuration(3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+				self.isNotFadingOut = false
+				self.alpha = 0.0
+				}, completion: {
+					(value: Bool) in
+					self.hidden = true
+					self.isNotFadingOut = true
+			})
+		}
 	}
 }
