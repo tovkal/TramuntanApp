@@ -324,6 +324,9 @@
 		}
 		i++;
 	}
+    
+    //TODO Podria crear una classe per gestionar lo de controlar quan una muntanya entra dings Target, i aquí fer un set de ses subviews
+    //o algo per evitar fer-ho cada vegada allà on esta ara amb dispatch tal.
 }
 
 @end

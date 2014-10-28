@@ -59,7 +59,6 @@
 	self.arView.pointsOfInterest = self.pointsOfInterest;
     
 }
-#define CGRectSetPos( r, x, y ) CGRectMake( x, y, r.size.width, r.size.height )
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -491,17 +490,17 @@
 		subViewsInMountainContainerView = [view.mountainContainer subviews]; // TODO too much memory? blocking much?
 	});
     if (subViewsInMountainContainerView == nil) {
-        NSLog(@"PROBLEMA");
+        NSLog(@"ContainerView reference is broken, can't look for target intersection.");
+    } else {
+        for (UIView *aView in subViewsInMountainContainerView) {
+            
+            if (![selectedView isEqual:aView] && !aView.hidden) {
+                if (CGRectIntersectsRect(selectedView.frame, aView.frame)) {
+                    return aView.tag;
+                }
+            }
+        }
     }
-	
-	for (UIView *aView in subViewsInMountainContainerView) {
-		
-		if (![selectedView isEqual:aView] && !aView.hidden) {
-			if (CGRectIntersectsRect(selectedView.frame, aView.frame)) {
-				return aView.tag;
-			}
-		}
-	}
 	
 	return 0;
 }
@@ -510,27 +509,24 @@
 {
 	while (true) {
         NSInteger mountainPosition = [self viewIntersectsWithAnotherView:self.targetView];
-        
-        if (mountainPosition != 0) {
-			// Copy to avoid concurrency problems
-			NSArray *pointsOfInterest = self.pointsOfInterest; // TODO Check this does not consume too much memory
-            Mountain *targeted = [pointsOfInterest objectAtIndex:mountainPosition - 1];  //TODO This also changes during execution
-            
-			dispatch_sync(dispatch_get_main_queue(), ^{
-				self.detailView.nameLabel.text = targeted.name;
-				self.detailView.distanceLabel.text = [NSString stringWithFormat:@"%f", targeted.distance];
-				self.detailView.altitudeLabel.text = [NSString stringWithFormat:@"%f", targeted.altitude];
-				self.detailView.alpha = 1.0f;
-				self.detailView.hidden = NO;
-			});
-
-        } else if (mountainPosition == 0 && !self.detailView.hidden) {
-			dispatch_sync(dispatch_get_main_queue(), ^{
-				[self.detailView fadeOut]; // TODO Executes too quickly
-			});
-			
-        }
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self updateDetailViewForMountainIndex:mountainPosition];
+        });
 	}
+}
+
+- (void)updateDetailViewForMountainIndex:(NSInteger)mountainIndex
+{
+    if (mountainIndex != 0) {
+        Mountain *targeted = [self.pointsOfInterest objectAtIndex:mountainIndex - 1];
+        self.detailView.nameLabel.text = targeted.name;
+        self.detailView.distanceLabel.text = [NSString stringWithFormat:@"%f", targeted.distance];
+        self.detailView.altitudeLabel.text = [NSString stringWithFormat:@"%f", targeted.altitude];
+        self.detailView.alpha = 1.0f;
+        self.detailView.hidden = NO;
+    } else if (mountainIndex == 0 && !self.detailView.hidden) {
+        [self.detailView fadeOut];
+    }
 }
 
 @end
