@@ -58,7 +58,6 @@
 	[self setFOV];
 	// Initialize projection matrix
 	[self createProjectionMatrixWithCurrentOrientation:UIDeviceOrientationPortrait];
-
 }
 
 - (void)start
@@ -245,51 +244,25 @@
 #pragma mark - View
 - (void)orientationChanged:(NSNotification *)notification
 {
-	CGRect bounds = CGRectMake(0, 0, 1, 1);
-    
-    int xInt = 0;
-    int yInt = 0;
-	
-	CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-	
-	xInt = screenSize.width;
-	yInt = screenSize.height;
-    
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
-    BOOL rotate = YES;
-    
-    switch (orientation) {
-        case UIDeviceOrientationLandscapeLeft:
-            bounds = CGRectMake(0, 0, yInt, xInt);
-            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(M_PI + M_PI_2); // 270 degress
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            bounds = CGRectMake(0, 0, yInt, xInt);
-            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(M_PI_2); // 90 degrees
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            rotate = NO;
-            //bounds = CGRectMake(0, 0, xInt, yInt);
-            //self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI); // 180 degrees
-            break;
-		case UIDeviceOrientationFaceDown:
-		case UIDeviceOrientationFaceUp:
-			rotate = NO;
-			break;
-        default: //Portrait
-			if (xInt > yInt) {
-				bounds = CGRectMake(0, 0, yInt, xInt);
-			} else {
-				bounds = CGRectMake(0, 0, xInt, yInt);
-			}
-            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(0.0);
-            break;
+    if (self.captureLayer) {
+        switch (orientation) {
+            case UIDeviceOrientationLandscapeLeft:
+                self.captureLayer.affineTransform = CGAffineTransformMakeRotation(-M_PI/2);
+                break;
+            case UIDeviceOrientationPortrait:
+                self.captureLayer.affineTransform = CGAffineTransformMakeRotation(0);
+                break;
+            case UIDeviceOrientationLandscapeRight:
+                self.captureLayer.affineTransform = CGAffineTransformMakeRotation(M_PI/2);
+                break;
+            default:
+                break;
+        }
     }
     
-    if (rotate) {
-        self.captureLayer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-    }
+    self.captureLayer.frame = self.bounds;
 }
 
 - (void)drawRect:(CGRect)rect
