@@ -39,6 +39,8 @@
 
 @property (strong, nonatomic) DetailView *detailView;
 
+@property CLAuthorizationStatus previousStatus;
+
 @end
 
 @implementation ARViewController
@@ -62,6 +64,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"View will appear");
 	[super viewWillAppear:animated];
 	
 	[self drawTarget];
@@ -123,7 +126,7 @@
 - (void)parseXML
 {
 	APBXMLParser *parser  = [[APBXMLParser alloc] init];
-	APBXMLElement *rootElement = [parser parseXML:@"muntanyes_dev"];
+	APBXMLElement *rootElement = [parser parseXML:@"muntanyes8"];
 	
 	[self toArray:rootElement];
 }
@@ -151,7 +154,9 @@
 				case 5: //alt_lon
 				case 6: //ele
 				case 7: //alt_ele
-					[dictionary setObject:attribute.text forKey:attributeArray[item]];
+                    if (attribute.text != nil) {
+                        [dictionary setObject:attribute.text forKey:attributeArray[item]];
+                    }
 					break;
 				case 8: //postal code
 					[dictionary setObject:[attribute.text componentsSeparatedByString:@", "] forKey:attributeArray[item]];
@@ -227,16 +232,21 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-	switch (status) {
-		case kCLAuthorizationStatusAuthorizedAlways:
-		case kCLAuthorizationStatusAuthorizedWhenInUse:
-			[self startLocation];
-			break;
-		case kCLAuthorizationStatusNotDetermined:
-			[self.locationManager requestWhenInUseAuthorization];
-		default:
-			break;
-	}
+    // Avoid infinite calls between this and startLocation as startLocation will trigger this method
+    if (self.previousStatus != status) {
+        switch (status) {
+            case kCLAuthorizationStatusAuthorizedAlways:
+            case kCLAuthorizationStatusAuthorizedWhenInUse:
+                [self startLocation];
+                break;
+            case kCLAuthorizationStatusNotDetermined:
+                [self.locationManager requestWhenInUseAuthorization];
+            default:
+                break;
+        }
+    }
+    
+    self.previousStatus = status;
 }
 
 - (void)stopLocation
@@ -257,8 +267,8 @@
 	}
 	
 	[self showGPSMessage];
-	
-	if (self.pointsOfInterest != nil && [self haveRequiredGPSAccuracy]) {
+
+    if (self.pointsOfInterest != nil && [self haveRequiredGPSAccuracy]) {
 		[self updatePointsOfInterestCoordinates];
 	} else {
 		[self showGPSMessage];

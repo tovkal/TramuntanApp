@@ -10,6 +10,7 @@
 		9515217A1984F364002244D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951521791984F364002244D8 /* AVFoundation.framework */; };
 		9529062719F94CF1008CDB86 /* MountainUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9529062619F94CF1008CDB86 /* MountainUIImageView.swift */; };
 		953FB5181983F91D00D2CE2F /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5151983F91D00D2CE2F /* ARView.m */; };
+		95876FBA1A8E6417008DEF0D /* muntanyes8.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95876FB91A8E6417008DEF0D /* muntanyes8.xml */; };
 		959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959023C119A12BEF00ACDD5F /* Images.xcassets */; };
 		959BB5A819ED890E0088251D /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959BB5A719ED890E0088251D /* TargetView.swift */; };
 		95AAAC2B19B36CB900B2D82C /* ARUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AAAC2A19B36CB900B2D82C /* ARUtils.m */; };
@@ -55,6 +56,7 @@
 		9529062619F94CF1008CDB86 /* MountainUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainUIImageView.swift; sourceTree = "<group>"; };
 		953FB5141983F91D00D2CE2F /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARView.h; path = "AR-Framework/View/ARView.h"; sourceTree = "<group>"; };
 		953FB5151983F91D00D2CE2F /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARView.m; path = "AR-Framework/View/ARView.m"; sourceTree = "<group>"; };
+		95876FB91A8E6417008DEF0D /* muntanyes8.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = muntanyes8.xml; sourceTree = "<group>"; };
 		959023C119A12BEF00ACDD5F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		959BB5A719ED890E0088251D /* TargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
 		95AAAC2919B36CB900B2D82C /* ARUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARUtils.h; path = "TFG/AR-Framework/ARUtils.h"; sourceTree = SOURCE_ROOT; };
@@ -255,6 +257,7 @@
 		95DF13FC197AEEC700991AAD /* XML */ = {
 			isa = PBXGroup;
 			children = (
+				95876FB91A8E6417008DEF0D /* muntanyes8.xml */,
 				95DF13FD197AEED000991AAD /* muntanyes_dev.xml */,
 				95DF13FE197AEED000991AAD /* APBXMLElement.h */,
 				95DF13FF197AEED000991AAD /* APBXMLElement.m */,
@@ -348,6 +351,7 @@
 				95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */,
 				95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */,
 				959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */,
+				95876FBA1A8E6417008DEF0D /* muntanyes8.xml in Resources */,
 				95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */,
 				95C1036219FBC4C400367E64 /* DetailView.xib in Resources */,
 			);
