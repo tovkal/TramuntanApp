@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950E64CB1A910F0B00F173C6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950E64CA1A910F0B00F173C6 /* Utils.swift */; };
 		9515217A1984F364002244D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951521791984F364002244D8 /* AVFoundation.framework */; };
 		9529062719F94CF1008CDB86 /* MountainUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9529062619F94CF1008CDB86 /* MountainUIImageView.swift */; };
 		953FB5181983F91D00D2CE2F /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5151983F91D00D2CE2F /* ARView.m */; };
@@ -52,17 +53,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		950E64CA1A910F0B00F173C6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		951521791984F364002244D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9529062619F94CF1008CDB86 /* MountainUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainUIImageView.swift; sourceTree = "<group>"; };
-		953FB5141983F91D00D2CE2F /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARView.h; path = "AR-Framework/View/ARView.h"; sourceTree = "<group>"; };
-		953FB5151983F91D00D2CE2F /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARView.m; path = "AR-Framework/View/ARView.m"; sourceTree = "<group>"; };
+		9533D3E21A91158D0045BE1F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		953FB5141983F91D00D2CE2F /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARView.h; sourceTree = "<group>"; };
+		953FB5151983F91D00D2CE2F /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARView.m; sourceTree = "<group>"; };
 		95876FB91A8E6417008DEF0D /* muntanyes8.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = muntanyes8.xml; sourceTree = "<group>"; };
 		959023C119A12BEF00ACDD5F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		959BB5A719ED890E0088251D /* TargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
-		95AAAC2919B36CB900B2D82C /* ARUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARUtils.h; path = "TFG/AR-Framework/ARUtils.h"; sourceTree = SOURCE_ROOT; };
-		95AAAC2A19B36CB900B2D82C /* ARUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARUtils.m; path = "TFG/AR-Framework/ARUtils.m"; sourceTree = SOURCE_ROOT; };
-		95AAAC3019B3727300B2D82C /* Mountain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mountain.h; path = TFG/Model/Mountain.h; sourceTree = SOURCE_ROOT; };
-		95AAAC3119B3727300B2D82C /* Mountain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mountain.m; path = TFG/Model/Mountain.m; sourceTree = SOURCE_ROOT; };
+		95AAAC2919B36CB900B2D82C /* ARUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARUtils.h; sourceTree = "<group>"; };
+		95AAAC2A19B36CB900B2D82C /* ARUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARUtils.m; sourceTree = "<group>"; };
+		95AAAC3019B3727300B2D82C /* Mountain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mountain.h; sourceTree = "<group>"; };
+		95AAAC3119B3727300B2D82C /* Mountain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mountain.m; sourceTree = "<group>"; };
 		95C1035F19FBBEC200367E64 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		95C1036119FBC4C400367E64 /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		95C4F39819C21AA9009CC1C5 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -127,11 +130,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		950E64C91A910B6000F173C6 /* AR */ = {
+			isa = PBXGroup;
+			children = (
+				953FB5141983F91D00D2CE2F /* ARView.h */,
+				953FB5151983F91D00D2CE2F /* ARView.m */,
+				95AAAC2919B36CB900B2D82C /* ARUtils.h */,
+				95AAAC2A19B36CB900B2D82C /* ARUtils.m */,
+			);
+			path = AR;
+			sourceTree = "<group>";
+		};
 		959BB5A619ED89020088251D /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				959BB5A719ED890E0088251D /* TargetView.swift */,
 				9529062619F94CF1008CDB86 /* MountainUIImageView.swift */,
+				95C1036119FBC4C400367E64 /* DetailView.xib */,
 				95C1035F19FBBEC200367E64 /* DetailView.swift */,
 			);
 			path = Views;
@@ -143,8 +158,7 @@
 				95AAAC3019B3727300B2D82C /* Mountain.h */,
 				95AAAC3119B3727300B2D82C /* Mountain.m */,
 			);
-			name = Model;
-			path = ViewControllers/Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		95C6EA44197AD7C300721CEC = {
@@ -187,14 +201,10 @@
 				95C6EA85197AD7CD00721CEC /* ViewControllers */,
 				95AAAC2C19B3724800B2D82C /* Model */,
 				959BB5A619ED89020088251D /* Views */,
-				953FB5141983F91D00D2CE2F /* ARView.h */,
-				953FB5151983F91D00D2CE2F /* ARView.m */,
-				95AAAC2919B36CB900B2D82C /* ARUtils.h */,
-				95AAAC2A19B36CB900B2D82C /* ARUtils.m */,
+				950E64C91A910B6000F173C6 /* AR */,
 				95DF13FC197AEEC700991AAD /* XML */,
 				95D3FE7219C7723D00B82EBB /* Utils */,
 				95CF2B1F19CF2A7800312B49 /* Main.storyboard */,
-				95C1036119FBC4C400367E64 /* DetailView.xib */,
 				95C6EA5F197AD7C300721CEC /* AppDelegate.h */,
 				95C6EA60197AD7C300721CEC /* AppDelegate.m */,
 				959023C119A12BEF00ACDD5F /* Images.xcassets */,
@@ -211,7 +221,7 @@
 				95C6EA5C197AD7C300721CEC /* main.m */,
 				95C6EA5E197AD7C300721CEC /* TFG-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		95C6EA75197AD7C300721CEC /* TFGTests */ = {
@@ -229,7 +239,7 @@
 				95C6EA77197AD7C300721CEC /* TFGTests-Info.plist */,
 				95C6EA78197AD7C300721CEC /* InfoPlist.strings */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		95C6EA85197AD7CD00721CEC /* ViewControllers */ = {
@@ -250,6 +260,8 @@
 			children = (
 				95D3FE7319C7725000B82EBB /* UIDeviceHardware.h */,
 				95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */,
+				950E64CA1A910F0B00F173C6 /* Utils.swift */,
+				9533D3E21A91158D0045BE1F /* Constants.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -407,6 +419,7 @@
 				9529062719F94CF1008CDB86 /* MountainUIImageView.swift in Sources */,
 				95C1036019FBBEC200367E64 /* DetailView.swift in Sources */,
 				95AAAC2B19B36CB900B2D82C /* ARUtils.m in Sources */,
+				950E64CB1A910F0B00F173C6 /* Utils.swift in Sources */,
 				953FB5181983F91D00D2CE2F /* ARView.m in Sources */,
 				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
 				95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */,
@@ -444,6 +457,7 @@
 				95C6EA5A197AD7C300721CEC /* en */,
 			);
 			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 		95C6EA78197AD7C300721CEC /* InfoPlist.strings */ = {
@@ -452,6 +466,7 @@
 				95C6EA79197AD7C300721CEC /* en */,
 			);
 			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -536,8 +551,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
-				INFOPLIST_FILE = "TFG/TFG-Info.plist";
+				GCC_PREFIX_HEADER = "TFG/Supporting Files/TFG-Prefix.pch";
+				INFOPLIST_FILE = "TFG/Supporting Files/TFG-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = TFG;
@@ -557,8 +572,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
-				INFOPLIST_FILE = "TFG/TFG-Info.plist";
+				GCC_PREFIX_HEADER = "TFG/Supporting Files/TFG-Prefix.pch";
+				INFOPLIST_FILE = "TFG/Supporting Files/TFG-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = TFG;
@@ -578,12 +593,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
+				GCC_PREFIX_HEADER = "TFG/Supporting Files/TFG-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "TFGTests/TFGTests-Info.plist";
+				INFOPLIST_FILE = "TFGTests/Supporting Files/TFGTests-Info.plist";
 				PRODUCT_NAME = TFGTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -600,8 +615,8 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TFG/TFG-Prefix.pch";
-				INFOPLIST_FILE = "TFGTests/TFGTests-Info.plist";
+				GCC_PREFIX_HEADER = "TFG/Supporting Files/TFG-Prefix.pch";
+				INFOPLIST_FILE = "TFGTests/Supporting Files/TFGTests-Info.plist";
 				PRODUCT_NAME = TFGTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

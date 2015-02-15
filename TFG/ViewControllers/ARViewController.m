@@ -10,6 +10,7 @@
 #import "APBXMLElement.h"
 #import "APBXMLParser.h"
 #import "Mountain.h"
+#import "Constants.h"
 #import "TFG-Swift.h"
 
 @interface ARViewController ()
@@ -39,7 +40,15 @@
 
 @property (strong, nonatomic) DetailView *detailView;
 
+// Previous location autorization status
 @property CLAuthorizationStatus previousStatus;
+
+// Settings properties
+@property BOOL debugLocation;
+@property BOOL debugAltitude;
+@property BOOL debugAttitude;
+@property BOOL enableGPSMessage;
+@property float radius;
 
 @end
 
@@ -64,8 +73,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"View will appear");
 	[super viewWillAppear:animated];
+    
+    [self updateSettings];
 	
 	[self drawTarget];
 	
@@ -94,6 +104,15 @@
 	[self removeGPSMessage];
 }
 
+-(void)updateSettings
+{
+    self.debugLocation = [(NSNumber *) [Utils getUserSetting:debugLocationSettingKey] boolValue];
+    self.debugAltitude = [(NSNumber *) [Utils getUserSetting:debugAltitudeSettingKey] boolValue];
+    self.debugAttitude = [(NSNumber *) [Utils getUserSetting:debugAttitudeSettingKey] boolValue];
+    self.enableGPSMessage = [(NSNumber *) [Utils getUserSetting:showGPSMessageSettingKey] boolValue];
+    self.radius = [(NSNumber *) [Utils getUserSetting:radiusSettingKey] floatValue];
+}
+
 #pragma mark - Target view TEMPORARY
 //TODO Find better location for this
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -114,7 +133,6 @@
 - (void)removeTarget
 {
 	if (self.targetView != nil) {
-        NSLog(@"Removing target view");
 		[self.targetView removeFromSuperview];
 	}
 }
@@ -126,7 +144,8 @@
 - (void)parseXML
 {
 	APBXMLParser *parser  = [[APBXMLParser alloc] init];
-	APBXMLElement *rootElement = [parser parseXML:@"muntanyes8"];
+    NSString *datasource = [Utils getUserSetting:datasourceSettingKey];
+    APBXMLElement *rootElement = [parser parseXML:datasource];
 	
 	[self toArray:rootElement];
 }
@@ -189,6 +208,10 @@
 		        
         MountainUIImageView *mountainView = [[MountainUIImageView alloc] init];
         mountainView.tag = [mountainArray count] + 1;
+        
+        if ([mountain valueForKey:@"name"] == nil || [mountain valueForKey:@"lat"] == nil || [mountain valueForKey:@"lon"] == nil || [mountain valueForKey:@"ele"] == nil) {
+            continue;
+        }
 
 		
 		Mountain *m = [[Mountain alloc] initWithName:[mountain valueForKey:@"name"]
@@ -229,6 +252,14 @@
 	}
 
 }
+
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager{
+    if (!manager.heading) return YES; // Got nothing, We can assume we got to calibrate.
+    else if (manager.heading.headingAccuracy < 0) return YES; // 0 means invalid heading, need to calibrate
+    else if (manager.heading.headingAccuracy > 0.5)return YES; // 5 degrees is a small value correct for my needs, too.
+    else return NO; // All is good. Compass is precise enough.
+}
+
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
@@ -277,9 +308,6 @@
 
 - (BOOL)haveRequiredGPSAccuracy
 {
-	if (!self.enableGPSMessage) { //TODO only for dev
-		return YES;
-	}
 	if (self.location.verticalAccuracy < 15 && self.location.horizontalAccuracy < 20) {
 		[self hideGPSMessage];
 		return YES;
@@ -373,7 +401,8 @@
 {
 	self.motionManager = [[CMMotionManager alloc] init];
 
-	self.motionManager.deviceMotionUpdateInterval = 0.05; //seconds
+    self.motionManager.magnetometerUpdateInterval = 0.01;
+    self.motionManager.deviceMotionUpdateInterval = 0.01; // = 20ms || 1.0/20.0 = 0.05; //seconds
 	
 	//Show calibration HUD when required.
 	self.motionManager.showsDeviceMovementDisplay = YES;

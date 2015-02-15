@@ -179,10 +179,7 @@
 															   r.m13, r.m23, r.m33, 0.0f,
 															   0.0f, 0.0f, 0.0f, 1.0f);
 		deviceMotionAttitudeMatrix = GLKMatrix4Multiply(baseRotation, deviceMotionAttitudeMatrix);
-		
-		//Aquesta fun no fa lo que toca, retorna tot 0s o algo aixi. Comparar amb multy
-		//multiplyMatrixAndMatrix(cameraTransform, cameraTransform, rotation);
-		
+				
 		cameraTransform[0] = deviceMotionAttitudeMatrix.m00;
 		cameraTransform[1] = deviceMotionAttitudeMatrix.m01;
 		cameraTransform[2] = deviceMotionAttitudeMatrix.m02;

@@ -9,14 +9,13 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController, UITabBarControllerDelegate {
-
-	var debugLocation = false
-	var debugAltitude = false
-	var debugAttitude = false
-	var enableGPSMessage = true
 	
-	var radius: Float = 0.0
-	
+    @IBOutlet weak var locationDebugSwitch: UISwitch!
+    @IBOutlet weak var altitudeDebugSwitch: UISwitch!
+    @IBOutlet weak var attitudeDebugSwitch: UISwitch!
+    @IBOutlet weak var enableGPSMessageSwitch: UISwitch!
+    @IBOutlet weak var datasourceControl: UISegmentedControl!
+    @IBOutlet weak var radiusSlider: UISlider!
 	@IBOutlet var radiusLabel: UILabel!
 	
     override func viewDidLoad() {
@@ -26,6 +25,21 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
 		self.clearsSelectionOnViewWillAppear = false
 		
 		self.tabBarController?.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.locationDebugSwitch.on = Utils.getUserSetting(debugLocationSettingKey) as Bool
+        self.altitudeDebugSwitch.on = Utils.getUserSetting(debugAltitudeSettingKey) as Bool
+        self.attitudeDebugSwitch.on = Utils.getUserSetting(debugAttitudeSettingKey) as Bool
+        self.enableGPSMessageSwitch.on = Utils.getUserSetting(showGPSMessageSettingKey) as Bool
+
+        if let datasource = Utils.getUserSetting(datasourceSettingKey) as? String {
+            self.datasourceControl.selectedSegmentIndex = datasource == "muntanyes_dev" ? 0 : 1
+
+        }
+        self.radiusSlider.value = Utils.getUserSetting(radiusSettingKey) as Float
+        updateRadiusLable(Int(self.radiusSlider.value))
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,39 +55,41 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
 		return 44.0
 	}
 	
-	@IBAction func switchDidChange(sender: UISwitch) {
-		switch (sender.tag) {
-		case 1: //Location
-			self.debugLocation = sender.on ? true : false
-		case 2: //Altitude
-			self.debugAltitude = sender.on ? true : false
-		case 3: //Attitude
-			self.debugAttitude = sender.on ? true : false
-		case 4: //Disable GPS Message
-			self.enableGPSMessage = sender.on ? true : false
-		default:
-			print("Switch unknown");
-		}
-	}
+    @IBAction func switchDidChange(sender: UISwitch) {
+        switch (sender.tag) {
+            case 1: //Location
+                Utils.saveUserSetting(debugLocationSettingKey, value: self.locationDebugSwitch.on)
+            case 2: //Altitude
+                Utils.saveUserSetting(debugAltitudeSettingKey, value: self.altitudeDebugSwitch.on)
+            case 3: //Attitude
+                Utils.saveUserSetting(debugAttitudeSettingKey, value: self.attitudeDebugSwitch.on)
+            case 4: //Disable GPS Message
+                Utils.saveUserSetting(showGPSMessageSettingKey, value: self.enableGPSMessageSwitch.on)
+            default:
+                print("Switch unknown");
+        }
+    }
 
+    @IBAction func changeDatasource(sender: UISegmentedControl) {
+        
+        switch(sender.selectedSegmentIndex) {
+            case 0:
+                Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes_dev")
+                break;
+            case 1:
+                Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes_8")
+                break;
+            default:
+                break;
+        }
+    }
+    
 	@IBAction func radiusDidChange(sender: UISlider) {
-		radius = sender.value
-		self.radiusLabel.text = "Radius: \(Int(radius)) km."
+        Utils.saveUserSetting(radiusSettingKey, value: sender.value)
+        updateRadiusLable(Int(sender.value))
 	}
-	
-	func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-		
-		if (viewController.tabBarItem.tag == 1) {
-			if let viewControllers = tabBarController.viewControllers as? [UIViewController] {
-				var vc: ARViewController = viewControllers[0] as ARViewController
-				
-				vc.debugLocation = self.debugLocation
-				vc.debugAltitude = self.debugAltitude
-				vc.debugAttitude = self.debugAttitude
-				vc.enableGPSMessage = self.enableGPSMessage;
-				vc.radius = radius
-			}
-		}
-	}
-	
+    
+    private func updateRadiusLable(value: Int) {
+  		self.radiusLabel.text = "Radius: \(value) km."
+    }
 }
