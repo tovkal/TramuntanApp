@@ -49,6 +49,8 @@
 @property BOOL debugAttitude;
 @property BOOL enableGPSMessage;
 @property float radius;
+@property (strong, nonatomic) NSString *actualDatasource;
+@property BOOL ignoreGPSSignal;
 
 @end
 
@@ -98,7 +100,7 @@
 {
 	[super viewWillDisappear:animated];
 	
-	[self.arView stop];
+	[self.arView stop]; // TODO: This method blocks sometimes when changing to another tab bar item
 	[self stopLocation];
 	[self stopMotion];
 	[self removeGPSMessage];
@@ -111,6 +113,13 @@
     self.debugAttitude = [(NSNumber *) [Utils getUserSetting:debugAttitudeSettingKey] boolValue];
     self.enableGPSMessage = [(NSNumber *) [Utils getUserSetting:showGPSMessageSettingKey] boolValue];
     self.radius = [(NSNumber *) [Utils getUserSetting:radiusSettingKey] floatValue];
+    
+    // Check if datasource has change, if so, update data
+    if (self.actualDatasource != (NSString *)[Utils getUserSetting:datasourceSettingKey]) {
+        exit(0);
+    }
+    
+    self.ignoreGPSSignal = [(NSNumber *) [Utils getUserSetting:ignoreGPSSignalSettingKey] boolValue];
 }
 
 #pragma mark - Target view TEMPORARY
@@ -144,8 +153,8 @@
 - (void)parseXML
 {
 	APBXMLParser *parser  = [[APBXMLParser alloc] init];
-    NSString *datasource = [Utils getUserSetting:datasourceSettingKey];
-    APBXMLElement *rootElement = [parser parseXML:datasource];
+    self.actualDatasource = [Utils getUserSetting:datasourceSettingKey];
+    APBXMLElement *rootElement = [parser parseXML:self.actualDatasource];
 	
 	[self toArray:rootElement];
 }
@@ -308,6 +317,10 @@
 
 - (BOOL)haveRequiredGPSAccuracy
 {
+    if (self.ignoreGPSSignal) {
+        return YES;
+    }
+    
 	if (self.location.verticalAccuracy < 15 && self.location.horizontalAccuracy < 20) {
 		[self hideGPSMessage];
 		return YES;

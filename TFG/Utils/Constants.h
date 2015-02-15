@@ -14,6 +14,7 @@
 #define debugAttitudeSettingKey @"debugAttitude"
 #define showGPSMessageSettingKey @"showGPSMessage"
 #define datasourceSettingKey @"datasource"
+#define ignoreGPSSignalSettingKey @"ignoreGPSSignal"
 #define radiusSettingKey @"radius"
 
 

@@ -15,6 +15,7 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
     @IBOutlet weak var attitudeDebugSwitch: UISwitch!
     @IBOutlet weak var enableGPSMessageSwitch: UISwitch!
     @IBOutlet weak var datasourceControl: UISegmentedControl!
+    @IBOutlet weak var ignoreGPSSignal: UISwitch!
     @IBOutlet weak var radiusSlider: UISlider!
 	@IBOutlet var radiusLabel: UILabel!
 	
@@ -28,18 +29,34 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.locationDebugSwitch.on = Utils.getUserSetting(debugLocationSettingKey) as Bool
-        self.altitudeDebugSwitch.on = Utils.getUserSetting(debugAltitudeSettingKey) as Bool
-        self.attitudeDebugSwitch.on = Utils.getUserSetting(debugAttitudeSettingKey) as Bool
-        self.enableGPSMessageSwitch.on = Utils.getUserSetting(showGPSMessageSettingKey) as Bool
+        if let locationDebug = Utils.getUserSetting(debugLocationSettingKey) as? Bool {
+            self.locationDebugSwitch.on = locationDebug
+        }
+        
+        if let altitudeDebug = Utils.getUserSetting(debugAltitudeSettingKey) as? Bool {
+            self.altitudeDebugSwitch.on = altitudeDebug
+        }
+        
+        if let attitudeDebug = Utils.getUserSetting(debugAttitudeSettingKey) as? Bool {
+            self.attitudeDebugSwitch.on = attitudeDebug
+        }
+        
+        if let enableGPSMessage = Utils.getUserSetting(showGPSMessageSettingKey) as? Bool {
+            self.enableGPSMessageSwitch.on = enableGPSMessage
+        }
 
         if let datasource = Utils.getUserSetting(datasourceSettingKey) as? String {
             self.datasourceControl.selectedSegmentIndex = datasource == "muntanyes_dev" ? 0 : 1
-
         }
-        self.radiusSlider.value = Utils.getUserSetting(radiusSettingKey) as Float
-        updateRadiusLable(Int(self.radiusSlider.value))
-
+        
+        if let ignoreGPSSignal = Utils.getUserSetting(ignoreGPSSignalSettingKey) as? Bool {
+            self.ignoreGPSSignal.on = ignoreGPSSignal
+        }
+        
+        if let radius = Utils.getUserSetting(radiusSettingKey) as? Float {
+            self.radiusSlider.value = radius
+            updateRadiusLable(Int(self.radiusSlider.value))
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,14 +76,22 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
         switch (sender.tag) {
             case 1: //Location
                 Utils.saveUserSetting(debugLocationSettingKey, value: self.locationDebugSwitch.on)
+                break;
             case 2: //Altitude
                 Utils.saveUserSetting(debugAltitudeSettingKey, value: self.altitudeDebugSwitch.on)
+                break;
             case 3: //Attitude
                 Utils.saveUserSetting(debugAttitudeSettingKey, value: self.attitudeDebugSwitch.on)
+                break;
             case 4: //Disable GPS Message
                 Utils.saveUserSetting(showGPSMessageSettingKey, value: self.enableGPSMessageSwitch.on)
+                break;
+            case 5:
+                Utils.saveUserSetting(ignoreGPSSignalSettingKey, value: self.ignoreGPSSignal.on)
+                break;
             default:
                 print("Switch unknown");
+                break;
         }
     }
 
@@ -77,7 +102,7 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
                 Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes_dev")
                 break;
             case 1:
-                Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes_8")
+                Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes8")
                 break;
             default:
                 break;

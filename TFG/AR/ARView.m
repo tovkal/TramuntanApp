@@ -126,12 +126,11 @@
 - (void)stop
 {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		[self.captureSession stopRunning];
+		[self.captureSession stopRunning]; /// This is the "blocking" call
 	});
 	[self.captureLayer removeFromSuperlayer];
 	self.captureSession = nil;
 	self.captureLayer = nil;
-	
 	[self stopDisplayLink];
 }
 

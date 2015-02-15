@@ -143,12 +143,12 @@
         <scene sceneID="m1a-UN-XYb">
             <objects>
                 <tableViewController id="VxJ-nd-ktG" customClass="SettingsTableViewController" customModule="TFG" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hau-Cr-Tn9">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="hau-Cr-Tn9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Dev" id="MU5-4t-Wuh">
+                            <tableViewSection headerTitle="Dev" footerTitle="Canviar el datasource provocara un exit(0), i després en obrir si que carregarà el datasource seleccionat" id="MU5-4t-Wuh">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="8Pa-gU-WCC">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -304,6 +304,36 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rtR-Bb-PRe">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rtR-Bb-PRe" id="ao2-q2-CsQ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ignore GPS accuracy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHM-xT-7Wp">
+                                                    <rect key="frame" x="8" y="11" width="171" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="171" id="ZWb-JY-Ef5"/>
+                                                        <constraint firstAttribute="height" constant="21" id="fH0-eQ-Lhq"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IEc-3y-E35">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="switchDidChange:" destination="VxJ-nd-ktG" eventType="valueChanged" id="qp0-eg-J6E"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NHM-xT-7Wp" firstAttribute="top" secondItem="ao2-q2-CsQ" secondAttribute="topMargin" constant="3" id="Lf5-n1-INw"/>
+                                                <constraint firstItem="IEc-3y-E35" firstAttribute="trailing" secondItem="ao2-q2-CsQ" secondAttribute="trailingMargin" id="UvI-5R-bB0"/>
+                                                <constraint firstItem="IEc-3y-E35" firstAttribute="centerY" secondItem="NHM-xT-7Wp" secondAttribute="centerY" id="XBd-7Y-4I9"/>
+                                                <constraint firstItem="NHM-xT-7Wp" firstAttribute="leading" secondItem="ao2-q2-CsQ" secondAttribute="leadingMargin" id="gbt-Ag-Qh8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="General Settings" id="ZET-VI-CNE">
@@ -424,6 +454,7 @@
                         <outlet property="attitudeDebugSwitch" destination="HYh-cz-lbz" id="Mrq-lg-Zwq"/>
                         <outlet property="datasourceControl" destination="D6M-Tr-2Bv" id="Tca-78-CjF"/>
                         <outlet property="enableGPSMessageSwitch" destination="ZAz-i1-CXu" id="EgU-yH-4fq"/>
+                        <outlet property="ignoreGPSSignal" destination="IEc-3y-E35" id="CRE-zX-Ojo"/>
                         <outlet property="locationDebugSwitch" destination="BYb-vR-a15" id="Hxs-qr-vet"/>
                         <outlet property="radiusLabel" destination="emW-2n-XX6" id="Wiq-hX-rzf"/>
                         <outlet property="radiusSlider" destination="pkL-XT-6wo" id="eyc-P0-S6z"/>
