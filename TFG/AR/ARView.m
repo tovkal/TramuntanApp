@@ -11,6 +11,8 @@
 #import "ARUtils.h"
 #import <GLKit/GLKit.h>
 #import "UIDeviceHardware.h"
+#import "TFG-Swift.h"
+#import "Constants.h"
 
 @interface ARView()
 {
@@ -28,6 +30,8 @@
 
 @property (nonatomic) double horizontalFOV;
 @property (nonatomic) double verticalFOV;
+
+@property (nonatomic) BOOL fovIsSaved;
 
 @end
 
@@ -208,6 +212,9 @@
 	if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
 		createProjectionMatrix(projectionTransform, self.verticalFOV * DEGREES_TO_RADIANS, self.bounds.size.width / self.bounds.size.height, 0.25f, 1000.0f);
 	} else if (orientation == UIDeviceOrientationPortrait) {
+        if (self.horizontalFOV != self.videoDeviceInput.activeFormat.videoFieldOfView && self.videoDeviceInput.activeFormat.videoFieldOfView != 0.0) {
+            self.horizontalFOV = self.videoDeviceInput.activeFormat.videoFieldOfView;
+        }
 		createProjectionMatrix(projectionTransform, self.horizontalFOV * DEGREES_TO_RADIANS, self.bounds.size.width / self.bounds.size.height, 0.25f, 1000.0f);
 	}
 }
@@ -263,11 +270,20 @@
 
 - (void)drawRect:(CGRect)rect
 {
-	if (pointsOfInterestCoordinates == nil) {
+    if (pointsOfInterestCoordinates == nil) {
 		return;
 	}
-	
-	mat4f_t projectionCameraTransform;
+    
+    if (!self.fovIsSaved) {
+        if ((NSString *)  [Utils getUserSetting:fovSettingKey] == nil) {
+            [Utils saveUserSetting:fovSettingKey value:[NSNumber numberWithFloat:self.videoDeviceInput.activeFormat.videoFieldOfView]];
+            self.fovIsSaved = FALSE;
+        } else {
+            self.fovIsSaved = YES;
+        }
+    }
+
+    mat4f_t projectionCameraTransform;
 	multiplyMatrixAndMatrix(projectionCameraTransform, projectionTransform, cameraTransform);
 	
 	int i = 0;

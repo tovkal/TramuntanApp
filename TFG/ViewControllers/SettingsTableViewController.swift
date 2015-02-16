@@ -18,6 +18,7 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
     @IBOutlet weak var ignoreGPSSignal: UISwitch!
     @IBOutlet weak var radiusSlider: UISlider!
 	@IBOutlet var radiusLabel: UILabel!
+    @IBOutlet weak var horizontalFOVLabel: UILabel!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,10 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
             self.radiusSlider.value = radius
             updateRadiusLable(Int(self.radiusSlider.value))
         }
+        
+        if let fov = Utils.getUserSetting(fovSettingKey) as? Float {
+            self.horizontalFOVLabel.text = "\(fov)"
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,22 +81,16 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
         switch (sender.tag) {
             case 1: //Location
                 Utils.saveUserSetting(debugLocationSettingKey, value: self.locationDebugSwitch.on)
-                break;
             case 2: //Altitude
                 Utils.saveUserSetting(debugAltitudeSettingKey, value: self.altitudeDebugSwitch.on)
-                break;
             case 3: //Attitude
                 Utils.saveUserSetting(debugAttitudeSettingKey, value: self.attitudeDebugSwitch.on)
-                break;
             case 4: //Disable GPS Message
                 Utils.saveUserSetting(showGPSMessageSettingKey, value: self.enableGPSMessageSwitch.on)
-                break;
             case 5:
                 Utils.saveUserSetting(ignoreGPSSignalSettingKey, value: self.ignoreGPSSignal.on)
-                break;
             default:
                 print("Switch unknown");
-                break;
         }
     }
 
@@ -100,10 +99,8 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
         switch(sender.selectedSegmentIndex) {
             case 0:
                 Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes_dev")
-                break;
             case 1:
                 Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes8")
-                break;
             default:
                 break;
         }

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OAR-Bu-7hk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -382,8 +383,17 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gcK-xG-dND" id="nVc-G5-dAd">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TODO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kB3-1V-gpd">
-                                                    <rect key="frame" x="8" y="11" width="48" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Horizontal FOV:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kB3-1V-gpd">
+                                                    <rect key="frame" x="8" y="11" width="120" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Degrees" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWZ-c8-DF7">
+                                                    <rect key="frame" x="395" y="11" width="197" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="197" id="YCG-iw-4dN"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -391,7 +401,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="kB3-1V-gpd" firstAttribute="centerY" secondItem="nVc-G5-dAd" secondAttribute="centerY" id="0qn-Zh-Px9"/>
+                                                <constraint firstItem="lWZ-c8-DF7" firstAttribute="baseline" secondItem="kB3-1V-gpd" secondAttribute="baseline" id="C1E-aC-HkW"/>
+                                                <constraint firstItem="lWZ-c8-DF7" firstAttribute="trailing" secondItem="nVc-G5-dAd" secondAttribute="trailingMargin" id="CF0-87-MKm"/>
+                                                <constraint firstItem="lWZ-c8-DF7" firstAttribute="top" secondItem="nVc-G5-dAd" secondAttribute="topMargin" constant="3" id="Jkp-t1-1aE"/>
                                                 <constraint firstItem="kB3-1V-gpd" firstAttribute="leading" secondItem="nVc-G5-dAd" secondAttribute="leadingMargin" id="Sqz-RT-JHq"/>
+                                                <constraint firstItem="lWZ-c8-DF7" firstAttribute="firstBaseline" secondItem="kB3-1V-gpd" secondAttribute="firstBaseline" id="T04-Zj-EEX"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -454,6 +468,7 @@
                         <outlet property="attitudeDebugSwitch" destination="HYh-cz-lbz" id="Mrq-lg-Zwq"/>
                         <outlet property="datasourceControl" destination="D6M-Tr-2Bv" id="Tca-78-CjF"/>
                         <outlet property="enableGPSMessageSwitch" destination="ZAz-i1-CXu" id="EgU-yH-4fq"/>
+                        <outlet property="horizontalFOVLabel" destination="lWZ-c8-DF7" id="hho-Vl-bGn"/>
                         <outlet property="ignoreGPSSignal" destination="IEc-3y-E35" id="CRE-zX-Ojo"/>
                         <outlet property="locationDebugSwitch" destination="BYb-vR-a15" id="Hxs-qr-vet"/>
                         <outlet property="radiusLabel" destination="emW-2n-XX6" id="Wiq-hX-rzf"/>

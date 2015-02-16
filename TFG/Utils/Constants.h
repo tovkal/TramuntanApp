@@ -16,6 +16,7 @@
 #define datasourceSettingKey @"datasource"
 #define ignoreGPSSignalSettingKey @"ignoreGPSSignal"
 #define radiusSettingKey @"radius"
+#define fovSettingKey @"fovSettingKey"
 
 
 #endif
