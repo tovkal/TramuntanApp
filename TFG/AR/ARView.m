@@ -58,10 +58,6 @@
 	
 	self.mountainContainer = [[UIView alloc] initWithFrame:self.bounds];
 	[self addSubview:self.mountainContainer];
-	
-	[self setFOV];
-	// Initialize projection matrix
-	[self createProjectionMatrixWithCurrentOrientation:UIDeviceOrientationPortrait];
 }
 
 - (void)start
@@ -125,6 +121,10 @@
 	}
 	
 	[self startDisplayLink];
+    
+    [self setFOV];
+    // Initialize projection matrix
+    [self createProjectionMatrixWithCurrentOrientation:UIDeviceOrientationPortrait];
 }
 
 - (void)stop
@@ -212,15 +212,22 @@
 	if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
 		createProjectionMatrix(projectionTransform, self.verticalFOV * DEGREES_TO_RADIANS, self.bounds.size.width / self.bounds.size.height, 0.25f, 1000.0f);
 	} else if (orientation == UIDeviceOrientationPortrait) {
-        if (self.horizontalFOV != self.videoDeviceInput.activeFormat.videoFieldOfView && self.videoDeviceInput.activeFormat.videoFieldOfView != 0.0) {
-            self.horizontalFOV = self.videoDeviceInput.activeFormat.videoFieldOfView;
-        }
 		createProjectionMatrix(projectionTransform, self.horizontalFOV * DEGREES_TO_RADIANS, self.bounds.size.width / self.bounds.size.height, 0.25f, 1000.0f);
 	}
 }
 
 - (void)setFOV
 {
+    
+    // If available, use the format's FOV and calculate the vertical
+    if (self.videoDeviceInput != nil && self.videoDeviceInput.activeFormat.videoFieldOfView != 0) {
+
+        self.horizontalFOV = self.videoDeviceInput.activeFormat.videoFieldOfView;
+        self.verticalFOV = self.horizontalFOV * (self.captureView.frame.size.width / self.captureView.frame.size.height);
+        
+        return;
+    }
+    
 	//Fov angle from: http://stackoverflow.com/a/3594424/1283228
 	NSString *device = [UIDeviceHardware platformStringSimple];
 	if ([device isEqualToString:@"iPhone 4"]) {
@@ -230,18 +237,24 @@
 		self.horizontalFOV = 55.7;
 		self.verticalFOV = 43.2;
 	} else if ([device isEqualToString:@"iPhone 5"]) { //Not sure
-		self.horizontalFOV = 61.4;
+		self.horizontalFOV = 56.700;
 		self.verticalFOV = 48.0;
 	} else if([device isEqualToString:@"iPhone 5c"]) { //Not sure
 		self.horizontalFOV = 61.4;
 		self.verticalFOV = 48.0;
 	} else if ([device isEqualToString:@"iPhone 5s"]) {
-		self.horizontalFOV = 61.4;
-		self.verticalFOV = 48.0;
-	}
-	
-	
-	NSLog(@"This is a %@ with horFOV %f and verFOV %f", device, self.horizontalFOV, self.verticalFOV);
+		self.horizontalFOV = 58.080002;
+        self.verticalFOV = 31;//40.7;//48.0;
+    } else if ([device isEqualToString:@"iPhone 5s"]) {
+        self.horizontalFOV = 58.080002;
+        self.verticalFOV = 32;
+    } else if ([device isEqualToString:@"iPhone 6"]) {
+        self.horizontalFOV = 71.4532002;
+        self.verticalFOV = 59.1472102;
+    } else if ([device isEqualToString:@"iPhone 6+"]) {
+        self.horizontalFOV = 72.6272908;
+        self.verticalFOV = 60.0827279;
+    }
 }
 
 #pragma mark - View
@@ -252,13 +265,13 @@
     if (self.captureLayer) {
         switch (orientation) {
             case UIDeviceOrientationLandscapeLeft:
-                self.captureLayer.affineTransform = CGAffineTransformMakeRotation(-M_PI/2);
+                [self.captureLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
                 break;
             case UIDeviceOrientationPortrait:
-                self.captureLayer.affineTransform = CGAffineTransformMakeRotation(0);
+                [self.captureLayer.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
                 break;
             case UIDeviceOrientationLandscapeRight:
-                self.captureLayer.affineTransform = CGAffineTransformMakeRotation(M_PI/2);
+                [self.captureLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
                 break;
             default:
                 break;
