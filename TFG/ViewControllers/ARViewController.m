@@ -7,22 +7,20 @@
 //
 
 #import "ARViewController.h"
-#import "TargetShape.h"
 #import "APBXMLElement.h"
 #import "APBXMLParser.h"
 #import "Mountain.h"
+#import "Constants.h"
+#import "TFG-Swift.h"
 
 @interface ARViewController ()
 {
 	vec4f_t *pointsOfInterestCoordinates;
 }
 
-//TODO temporary
-@property (weak, nonatomic) CAShapeLayer *targetLayer;
-
 //Array for XML Data
 @property (strong, nonatomic) NSMutableArray *data;
-@property (strong, nonatomic) NSArray *pointsOfInterest;
+@property (strong, atomic) NSArray *pointsOfInterest;
 
 //Location
 @property (strong, nonatomic) CLLocationManager *locationManager;
@@ -37,6 +35,22 @@
 @property (strong, nonatomic) IBOutlet UILabel *verAccLabel;
 
 @property (strong, nonatomic) ARView *arView;
+
+@property (strong, nonatomic) TargetView *targetView;
+
+@property (strong, nonatomic) DetailView *detailView;
+
+// Previous location autorization status
+@property CLAuthorizationStatus previousStatus;
+
+// Settings properties
+@property BOOL debugLocation;
+@property BOOL debugAltitude;
+@property BOOL debugAttitude;
+@property BOOL enableGPSMessage;
+@property float radius;
+@property (strong, nonatomic) NSString *actualDatasource;
+@property BOOL ignoreGPSSignal;
 
 @end
 
@@ -53,31 +67,58 @@
 	[self parseXML];
 	[self initARData];
 	
+	[self setupDetailView];
+	
 	self.arView.pointsOfInterest = self.pointsOfInterest;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+    
+    [self updateSettings];
 	
 	[self drawTarget];
 	
 	[self initGPSMessage];
-		
+	
+	[self setupDetailViewConstraints];
+	[self.detailView fadeOut];
 	
 	[self.arView start];
 	[self startLocation];
 	[self startMotion];
+	
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+		[self startDetectingMountainInsideTarget];
+	});
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
 	
-	[self.arView stop];
+	[self.arView stop]; // TODO: This method blocks sometimes when changing to another tab bar item
 	[self stopLocation];
 	[self stopMotion];
 	[self removeGPSMessage];
+}
+
+-(void)updateSettings
+{
+    self.debugLocation = [(NSNumber *) [Utils getUserSetting:debugLocationSettingKey] boolValue];
+    self.debugAltitude = [(NSNumber *) [Utils getUserSetting:debugAltitudeSettingKey] boolValue];
+    self.debugAttitude = [(NSNumber *) [Utils getUserSetting:debugAttitudeSettingKey] boolValue];
+    self.enableGPSMessage = [(NSNumber *) [Utils getUserSetting:showGPSMessageSettingKey] boolValue];
+    self.radius = [(NSNumber *) [Utils getUserSetting:radiusSettingKey] floatValue];
+    
+    // Check if datasource has change, if so, update data
+    if (self.actualDatasource != (NSString *)[Utils getUserSetting:datasourceSettingKey]) {
+        exit(0);
+    }
+    
+    self.ignoreGPSSignal = [(NSNumber *) [Utils getUserSetting:ignoreGPSSignalSettingKey] boolValue];
 }
 
 #pragma mark - Target view TEMPORARY
@@ -90,20 +131,17 @@
 - (void)drawTarget
 {
 	[self removeTarget];
-	
-	CGRect bounds = self.view.bounds;
-    CGPoint center = CGPointMake((bounds.size.width/(2+bounds.origin.x)), (bounds.size.height/(2+bounds.origin.y)));
-    CAShapeLayer *targetLayer = [TargetShape createTargetView:center];
-    
-    self.targetLayer = targetLayer;
-    
-    [self.view.layer addSublayer:targetLayer];
+		
+    self.targetView = [[TargetView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    self.targetView.opaque = NO;
+    self.targetView.center = CGPointMake((self.view.frame.origin.x + (self.view.frame.size.width / 2)), (self.view.frame.origin.y + (self.view.frame.size.height / 2)));
+	[self.view addSubview:self.targetView];
 }
 
 - (void)removeTarget
 {
-	if (self.targetLayer != nil) {
-		[self.targetLayer removeFromSuperlayer];
+	if (self.targetView != nil) {
+		[self.targetView removeFromSuperview];
 	}
 }
 
@@ -114,7 +152,8 @@
 - (void)parseXML
 {
 	APBXMLParser *parser  = [[APBXMLParser alloc] init];
-	APBXMLElement *rootElement = [parser parseXML:@"muntanyes_dev"];
+    self.actualDatasource = [Utils getUserSetting:datasourceSettingKey];
+    APBXMLElement *rootElement = [parser parseXML:self.actualDatasource];
 	
 	[self toArray:rootElement];
 }
@@ -142,7 +181,9 @@
 				case 5: //alt_lon
 				case 6: //ele
 				case 7: //alt_ele
-					[dictionary setObject:attribute.text forKey:attributeArray[item]];
+                    if (attribute.text != nil) {
+                        [dictionary setObject:attribute.text forKey:attributeArray[item]];
+                    }
 					break;
 				case 8: //postal code
 					[dictionary setObject:[attribute.text componentsSeparatedByString:@", "] forKey:attributeArray[item]];
@@ -172,17 +213,13 @@
 {
 	NSMutableArray *mountainArray = [[NSMutableArray alloc] init];
 	for (NSDictionary *mountain in self.data) {
-		
-		UILabel *label = [[UILabel alloc] init];
-		label.adjustsFontSizeToFitWidth = NO;
-		label.opaque = NO;
-		label.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.5f];
-		label.center = CGPointMake(200.0f, 200.0f);
-		label.textAlignment = NSTextAlignmentCenter;
-		label.textColor = [UIColor whiteColor];
-		label.attributedText = [[NSAttributedString alloc] initWithString:[mountain valueForKey:@"name"]];
-		CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}];
-		label.bounds = CGRectMake(0.0f, 0.0f, size.width, size.height);
+		        
+        MountainUIImageView *mountainView = [[MountainUIImageView alloc] init];
+        mountainView.tag = [mountainArray count] + 1;
+        
+        if ([mountain valueForKey:@"name"] == nil || [mountain valueForKey:@"lat"] == nil || [mountain valueForKey:@"lon"] == nil || [mountain valueForKey:@"ele"] == nil) {
+            continue;
+        }
 
 		
 		Mountain *m = [[Mountain alloc] initWithName:[mountain valueForKey:@"name"]
@@ -194,7 +231,7 @@
 												 alt:[[mountain valueForKey:@"ele"] doubleValue]
 								 alternativeAltitude:[[mountain valueForKey:@"alt_ele"] doubleValue]
 										  postalCode:[mountain valueForKey:@"postal code"]
-											withView:label];
+											withView:mountainView];
 		
 		[mountainArray addObject:m];
 	}
@@ -224,18 +261,31 @@
 
 }
 
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager{
+    if (!manager.heading) return YES; // Got nothing, We can assume we got to calibrate.
+    else if (manager.heading.headingAccuracy < 0) return YES; // 0 means invalid heading, need to calibrate
+    else if (manager.heading.headingAccuracy > 0.5)return YES; // 5 degrees is a small value correct for my needs, too.
+    else return NO; // All is good. Compass is precise enough.
+}
+
+
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-	switch (status) {
-		case kCLAuthorizationStatusAuthorizedAlways:
-		case kCLAuthorizationStatusAuthorizedWhenInUse:
-			[self startLocation];
-			break;
-		case kCLAuthorizationStatusNotDetermined:
-			[self.locationManager requestWhenInUseAuthorization];
-		default:
-			break;
-	}
+    // Avoid infinite calls between this and startLocation as startLocation will trigger this method
+    if (self.previousStatus != status) {
+        switch (status) {
+            case kCLAuthorizationStatusAuthorizedAlways:
+            case kCLAuthorizationStatusAuthorizedWhenInUse:
+                [self startLocation];
+                break;
+            case kCLAuthorizationStatusNotDetermined:
+                [self.locationManager requestWhenInUseAuthorization];
+            default:
+                break;
+        }
+    }
+    
+    self.previousStatus = status;
 }
 
 - (void)stopLocation
@@ -256,8 +306,8 @@
 	}
 	
 	[self showGPSMessage];
-	
-	if (self.pointsOfInterest != nil && [self haveRequiredGPSAccuracy]) {
+
+    if (self.pointsOfInterest != nil && [self haveRequiredGPSAccuracy]) {
 		[self updatePointsOfInterestCoordinates];
 	} else {
 		[self showGPSMessage];
@@ -266,9 +316,10 @@
 
 - (BOOL)haveRequiredGPSAccuracy
 {
-	if (!self.enableGPSMessage) { //TODO only for dev
-		return YES;
-	}
+    if (self.ignoreGPSSignal) {
+        return YES;
+    }
+    
 	if (self.location.verticalAccuracy < 15 && self.location.horizontalAccuracy < 20) {
 		[self hideGPSMessage];
 		return YES;
@@ -362,7 +413,8 @@
 {
 	self.motionManager = [[CMMotionManager alloc] init];
 
-	self.motionManager.deviceMotionUpdateInterval = 0.05; //seconds
+    self.motionManager.magnetometerUpdateInterval = 0.01;
+    self.motionManager.deviceMotionUpdateInterval = 0.01; // = 20ms || 1.0/20.0 = 0.05; //seconds
 	
 	//Show calibration HUD when required.
 	self.motionManager.showsDeviceMovementDisplay = YES;
@@ -444,22 +496,88 @@
 	}];
 	
 	ARView *view = (ARView *)self.view;
-	
+    
 	// Add subviews in descending Z-order so they overlap properly
 	for (NSData *d in [orderedDistances reverseObjectEnumerator]) {
 		const DistanceAndIndex *distanceAndIndex = (const DistanceAndIndex *)d.bytes;
 		Mountain *poi = (Mountain *)[self.pointsOfInterest objectAtIndex:distanceAndIndex->index];
-		[view addSubview:poi.view];
+		[view.mountainContainer addSubview:poi.view];
 	}
 	
 	view->pointsOfInterestCoordinates = pointsOfInterestCoordinates;
 	
+	// Set painting radius
 	if (self.radius == 0.0) {
 		view.radius = 30.0;
 	} else {
 		view.radius = self.radius;
 	}
 
+}
+
+#pragma mark - Detail View
+
+
+- (void)setupDetailView
+{
+	self.detailView =[[[NSBundle mainBundle] loadNibNamed:@"DetailView" owner:self options:nil] lastObject];
+	[self.view addSubview:self.detailView];
+}
+
+- (void)setupDetailViewConstraints
+{
+	id topGuide = self.topLayoutGuide;
+	NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_detailView, topGuide);
+	NSLayoutConstraint *constraint = [[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topGuide]-0-[_detailView]" options:0 metrics:nil views:viewsDictionary] firstObject];
+	[self.view addConstraint:constraint];
+}
+
+- (NSInteger)viewIntersectsWithAnotherView:(UIView *)selectedView
+{
+	ARView *view = (ARView *)self.view;
+	// Copy to avoid concurrency problems
+	__block NSArray *subViewsInMountainContainerView = nil;
+	dispatch_sync(dispatch_get_main_queue(), ^{
+		subViewsInMountainContainerView = [[view.mountainContainer subviews] copy]; // TODO too much memory? blocking much?
+	});
+    if (subViewsInMountainContainerView == nil) {
+        NSLog(@"ContainerView reference is broken, can't look for target intersection.");
+    } else {
+        for (UIView *aView in subViewsInMountainContainerView) {
+            
+            if (![selectedView isEqual:aView] && !aView.hidden) {
+                if (CGRectIntersectsRect(selectedView.frame, aView.frame)) {
+                    return aView.tag;
+                }
+            }
+        }
+    }
+	
+	return 0;
+}
+
+- (void)startDetectingMountainInsideTarget
+{
+	while (true) {
+        NSInteger mountainIndex = [self viewIntersectsWithAnotherView:self.targetView];
+		dispatch_sync(dispatch_get_main_queue(), ^{
+			[self updateDetailViewForMountainIndex:mountainIndex];
+		});
+	}
+}
+
+- (void)updateDetailViewForMountainIndex:(NSInteger)mountainIndex
+{
+	if (mountainIndex != 0) {
+		Mountain *targeted = [self.pointsOfInterest objectAtIndex:mountainIndex - 1];
+			self.detailView.nameLabel.text = targeted.name;
+			self.detailView.distanceLabel.text = [NSString stringWithFormat:@"%f", targeted.distance];
+			self.detailView.altitudeLabel.text = [NSString stringWithFormat:@"%f", targeted.altitude];
+			self.detailView.alpha = 1.0f;
+			self.detailView.hidden = NO;
+	} else if (mountainIndex == 0 && !self.detailView.hidden && self.detailView.isNotFadingOut) {
+			[self.detailView fadeOut];
+	}
 }
 
 @end

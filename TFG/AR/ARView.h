@@ -23,6 +23,8 @@
 	vec4f_t *pointsOfInterestCoordinates;
 }
 
+@property (strong, atomic) UIView *mountainContainer;
+
 @property (strong, nonatomic) NSArray *pointsOfInterest;
 
 @property (assign, nonatomic) id<AttitudeDelegate> delegate;

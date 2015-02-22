@@ -7,11 +7,12 @@
 //
 
 #import "ARView.h"
-#import "TargetShape.h"
 #import "Mountain.h"
 #import "ARUtils.h"
 #import <GLKit/GLKit.h>
 #import "UIDeviceHardware.h"
+#import "TFG-Swift.h"
+#import "Constants.h"
 
 @interface ARView()
 {
@@ -29,6 +30,8 @@
 
 @property (nonatomic) double horizontalFOV;
 @property (nonatomic) double verticalFOV;
+
+@property (nonatomic) BOOL fovIsSaved;
 
 @end
 
@@ -53,10 +56,8 @@
 	[self addSubview:self.captureView];
 	[self sendSubviewToBack:self.captureView];
 	
-	[self setFOV];
-	// Initialize projection matrix
-	[self createProjectionMatrixWithCurrentOrientation:UIDeviceOrientationPortrait];
-
+	self.mountainContainer = [[UIView alloc] initWithFrame:self.bounds];
+	[self addSubview:self.mountainContainer];
 }
 
 - (void)start
@@ -120,17 +121,20 @@
 	}
 	
 	[self startDisplayLink];
+    
+    [self setFOV];
+    // Initialize projection matrix
+    [self createProjectionMatrixWithCurrentOrientation:UIDeviceOrientationPortrait];
 }
 
 - (void)stop
 {
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		[self.captureSession stopRunning];
+		[self.captureSession stopRunning]; /// This is the "blocking" call
 	});
 	[self.captureLayer removeFromSuperlayer];
 	self.captureSession = nil;
 	self.captureLayer = nil;
-	
 	[self stopDisplayLink];
 }
 
@@ -178,10 +182,7 @@
 															   r.m13, r.m23, r.m33, 0.0f,
 															   0.0f, 0.0f, 0.0f, 1.0f);
 		deviceMotionAttitudeMatrix = GLKMatrix4Multiply(baseRotation, deviceMotionAttitudeMatrix);
-		
-		//Aquesta fun no fa lo que toca, retorna tot 0s o algo aixi. Comparar amb multy
-		//multiplyMatrixAndMatrix(cameraTransform, cameraTransform, rotation);
-		
+				
 		cameraTransform[0] = deviceMotionAttitudeMatrix.m00;
 		cameraTransform[1] = deviceMotionAttitudeMatrix.m01;
 		cameraTransform[2] = deviceMotionAttitudeMatrix.m02;
@@ -217,6 +218,16 @@
 
 - (void)setFOV
 {
+    
+    // If available, use the format's FOV and calculate the vertical
+    if (self.videoDeviceInput != nil && self.videoDeviceInput.activeFormat.videoFieldOfView != 0) {
+
+        self.horizontalFOV = self.videoDeviceInput.activeFormat.videoFieldOfView;
+        self.verticalFOV = self.horizontalFOV * (self.captureView.frame.size.width / self.captureView.frame.size.height);
+        
+        return;
+    }
+    
 	//Fov angle from: http://stackoverflow.com/a/3594424/1283228
 	NSString *device = [UIDeviceHardware platformStringSimple];
 	if ([device isEqualToString:@"iPhone 4"]) {
@@ -226,77 +237,66 @@
 		self.horizontalFOV = 55.7;
 		self.verticalFOV = 43.2;
 	} else if ([device isEqualToString:@"iPhone 5"]) { //Not sure
-		self.horizontalFOV = 61.4;
+		self.horizontalFOV = 56.700;
 		self.verticalFOV = 48.0;
 	} else if([device isEqualToString:@"iPhone 5c"]) { //Not sure
 		self.horizontalFOV = 61.4;
 		self.verticalFOV = 48.0;
 	} else if ([device isEqualToString:@"iPhone 5s"]) {
-		self.horizontalFOV = 61.4;
-		self.verticalFOV = 48.0;
-	}
-	
-	
-	NSLog(@"This is a %@ with horFOV %f and verFOV %f", device, self.horizontalFOV, self.verticalFOV);
+		self.horizontalFOV = 58.080002;
+        self.verticalFOV = 31;//40.7;//48.0;
+    } else if ([device isEqualToString:@"iPhone 5s"]) {
+        self.horizontalFOV = 58.080002;
+        self.verticalFOV = 32;
+    } else if ([device isEqualToString:@"iPhone 6"]) {
+        self.horizontalFOV = 71.4532002;
+        self.verticalFOV = 59.1472102;
+    } else if ([device isEqualToString:@"iPhone 6+"]) {
+        self.horizontalFOV = 72.6272908;
+        self.verticalFOV = 60.0827279;
+    }
 }
 
 #pragma mark - View
 - (void)orientationChanged:(NSNotification *)notification
 {
-	CGRect bounds = CGRectMake(0, 0, 1, 1);
-    
-    int xInt = 0;
-    int yInt = 0;
-	
-	CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-	
-	xInt = screenSize.width;
-	yInt = screenSize.height;
-    
     UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
     
-    BOOL rotate = YES;
-    
-    switch (orientation) {
-        case UIDeviceOrientationLandscapeLeft:
-            bounds = CGRectMake(0, 0, yInt, xInt);
-            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(M_PI + M_PI_2); // 270 degress
-            break;
-        case UIDeviceOrientationLandscapeRight:
-            bounds = CGRectMake(0, 0, yInt, xInt);
-            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(M_PI_2); // 90 degrees
-            break;
-        case UIDeviceOrientationPortraitUpsideDown:
-            rotate = NO;
-            //bounds = CGRectMake(0, 0, xInt, yInt);
-            //self.captureVideoPreviewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI); // 180 degrees
-            break;
-		case UIDeviceOrientationFaceDown:
-		case UIDeviceOrientationFaceUp:
-			rotate = NO;
-			break;
-        default: //Portrait
-			if (xInt > yInt) {
-				bounds = CGRectMake(0, 0, yInt, xInt);
-			} else {
-				bounds = CGRectMake(0, 0, xInt, yInt);
-			}
-            self.captureLayer.affineTransform = CGAffineTransformMakeRotation(0.0);
-            break;
+    if (self.captureLayer) {
+        switch (orientation) {
+            case UIDeviceOrientationLandscapeLeft:
+                [self.captureLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeRight];
+                break;
+            case UIDeviceOrientationPortrait:
+                [self.captureLayer.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+                break;
+            case UIDeviceOrientationLandscapeRight:
+                [self.captureLayer.connection setVideoOrientation:AVCaptureVideoOrientationLandscapeLeft];
+                break;
+            default:
+                break;
+        }
     }
     
-    if (rotate) {
-        self.captureLayer.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-    }
+    self.captureLayer.frame = self.bounds;
 }
 
 - (void)drawRect:(CGRect)rect
 {
-	if (pointsOfInterestCoordinates == nil) {
+    if (pointsOfInterestCoordinates == nil) {
 		return;
 	}
-	
-	mat4f_t projectionCameraTransform;
+    
+    if (!self.fovIsSaved) {
+        if ((NSString *)  [Utils getUserSetting:fovSettingKey] == nil) {
+            [Utils saveUserSetting:fovSettingKey value:[NSNumber numberWithFloat:self.videoDeviceInput.activeFormat.videoFieldOfView]];
+            self.fovIsSaved = FALSE;
+        } else {
+            self.fovIsSaved = YES;
+        }
+    }
+
+    mat4f_t projectionCameraTransform;
 	multiplyMatrixAndMatrix(projectionCameraTransform, projectionTransform, cameraTransform);
 	
 	int i = 0;
@@ -322,6 +322,9 @@
 		}
 		i++;
 	}
+    
+    //TODO Podria crear una classe per gestionar lo de controlar quan una muntanya entra dings Target, i aquí fer un set de ses subviews
+    //o algo per evitar fer-ho cada vegada allà on esta ara amb dispatch tal.
 }
 
 @end

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>62FEC49A-B3E5-4BA0-BCE2-B5FE0006DEE2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TFG</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>942BF35FB089D747E53BAA54303E8FEC0263D901</key>
+		<string>https://github.com/Tovkal/TFG.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TFG.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>942BF35FB089D747E53BAA54303E8FEC0263D901</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Tovkal/TFG.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>942BF35FB089D747E53BAA54303E8FEC0263D901</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>942BF35FB089D747E53BAA54303E8FEC0263D901</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TFG</string>
+		</dict>
+	</array>
+</dict>
+</plist>
