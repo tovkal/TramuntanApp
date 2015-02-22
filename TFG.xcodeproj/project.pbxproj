@@ -198,7 +198,7 @@
 		95C6EA56197AD7C300721CEC /* TFG */ = {
 			isa = PBXGroup;
 			children = (
-				95C6EA85197AD7CD00721CEC /* ViewControllers */,
+				95C6EA85197AD7CD00721CEC /* Controllers */,
 				95AAAC2C19B3724800B2D82C /* Model */,
 				959BB5A619ED89020088251D /* Views */,
 				950E64C91A910B6000F173C6 /* AR */,
@@ -242,7 +242,7 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		95C6EA85197AD7CD00721CEC /* ViewControllers */ = {
+		95C6EA85197AD7CD00721CEC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				95C6EA88197AD7CD00721CEC /* MapViewController.h */,
@@ -252,6 +252,7 @@
 				95FBABFF197AF30700160544 /* ARViewController.m */,
 				95CF2B2119CF2B4A00312B49 /* TFG-Bridging-Header.h */,
 			);
+			name = Controllers;
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};

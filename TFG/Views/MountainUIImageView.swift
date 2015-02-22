@@ -11,7 +11,7 @@ import UIKit
 class MountainUIImageView: UIImageView {
     
     override init() {
-        let frame = CGRectMake(0, 0, 20, 20)
+        let frame = CGRectMake(0, 0, 10, 10)
 
         super.init(frame: frame)
         

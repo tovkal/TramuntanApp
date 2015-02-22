@@ -10,9 +10,9 @@ import UIKit
 
 class TargetView: UIView {
     
-    let width: CGFloat = 50
-    let height: CGFloat = 50
-    let cornerRadius: CGFloat = 10
+    let width: CGFloat = 20
+    let height: CGFloat = 20
+    let cornerRadius: CGFloat = 5
 	
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
