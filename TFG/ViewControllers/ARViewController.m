@@ -113,8 +113,8 @@
     self.enableGPSMessage = [(NSNumber *) [Utils getUserSetting:showGPSMessageSettingKey] boolValue];
     self.radius = [(NSNumber *) [Utils getUserSetting:radiusSettingKey] floatValue];
     
-    // Check if datasource has change, if so, update data
-    if (self.actualDatasource != (NSString *)[Utils getUserSetting:datasourceSettingKey]) {
+    // Check if datasource has changed. If so, update data
+    if (![self.actualDatasource isEqualToString:(NSString *)[Utils getUserSetting:datasourceSettingKey]]) {
         exit(0);
     }
     
@@ -501,7 +501,10 @@
 	for (NSData *d in [orderedDistances reverseObjectEnumerator]) {
 		const DistanceAndIndex *distanceAndIndex = (const DistanceAndIndex *)d.bytes;
 		Mountain *poi = (Mountain *)[self.pointsOfInterest objectAtIndex:distanceAndIndex->index];
-		[view.mountainContainer addSubview:poi.view];
+        
+        if (self.radius * 1000 > distanceAndIndex->distance) {
+            [view.mountainContainer addSubview:poi.view];
+        }
 	}
 	
 	view->pointsOfInterestCoordinates = pointsOfInterestCoordinates;
