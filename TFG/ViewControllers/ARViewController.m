@@ -132,7 +132,7 @@
 {
 	[self removeTarget];
 		
-    self.targetView = [[TargetView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    self.targetView = [[TargetView alloc] initWithFrame:CGRectMake(0, 0, 27, 27)];
     self.targetView.opaque = NO;
     self.targetView.center = CGPointMake((self.view.frame.origin.x + (self.view.frame.size.width / 2)), (self.view.frame.origin.y + (self.view.frame.size.height / 2)));
 	[self.view addSubview:self.targetView];
