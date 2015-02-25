@@ -52,6 +52,9 @@
 @property (strong, nonatomic) NSString *actualDatasource;
 @property BOOL ignoreGPSSignal;
 
+// State bool
+@property (strong, nonatomic) NSTimer *mountainInTargetTimer;
+
 @end
 
 @implementation ARViewController
@@ -89,17 +92,17 @@
 	[self.arView start];
 	[self startLocation];
 	[self startMotion];
-	
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-		[self startDetectingMountainInsideTarget];
-	});
+    
+    self.mountainInTargetTimer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(detectMountainInsideTarget) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	
-	[self.arView stop]; // TODO: This method blocks sometimes when changing to another tab bar item
+    
+    [self.mountainInTargetTimer invalidate];
+    
+	[self.arView stop];
 	[self stopLocation];
 	[self stopMotion];
 	[self removeGPSMessage];
@@ -111,7 +114,7 @@
     self.debugAltitude = [(NSNumber *) [Utils getUserSetting:debugAltitudeSettingKey] boolValue];
     self.debugAttitude = [(NSNumber *) [Utils getUserSetting:debugAttitudeSettingKey] boolValue];
     self.enableGPSMessage = [(NSNumber *) [Utils getUserSetting:showGPSMessageSettingKey] boolValue];
-    self.radius = [(NSNumber *) [Utils getUserSetting:radiusSettingKey] floatValue];
+    self.radius = [(NSNumber *) [Utils getUserSetting:radiusSettingKey] floatValue] * 1000;
     
     // Check if datasource has changed. If so, update data
     if (![self.actualDatasource isEqualToString:(NSString *)[Utils getUserSetting:datasourceSettingKey]]) {
@@ -501,8 +504,9 @@
 	for (NSData *d in [orderedDistances reverseObjectEnumerator]) {
 		const DistanceAndIndex *distanceAndIndex = (const DistanceAndIndex *)d.bytes;
 		Mountain *poi = (Mountain *)[self.pointsOfInterest objectAtIndex:distanceAndIndex->index];
-        
-        if (self.radius * 1000 > distanceAndIndex->distance) {
+        poi.distance = distanceAndIndex->distance;
+                
+        if (self.radius > poi.distance) {
             [view.mountainContainer addSubview:poi.view];
         }
 	}
@@ -541,7 +545,7 @@
 	// Copy to avoid concurrency problems
 	__block NSArray *subViewsInMountainContainerView = nil;
 	dispatch_sync(dispatch_get_main_queue(), ^{
-		subViewsInMountainContainerView = [[view.mountainContainer subviews] copy]; // TODO too much memory? blocking much?
+		subViewsInMountainContainerView = [[view.mountainContainer subviews] copy];
 	});
     if (subViewsInMountainContainerView == nil) {
         NSLog(@"ContainerView reference is broken, can't look for target intersection.");
@@ -559,14 +563,14 @@
 	return 0;
 }
 
-- (void)startDetectingMountainInsideTarget
+- (void)detectMountainInsideTarget
 {
-	while (true) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSInteger mountainIndex = [self viewIntersectsWithAnotherView:self.targetView];
-		dispatch_sync(dispatch_get_main_queue(), ^{
-			[self updateDetailViewForMountainIndex:mountainIndex];
-		});
-	}
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self updateDetailViewForMountainIndex:mountainIndex];
+        });
+    });
 }
 
 - (void)updateDetailViewForMountainIndex:(NSInteger)mountainIndex
