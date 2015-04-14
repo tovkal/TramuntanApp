@@ -12,7 +12,7 @@ class TargetView: UIView {
     
     let size: CGFloat = 25
     let cornerRadius: CGFloat = 4
-	
+    
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect)
@@ -21,8 +21,8 @@ class TargetView: UIView {
         var rectangleView = UIBezierPath(roundedRect: CGRectMake(1, 1, size, size), cornerRadius: cornerRadius)
         var filling = UIColor.redColor()
         filling.setStroke()
-		rectangleView.lineWidth = 1
+        rectangleView.lineWidth = 1
         rectangleView.stroke()
     }
-
+    
 }

@@ -19,8 +19,8 @@
 
 @interface ARView : UIView
 {
-	@public
-	vec4f_t *pointsOfInterestCoordinates;
+@public
+    vec4f_t *pointsOfInterestCoordinates;
 }
 
 @property (strong, atomic) UIView *mountainContainer;

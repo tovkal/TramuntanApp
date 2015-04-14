@@ -1,14 +1,14 @@
 //
-//  APBXMLElement.m
+//  XMLElement.m
 //  MountainMapper
 //
 //  Created by Tovkal on 31/05/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-#import "APBXMLElement.h"
+#import "XMLElement.h"
 
-@implementation APBXMLElement
+@implementation XMLElement
 
 - (NSMutableArray *) subElements{
     if (_subElements == nil){

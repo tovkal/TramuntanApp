@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController, UITabBarControllerDelegate {
-	
+    
     @IBOutlet weak var locationDebugSwitch: UISwitch!
     @IBOutlet weak var altitudeDebugSwitch: UISwitch!
     @IBOutlet weak var attitudeDebugSwitch: UISwitch!
@@ -17,16 +17,16 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
     @IBOutlet weak var datasourceControl: UISegmentedControl!
     @IBOutlet weak var ignoreGPSSignal: UISwitch!
     @IBOutlet weak var radiusSlider: UISlider!
-	@IBOutlet var radiusLabel: UILabel!
+    @IBOutlet var radiusLabel: UILabel!
     @IBOutlet weak var horizontalFOVLabel: UILabel!
-	
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Preserve selection between presentations
-		self.clearsSelectionOnViewWillAppear = false
-		
-		self.tabBarController?.delegate = self
+        self.clearsSelectionOnViewWillAppear = false
+        
+        self.tabBarController?.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,7 +45,7 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
         if let enableGPSMessage = Utils.getUserSetting(showGPSMessageSettingKey) as? Bool {
             self.enableGPSMessageSwitch.on = enableGPSMessage
         }
-
+        
         if let datasource = Utils.getUserSetting(datasourceSettingKey) as? String {
             self.datasourceControl.selectedSegmentIndex = datasource == "muntanyes_dev" ? 0 : 1
         }
@@ -63,55 +63,55 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
             self.horizontalFOVLabel.text = "\(fov)"
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-	
-	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return 44.0
-	}
-	
-	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return 44.0
-	}
-	
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44.0
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44.0
+    }
+    
     @IBAction func switchDidChange(sender: UISwitch) {
         switch (sender.tag) {
-            case 1: //Location
-                Utils.saveUserSetting(debugLocationSettingKey, value: self.locationDebugSwitch.on)
-            case 2: //Altitude
-                Utils.saveUserSetting(debugAltitudeSettingKey, value: self.altitudeDebugSwitch.on)
-            case 3: //Attitude
-                Utils.saveUserSetting(debugAttitudeSettingKey, value: self.attitudeDebugSwitch.on)
-            case 4: //Disable GPS Message
-                Utils.saveUserSetting(showGPSMessageSettingKey, value: self.enableGPSMessageSwitch.on)
-            case 5:
-                Utils.saveUserSetting(ignoreGPSSignalSettingKey, value: self.ignoreGPSSignal.on)
-            default:
-                print("Switch unknown");
+        case 1: //Location
+            Utils.saveUserSetting(debugLocationSettingKey, value: self.locationDebugSwitch.on)
+        case 2: //Altitude
+            Utils.saveUserSetting(debugAltitudeSettingKey, value: self.altitudeDebugSwitch.on)
+        case 3: //Attitude
+            Utils.saveUserSetting(debugAttitudeSettingKey, value: self.attitudeDebugSwitch.on)
+        case 4: //Disable GPS Message
+            Utils.saveUserSetting(showGPSMessageSettingKey, value: self.enableGPSMessageSwitch.on)
+        case 5:
+            Utils.saveUserSetting(ignoreGPSSignalSettingKey, value: self.ignoreGPSSignal.on)
+        default:
+            print("Switch unknown");
         }
     }
-
+    
     @IBAction func changeDatasource(sender: UISegmentedControl) {
         
         switch(sender.selectedSegmentIndex) {
-            case 0:
-                Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes_dev")
-            case 1:
-                Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes8")
-            default:
-                break;
+        case 0:
+            Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes_dev")
+        case 1:
+            Utils.saveUserSetting(datasourceSettingKey, value: "muntanyes8")
+        default:
+            break;
         }
     }
     
-	@IBAction func radiusDidChange(sender: UISlider) {
+    @IBAction func radiusDidChange(sender: UISlider) {
         Utils.saveUserSetting(radiusSettingKey, value: sender.value)
         updateRadiusLable(Int(sender.value))
-	}
+    }
     
     private func updateRadiusLable(value: Int) {
-  		self.radiusLabel.text = "Radius: \(value) km."
+        self.radiusLabel.text = "Radius: \(value) km."
     }
 }

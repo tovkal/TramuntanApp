@@ -10,16 +10,16 @@ import UIKit
 
 class MountainUIImageView: UIImageView {
     
-    override init() {
+    init() {
         let frame = CGRectMake(0, 0, 10, 10)
-
+        
         super.init(frame: frame)
         
         let image = UIImage(named: "Icon")
         self.contentMode = UIViewContentMode.ScaleAspectFill
         self.image = image
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }

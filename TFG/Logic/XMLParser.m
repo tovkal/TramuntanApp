@@ -1,30 +1,30 @@
 //
-//  APBXMLParser.m
+//  XMLParser.m
 //  MountainMapper
 //
 //  Created by Tovkal on 28/06/14.
 //  Copyright (c) 2014 Tovkal. All rights reserved.
 //
 
-#import "APBXMLParser.h"
+#import "XMLParser.h"
 
-@interface APBXMLParser()
+@interface XMLParser()
 
-@property (nonatomic, strong) APBXMLElement *rootElement;
-@property (nonatomic, strong) APBXMLElement *currentElementPointer;
+@property (nonatomic, strong) XMLElement *rootElement;
+@property (nonatomic, strong) XMLElement *currentElementPointer;
 @property (nonatomic, strong) NSXMLParser *xmlParser;
 
 @end
-@implementation APBXMLParser
+@implementation XMLParser
 
-- (APBXMLElement *)parseXML:(NSString *)file {
+- (XMLElement *)parseXML:(NSString *)file {
     NSString *xmlFilePath = [[NSBundle mainBundle] pathForResource:file ofType:@"xml"];
     
     NSData *xml = [[NSData alloc] initWithContentsOfFile:xmlFilePath];
     
     self.xmlParser = [[NSXMLParser alloc] initWithData:xml];
     self.xmlParser.delegate = self;
-
+    
     if ([self.xmlParser parse]) {
         NSLog(@"The XML is parsed");
     } else {
@@ -47,12 +47,12 @@
     
     if (self.rootElement == nil){
         /* We don't have a root element. Create it and point to it */
-        self.rootElement = [[APBXMLElement alloc] init];
+        self.rootElement = [[XMLElement alloc] init];
         self.currentElementPointer = self.rootElement;
     }else{
         /* Already have root. Create new element and add it as one of
          the subelements of the current element */
-        APBXMLElement *newElement = [[APBXMLElement alloc] init];
+        XMLElement *newElement = [[XMLElement alloc] init];
         newElement.parent = self.currentElementPointer;
         [self.currentElementPointer.subElements addObject:newElement];
         self.currentElementPointer = newElement;

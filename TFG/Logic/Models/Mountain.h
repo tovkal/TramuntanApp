@@ -18,7 +18,7 @@
 @property (nonatomic) double alt_altitude;
 @property (strong, nonatomic) NSString *postalCode;
 @property (strong, nonatomic) UIView *view;
-@property float distance;
+@property double distance;
 
 - (instancetype) initWithName:(NSString *)name alternativeName:(NSString *)alt_name lat:(double)lat lon:(double)lon alternativeLat:(double)alt_lat alternativeLon:(double)alt_lon alt:(double)alt alternativeAltitude:(double)alt_altitude postalCode:(NSString *)postalCode withView:(UIView *)view;
 

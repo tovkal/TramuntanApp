@@ -1,5 +1,5 @@
 //
-//  APBXMLParser.h
+//  XMLParser.h
 //  MountainMapper
 //
 //  Created by Tovkal on 28/06/14.
@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "APBXMLElement.h"
+#import "XMLElement.h"
 
-@interface APBXMLParser : NSObject <NSXMLParserDelegate>
+@interface XMLParser : NSObject <NSXMLParserDelegate>
 
-- (APBXMLElement *)parseXML:(NSString *)file;
+- (XMLElement *)parseXML:(NSString *)file;
 
 @end

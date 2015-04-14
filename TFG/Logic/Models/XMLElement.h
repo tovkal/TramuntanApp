@@ -1,5 +1,5 @@
 //
-//  APBXMLElement.h
+//  XMLElement.h
 //  MountainMapper
 //
 //  Created by Tovkal on 31/05/14.
@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface APBXMLElement : NSObject
+@interface XMLElement : NSObject
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, copy) NSDictionary *attributes;
 @property (nonatomic, strong) NSMutableArray *subElements;
-@property (nonatomic, weak) APBXMLElement *parent;
+@property (nonatomic, weak) XMLElement *parent;
 @end
