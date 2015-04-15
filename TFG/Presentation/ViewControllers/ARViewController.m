@@ -12,6 +12,7 @@
 #import "Mountain.h"
 #import "TFG-Swift.h"
 #import "Constants.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface ARViewController ()
 {
@@ -332,6 +333,7 @@
 - (BOOL)haveRequiredGPSAccuracy
 {
     if (self.ignoreGPSSignal) {
+        [SVProgressHUD dismiss];
         return YES;
     }
     
@@ -339,6 +341,7 @@
         [self hideGPSMessage];
         return YES;
     } else {
+        [SVProgressHUD showWithStatus:@"Getting GPS position..."];
         NSLog(@"GPS accuracy not enough, the GPSMessage showing... right?");
     }
     
@@ -411,6 +414,8 @@
     [self.gpsLabel		setHidden:YES];
     [self.horAccLabel	setHidden:YES];
     [self.verAccLabel	setHidden:YES];
+    
+    [SVProgressHUD dismiss];
 }
 
 - (void)removeGPSMessage
@@ -418,6 +423,8 @@
     self.gpsLabel = nil;
     self.horAccLabel = nil;
     self.verAccLabel = nil;
+    
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark - Core Motion

@@ -35,6 +35,7 @@
 		95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA92197ADA8C00721CEC /* CoreLocation.framework */; };
 		95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CF2B1F19CF2A7800312B49 /* Main.storyboard */; };
 		95CF2B2519CF2E6300312B49 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */; };
+		95D2D2121ADEDB5400AF311B /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D2D2111ADEDB5400AF311B /* SVProgressHUD.framework */; };
 		95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */; };
 		95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DF13F7197ADDE000991AAD /* QuartzCore.framework */; };
 		95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95DF13FD197AEED000991AAD /* muntanyes_dev.xml */; };
@@ -93,6 +94,7 @@
 		95CF2B1F19CF2A7800312B49 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		95CF2B2119CF2B4A00312B49 /* TFG-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TFG-Bridging-Header.h"; sourceTree = "<group>"; };
 		95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		95D2D2111ADEDB5400AF311B /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		95D3FE7319C7725000B82EBB /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		95DF13F7197ADDE000991AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95D2D2121ADEDB5400AF311B /* SVProgressHUD.framework in Frameworks */,
 				95C4F39919C21AA9009CC1C5 /* GLKit.framework in Frameworks */,
 				9515217A1984F364002244D8 /* AVFoundation.framework in Frameworks */,
 				95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */,
@@ -133,6 +136,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		951A977C1ADD811C007EC58C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		954324261ADAEFB900579146 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +160,7 @@
 				95DF1400197AEED000991AAD /* XMLParser.h */,
 				95DF1401197AEED000991AAD /* XMLParser.m */,
 				950E64CA1A910F0B00F173C6 /* Utils.swift */,
+				951A977C1ADD811C007EC58C /* Extensions */,
 				9543242B1ADAEFF600579146 /* Models */,
 			);
 			path = Logic;
@@ -226,6 +237,7 @@
 		95C6EA4F197AD7C300721CEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				95D2D2111ADEDB5400AF311B /* SVProgressHUD.framework */,
 				95C4F39819C21AA9009CC1C5 /* GLKit.framework */,
 				951521791984F364002244D8 /* AVFoundation.framework */,
 				95DF13F7197ADDE000991AAD /* QuartzCore.framework */,
@@ -296,6 +308,7 @@
 				95C6EA4B197AD7C300721CEC /* Resources */,
 				959033D719CE117E00B8688C /* Run Script */,
 				959033D619CDFC5D00B8688C /* ShellScript */,
+				95D2D2131ADEDB6800AF311B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -411,6 +424,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Scripts/BuildCounter.sh\"";
+		};
+		95D2D2131ADEDB6800AF311B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -559,6 +586,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TFG/Supporting Files/TFG-Prefix.pch";
 				INFOPLIST_FILE = "TFG/Supporting Files/TFG-Info.plist";
@@ -581,6 +612,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TFG/Supporting Files/TFG-Prefix.pch";
 				INFOPLIST_FILE = "TFG/Supporting Files/TFG-Info.plist";
