@@ -94,6 +94,10 @@
     [self updateSettings];
     
     [self drawTarget];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateTargetViewPosition:)
+                                                 name:UIApplicationDidChangeStatusBarOrientationNotification
+                                               object:nil];
     
     [self initGPSMessage];
     
@@ -135,27 +139,31 @@
     self.ignoreGPSSignal = [(NSNumber *) [Utils getUserSetting:ignoreGPSSignalSettingKey] boolValue];
 }
 
-#pragma mark - Target view TEMPORARY
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+#pragma mark - Target view
+/**
+ *  Processes rotation notifications, updating the TargetView position
+ *
+ *  @param notification UIApplicationDidChangeStatusBarOrientationNotification
+ */
+- (void)updateTargetViewPosition:(NSNotification *)notification
 {
-    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
-     {
-         [self drawTarget];
-     }];
+    self.view.frame = UIScreen.mainScreen.bounds;
+    self.targetView.center = CGPointMake((self.view.frame.origin.x + (self.view.frame.size.width / 2)), (self.view.frame.origin.y + (self.view.frame.size.height / 2)));
 }
 
+/**
+ *  Adds the TargetView to the center of the screen
+ */
 - (void)drawTarget
 {
-    [self removeTarget];
-    
-    self.targetView = [[TargetView alloc] initWithFrame:CGRectMake(0, 0, 27, 27)];
-    self.targetView.opaque = NO;
-    self.targetView.center = CGPointMake((self.view.frame.origin.x + (self.view.frame.size.width / 2)), (self.view.frame.origin.y + (self.view.frame.size.height / 2))); // FIXME this can be removed and use the init with frame, dummy
+    self.targetView = TargetView.sharedInstance;
+    self.targetView.center = CGPointMake((self.view.frame.origin.x + (self.view.frame.size.width / 2)), (self.view.frame.origin.y + (self.view.frame.size.height / 2)));
     [self.view addSubview:self.targetView];
 }
 
+/**
+ *  Removes the TargetView from the view hierarchy
+ */
 - (void)removeTarget
 {
     if (self.targetView != nil) {
