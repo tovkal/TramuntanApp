@@ -13,14 +13,16 @@
 #import "TFG-Swift.h"
 #import "Constants.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "DataParser.h"
 
 @interface ARViewController ()
 {
     vec4f_t *pointsOfInterestCoordinates;
 }
 
-//Array for XML Data
-@property (strong, nonatomic) NSMutableArray *data;
+/**
+ *  Array of mountains for augmented reality
+ */
 @property (strong, atomic) NSArray *pointsOfInterest;
 
 //Location
@@ -59,7 +61,6 @@
 @property BOOL debugAttitude;
 @property BOOL enableGPSMessage;
 @property float radius;
-@property (strong, nonatomic) NSString *actualDatasource;
 @property BOOL ignoreGPSSignal;
 
 /**
@@ -79,7 +80,6 @@
     self.arView.delegate = self;
     self.view = self.arView;
     
-    [self parseXML];
     [self initARData];
     
     [self setupDetailView];
@@ -123,18 +123,13 @@
     [self removeGPSMessage];
 }
 
--(void)updateSettings
+- (void)updateSettings
 {
     self.debugLocation = [(NSNumber *) [Utils getUserSetting:debugLocationSettingKey] boolValue];
     self.debugAltitude = [(NSNumber *) [Utils getUserSetting:debugAltitudeSettingKey] boolValue];
     self.debugAttitude = [(NSNumber *) [Utils getUserSetting:debugAttitudeSettingKey] boolValue];
     self.enableGPSMessage = [(NSNumber *) [Utils getUserSetting:showGPSMessageSettingKey] boolValue];
     self.radius = [(NSNumber *) [Utils getUserSetting:radiusSettingKey] floatValue] * 1000;
-    
-    // Check if datasource has changed. If so, update data
-    if (![self.actualDatasource isEqualToString:(NSString *)[Utils getUserSetting:datasourceSettingKey]]) {
-        exit(0);
-    }
     
     self.ignoreGPSSignal = [(NSNumber *) [Utils getUserSetting:ignoreGPSSignalSettingKey] boolValue];
 }
@@ -171,72 +166,12 @@
     }
 }
 
-#pragma mark - XML Data
-
-- (void)parseXML
-{
-    XMLParser *parser  = [[XMLParser alloc] init];
-    self.actualDatasource = [Utils getUserSetting:datasourceSettingKey];
-    XMLElement *rootElement = [parser parseXML:self.actualDatasource];
-    
-    [self toArray:rootElement];
-}
-
-- (void)toArray:(XMLElement *)rootElement
-{
-    XMLElement *database = rootElement.subElements[1];
-    
-    for (XMLElement *mountainElement in database.subElements) {
-        
-        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-        
-        NSArray *attributeArray = @[@"name", @"alt_name", @"lat", @"lon", @"alt_lat", @"alt_lon", @"ele", @"alt_ele", @"postal_code"];
-        
-        for (XMLElement *attribute in mountainElement.subElements) {
-            NSArray *values = [attribute.attributes allValues];
-            NSUInteger item = [attributeArray indexOfObject:values[0]];
-            
-            switch (item) {
-                case 0: //name
-                case 1: //alt_name
-                case 2: //lat
-                case 3: //lon
-                case 4: //alt_lat
-                case 5: //alt_lon
-                case 6: //ele
-                case 7: //alt_ele
-                    if (attribute.text != nil) {
-                        [dictionary setObject:attribute.text forKey:attributeArray[item]];
-                    }
-                    break;
-                case 8: //postal code
-                    [dictionary setObject:[attribute.text componentsSeparatedByString:@", "] forKey:attributeArray[item]];
-                    break;
-                case NSIntegerMax: break;
-                default:
-                    NSLog(@"Error converting XML Data to Array, attribute key not found: %@", attribute.attributes);
-                    break;
-            }
-        }
-        
-        [self.data addObject:dictionary];
-        
-    }
-}
-
-- (NSMutableArray *)data
-{
-    if (_data == nil) {
-        _data = [[NSMutableArray alloc] init];
-    }
-    
-    return _data;
-}
-
+#pragma mark - Augmented reality data
 - (void)initARData
 {
     NSMutableArray *mountainArray = [[NSMutableArray alloc] init];
-    for (NSDictionary *mountain in self.data) {
+    DataParser *sharedParser = [DataParser sharedParser];
+    for (NSDictionary *mountain in sharedParser.mountains) {
         
         MountainUIImageView *mountainView = [[MountainUIImageView alloc] init];
         mountainView.tag = (NSInteger) ([mountainArray count] + 1);
@@ -244,7 +179,6 @@
         if ([mountain valueForKey:@"name"] == nil || [mountain valueForKey:@"lat"] == nil || [mountain valueForKey:@"lon"] == nil || [mountain valueForKey:@"ele"] == nil) {
             continue;
         }
-        
         
         Mountain *m = [[Mountain alloc] initWithName:[mountain valueForKey:@"name"]
                                      alternativeName:[mountain valueForKey:@"alt_name"]
