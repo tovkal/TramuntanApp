@@ -10,8 +10,16 @@
 
 @interface DataParser : NSObject
 
+/**
+ *  Array of mountains
+ */
 @property (strong, nonatomic) NSMutableArray *mountains;
 
+/**
+ *  Singleton instantiation
+ *
+ *  @return shared instance
+ */
 + (id)sharedParser;
 
 @end

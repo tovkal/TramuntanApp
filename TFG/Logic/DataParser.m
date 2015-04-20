@@ -13,6 +13,9 @@
 
 @interface DataParser()
 
+/**
+ *  Last known datasource file for the mountains array
+ */
 @property (strong, nonatomic) NSString *lastKnownDatasource;
 
 @end
@@ -30,9 +33,17 @@
     return sharedParser;
 }
 
+/**
+ *  Initializer
+ *
+ *  @return instance
+ */
 - (id)init {
     if (self = [super init]) {
-        [self parseData];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self parseData];
+        });
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(defaultsChanged:)
@@ -46,6 +57,11 @@
 
 #pragma mark Lazy inits
 
+/**
+ *  mountains lazy init
+ *
+ *  @return get mountain array
+ */
 - (NSMutableArray *)mountains
 {
     if (_mountains == nil) {
@@ -56,7 +72,9 @@
 }
 
 #pragma mark Parser methods
-
+/**
+ *  Parse data from XML file
+ */
 - (void)parseData {
     XMLParser *parser  = [[XMLParser alloc] init];
     XMLElement *rootElement = [parser parseXML:self.lastKnownDatasource];
@@ -99,6 +117,11 @@
 }
 
 #pragma mark KVO
+/**
+ *  Process notification when UserSettings was changed, to update datasource file for mountain array
+ *
+ *  @param notification the notification
+ */
 - (void)defaultsChanged:(NSNotification *)notification {
     if (![self.lastKnownDatasource isEqualToString:(NSString *)[Utils getUserSetting:datasourceSettingKey]]) {
         exit(0);
