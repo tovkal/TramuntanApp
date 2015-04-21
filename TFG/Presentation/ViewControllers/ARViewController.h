@@ -10,6 +10,6 @@
 #import <CoreMotion/CoreMotion.h>
 #import "ARView.h"
 
-@interface ARViewController : UIViewController <CLLocationManagerDelegate, AttitudeDelegate>
+@interface ARViewController : UIViewController <AttitudeDelegate>
 
 @end

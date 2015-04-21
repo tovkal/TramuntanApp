@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TFG-Swift.h"
 #import "Constants.h"
+#import "LocationController.h"
 
 @implementation AppDelegate
 
@@ -17,6 +18,9 @@
     if ([Utils getUserSetting:datasourceSettingKey] == nil) {
         [Utils saveUserSetting:datasourceSettingKey value:@"muntanyes8"];
     }
+    
+    [[LocationController sharedInstance] startLocation];
+    
     return YES;
 }
 
@@ -49,7 +53,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[LocationController sharedInstance] stopLocation];
 }
 
 @end

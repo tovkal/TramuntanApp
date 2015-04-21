@@ -14,6 +14,7 @@
 #import "Constants.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "DataParser.h"
+#import "LocationController.h"
 
 @interface ARViewController ()
 {
@@ -25,17 +26,8 @@
  */
 @property (strong, atomic) NSArray *pointsOfInterest;
 
-//Location
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *deviceLocation;
-
 //Motion
 @property (strong, nonatomic) CMMotionManager *motionManager;
-
-//GPS views
-@property (strong, nonatomic) IBOutlet UILabel *gpsLabel;
-@property (strong, nonatomic) IBOutlet UILabel *horAccLabel;
-@property (strong, nonatomic) IBOutlet UILabel *verAccLabel;
 
 /**
  *  Augmented Reality view
@@ -68,6 +60,11 @@
  */
 @property (strong, nonatomic) NSTimer *mountainInTargetTimer;
 
+/**
+ *  Boolean to control if a SVProgressHUD is already on screen, to avoid having multiple HUDs. // TODO andres.piza 21/04/2015 - Check this is so, I'm not sure if there are more than one
+ */
+@property BOOL isGPSHUDOn;
+
 @end
 
 @implementation ARViewController
@@ -99,13 +96,13 @@
                                                  name:UIApplicationDidChangeStatusBarOrientationNotification
                                                object:nil];
     
-    [self initGPSMessage];
-    
     [self setupDetailViewConstraints];
     [self.detailView fadeOut];
     
+    LocationController *sharedInstance = [LocationController sharedInstance];
+    sharedInstance.delegate = self;
+    
     [self.arView start];
-    [self startLocation];
     [self startMotion];
     
     self.mountainInTargetTimer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(detectMountainInsideTarget) userInfo:nil repeats:YES];
@@ -117,10 +114,12 @@
     
     [self.mountainInTargetTimer invalidate];
     
+    LocationController *sharedInstance = [LocationController sharedInstance];
+    sharedInstance.delegate = nil;
+    
     [self.arView stop];
-    [self stopLocation];
     [self stopMotion];
-    [self removeGPSMessage];
+    [self dismissGPSHUD];
 }
 
 - (void)updateSettings
@@ -197,176 +196,52 @@
     self.pointsOfInterest = mountainArray;
 }
 
-#pragma mark - Core Location
-
-- (void)startLocation
+#pragma mark - Core Location controller delegate
+/**
+ *  Delegate method with new gps location
+ *
+ *  @param location the new location
+ */
+- (void)locationUpdate:(CLLocation *)location
 {
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 10; //meters
-    
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    
-    if (status == kCLAuthorizationStatusNotDetermined) {
-        [self.locationManager requestWhenInUseAuthorization];
-        NSLog(@"Requesting permission");
-    } else if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways) {
-        [self.locationManager startUpdatingLocation];
-    } else if (status == kCLAuthorizationStatusRestricted || status == kCLAuthorizationStatusDenied) {
-        NSLog(@"Don't have Location permission");
-    }
-    
-}
-
-- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager{
-    if (!manager.heading) return YES; // Got nothing, We can assume we got to calibrate.
-    else if (manager.heading.headingAccuracy < 0) return YES; // 0 means invalid heading, need to calibrate
-    else if (manager.heading.headingAccuracy > 0.5)return YES; // 5 degrees is a small value correct for my needs, too.
-    else return NO; // All is good. Compass is precise enough.
-}
-
-
-- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
-{
-    // Avoid infinite calls between this and startLocation as startLocation will trigger this method
-    if (self.previousStatus != status) {
-        switch (status) {
-            case kCLAuthorizationStatusAuthorizedAlways:
-            case kCLAuthorizationStatusAuthorizedWhenInUse:
-                [self startLocation];
-                break;
-            case kCLAuthorizationStatusNotDetermined:
-                [self.locationManager requestWhenInUseAuthorization];
-            default:
-                break;
-        }
-    }
-    
-    self.previousStatus = status;
-}
-
-- (void)stopLocation
-{
-    [self.locationManager stopUpdatingLocation];
-    self.locationManager = nil;
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    self.deviceLocation = [locations lastObject];
-    
+    // Debugging traces
     if (self.debugLocation) {
-        NSLog(@"Current location (lat, lon) = %f, %f; horizontal accuracy = %f", self.deviceLocation.coordinate.latitude, self.deviceLocation.coordinate.longitude, self.deviceLocation.horizontalAccuracy);
+        NSLog(@"Current location (lat, lon) = %f, %f; horizontal accuracy = %f", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
     }
     if (self.debugAltitude) {
-        NSLog(@"Current altitude = %f, vertical accuracy = %f", self.deviceLocation.altitude, self.deviceLocation.verticalAccuracy);
+        NSLog(@"Current altitude = %f, vertical accuracy = %f", location.altitude, location.verticalAccuracy);
     }
     
-    [self showGPSMessage];
-    
-    if (self.pointsOfInterest != nil && [self haveRequiredGPSAccuracy]) {
-        [self updatePointsOfInterestCoordinates];
-    } else {
-        [self showGPSMessage];
+    if (self.pointsOfInterest != nil && [self isAccuracyGoodForLocation:location]) {
+        NSLog(@"Location is good enough");
+        [self updatePointsOfInterestCoordinatesWithLocation:location];
     }
 }
 
-- (BOOL)haveRequiredGPSAccuracy
+/**
+ *  Check if the location is good enough for calcullations. If it's not, show a HUD informing the user he needs to wait for a better gps fix.
+ *
+ *  @param location the location to check the accuracy of
+ *
+ *  @return true if good, false if not
+ */
+- (BOOL)isAccuracyGoodForLocation:(CLLocation *)location
 {
     if (self.ignoreGPSSignal) {
-        [SVProgressHUD dismiss];
+        [self dismissGPSHUD];
         return YES;
     }
     
-    if (self.deviceLocation.verticalAccuracy < 15 && self.deviceLocation.horizontalAccuracy < 20) {
-        [self hideGPSMessage];
+    if (location.verticalAccuracy < 15 && location.horizontalAccuracy < 20) {
+        [self dismissGPSHUD];
         return YES;
-    } else {
+    } else if (!self.isGPSHUDOn) {
         [SVProgressHUD showWithStatus:@"Getting GPS position..."];
-        NSLog(@"GPS accuracy not enough, the GPSMessage showing... right?");
+        self.isGPSHUDOn = YES;
+        NSLog(@"GPS accuracy not enough, the HDU showing... right?");
     }
     
     return NO;
-}
-
-- (void)initGPSMessage
-{
-    //20, 20
-    UILabel *label = [[UILabel alloc] init];
-    label.adjustsFontSizeToFitWidth = NO;
-    label.opaque = NO;
-    label.backgroundColor = [UIColor clearColor];
-    label.center = CGPointMake(100.0f, 30.0f);
-    label.textAlignment = NSTextAlignmentLeft;
-    label.textColor = [UIColor redColor];
-    label.text = @"Getting good GPS fix...";
-    CGSize size = [label.text sizeWithAttributes:@{NSFontAttributeName: label.font}];
-    label.bounds = CGRectMake(0.0f, 0.0f, size.width, size.height);
-    label.hidden = YES;
-    
-    self.gpsLabel = label;
-    [self.view addSubview:self.gpsLabel];
-    
-    UILabel *label2 = [[UILabel alloc] init];
-    label2.adjustsFontSizeToFitWidth = NO;
-    label2.opaque = NO;
-    label2.backgroundColor = [UIColor clearColor];
-    label2.center = CGPointMake(100.0f, 50.0f);
-    label2.textAlignment = NSTextAlignmentLeft;
-    label2.textColor = [UIColor redColor];
-    label2.text = @"Hor. Acc. = 0000m";
-    CGSize size2 = [label2.text sizeWithAttributes:@{NSFontAttributeName: label2.font}];
-    label2.bounds = CGRectMake(0.0f, 0.0f, size.width, size2.height);
-    label2.hidden = YES;
-    
-    self.horAccLabel = label2;
-    [self.view addSubview:self.horAccLabel];
-    
-    UILabel *label3 = [[UILabel alloc] init];
-    label3.adjustsFontSizeToFitWidth = NO;
-    label3.opaque = NO;
-    label3.backgroundColor = [UIColor clearColor];
-    label3.center = CGPointMake(100.0f, 70.0f);
-    label3.textAlignment = NSTextAlignmentLeft;
-    label3.textColor = [UIColor redColor];
-    label3.text = @"Ver. Acc. = 0000m";
-    CGSize size3 = [label3.text sizeWithAttributes:@{NSFontAttributeName: label3.font}];
-    label3.bounds = CGRectMake(0.0f, 0.0f, size.width, size3.height);
-    label3.hidden = YES;
-    
-    self.verAccLabel = label3;
-    [self.view addSubview:self.verAccLabel];
-    
-}
-
-- (void)showGPSMessage
-{
-    if (self.enableGPSMessage) {
-        [self.gpsLabel		setHidden:NO];
-        self.horAccLabel.text = [NSString stringWithFormat:@"Hor. Acc. = %f", self.deviceLocation.horizontalAccuracy];
-        [self.horAccLabel	setHidden:NO];
-        self.verAccLabel.text = [NSString stringWithFormat:@"Ver. Acc. = %f", self.deviceLocation.verticalAccuracy];
-        [self.verAccLabel	setHidden:NO];
-    }
-}
-
-- (void)hideGPSMessage
-{
-    [self.gpsLabel		setHidden:YES];
-    [self.horAccLabel	setHidden:YES];
-    [self.verAccLabel	setHidden:YES];
-    
-    [SVProgressHUD dismiss];
-}
-
-- (void)removeGPSMessage
-{
-    self.gpsLabel = nil;
-    self.horAccLabel = nil;
-    self.verAccLabel = nil;
-    
-    [SVProgressHUD dismiss];
 }
 
 #pragma mark - Core Motion
@@ -401,7 +276,7 @@
 //From pARk
 #pragma mark - POI management
 
-- (void)updatePointsOfInterestCoordinates
+- (void)updatePointsOfInterestCoordinatesWithLocation:(CLLocation *)deviceLocation
 {
     if (pointsOfInterestCoordinates != NULL) {
         free(pointsOfInterestCoordinates);
@@ -412,7 +287,7 @@
     int i = 0;
     
     double myX, myY, myZ;
-    latLonToEcef(self.deviceLocation.coordinate.latitude, self.deviceLocation.coordinate.longitude, self.deviceLocation.altitude, &myX, &myY, &myZ);
+    latLonToEcef(deviceLocation.coordinate.latitude, deviceLocation.coordinate.longitude, deviceLocation.altitude, &myX, &myY, &myZ);
     
     // Array of NSData instances, each of which contains a struct with the distance to a POI and the
     // POI's index into placesOfInterest
@@ -428,7 +303,7 @@
         double poiX, poiY, poiZ, e, n, u;
         
         latLonToEcef(poi.location.coordinate.latitude, poi.location.coordinate.longitude, poi.altitude, &poiX, &poiY, &poiZ);
-        ecefToEnu(self.deviceLocation.coordinate.latitude, self.deviceLocation.coordinate.longitude, myX, myY, myZ, poiX, poiY, poiZ, &e, &n, &u);
+        ecefToEnu(deviceLocation.coordinate.latitude, deviceLocation.coordinate.longitude, myX, myY, myZ, poiX, poiY, poiZ, &e, &n, &u);
         
         pointsOfInterestCoordinates[i][0] = (float)n;
         pointsOfInterestCoordinates[i][1] = -(float)e;
@@ -441,7 +316,7 @@
         distanceAndIndex.index = i;
         [orderedDistances insertObject:[NSData dataWithBytes:&distanceAndIndex length:sizeof(distanceAndIndex)] atIndex:(NSUInteger) i++];
         
-        poi.distance = [self.deviceLocation distanceFromLocation:poi.location] / 1000.0;
+        poi.distance = [deviceLocation distanceFromLocation:poi.location] / 1000.0;
     }
     
     // Sort orderedDistances in ascending order based on distance from the user
@@ -543,6 +418,16 @@
     } else if (mountainIndex == 0 && !self.detailView.hidden && self.detailView.isNotFadingOut) {
         [self.detailView fadeOut];
     }
+}
+
+#pragma mark - Small utils
+/**
+ *  Dismisses SVProgressHUD and sets to false the isGPSHUDOn boolean
+ */
+- (void)dismissGPSHUD
+{
+    self.isGPSHUDOn = NO;
+    [SVProgressHUD dismiss];
 }
 
 @end
