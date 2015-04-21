@@ -24,7 +24,8 @@
 
 #pragma mark Singleton Methods
 
-+ (id)sharedParser {
++ (id)sharedParser
+{
     static DataParser *sharedParser = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -38,19 +39,18 @@
  *
  *  @return instance
  */
-- (id)init {
+- (id)init
+{
     if (self = [super init]) {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self parseData];
-        });
+        self.lastKnownDatasource = [Utils getUserSetting:datasourceSettingKey];
+        
+        [self parseData]; // Don't do this in a background thread, is part of AR init
         
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(defaultsChanged:)
                                                      name:NSUserDefaultsDidChangeNotification
                                                    object:nil];
-        
-        self.lastKnownDatasource = [Utils getUserSetting:datasourceSettingKey];
     }
     return self;
 }
@@ -75,7 +75,8 @@
 /**
  *  Parse data from XML file
  */
-- (void)parseData {
+- (void)parseData
+{
     XMLParser *parser  = [[XMLParser alloc] init];
     XMLElement *rootElement = [parser parseXML:self.lastKnownDatasource];
     XMLElement *mountainList = rootElement.subElements[1];
@@ -122,7 +123,8 @@
  *
  *  @param notification the notification
  */
-- (void)defaultsChanged:(NSNotification *)notification {
+- (void)defaultsChanged:(NSNotification *)notification
+{
     if (![self.lastKnownDatasource isEqualToString:(NSString *)[Utils getUserSetting:datasourceSettingKey]]) {
         exit(0);
     }

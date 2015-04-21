@@ -110,5 +110,19 @@
             <column name="ele_source">NULL</column>
             <column name="postal_code">07018</column>
         </table>
+        <table name="muntanyes6">
+            <column name="id">2174890</column>
+            <column name="name">Fita des Torrent des Pinotells</column>
+            <column name="alt_name">NULL</column>
+            <column name="lat">39.637355</column>
+            <column name="lon">2.465441</column>
+            <column name="alt_lat">39.6370849290001</column>
+            <column name="alt_lon">2.46588131800007</column>
+            <column name="ele">600.12</column>
+            <column name="alt_ele">595</column>
+            <column name="source">BTN25</column>
+            <column name="ele_source">NULL</column>
+            <column name="postal_code">07011</column>
+        </table>
     </database>
 </pma_xml_export>
