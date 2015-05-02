@@ -31,7 +31,6 @@
     [super viewWillAppear:animated];
     
     self.detailView = (DetailView *)self.view;
-    [self.detailView fadeOut];
 }
 
 - (void)showWithName:(NSString *)name distance:(NSString *)distance altitude:(NSString *)altitude wikiUrl:(NSString *)url

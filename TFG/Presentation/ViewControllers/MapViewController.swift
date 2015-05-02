@@ -11,6 +11,8 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
+    var detailViewController: DetailViewController?
+    
     /// Map view outlet
     @IBOutlet weak var mapView: MKMapView! {
         didSet {
@@ -72,7 +74,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotationView.canShowCallout = true
         }
         
+        if !senderAnnotation.url.isEmpty && senderAnnotation.url != "NULL" {
+            let button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            let buttonImage = UIImage(named: "wikipedia")!
+            button.setImage(buttonImage, forState: UIControlState.Normal)
+            button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)
+            annotationView.rightCalloutAccessoryView = button
+        } else {
+            annotationView.rightCalloutAccessoryView = nil
+        }
+        
         return annotationView
+    }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        
+        if let annotation = view.annotation as? MountainPin {
+            UIApplication.sharedApplication().openURL(NSURL(string: annotation.url)!)
+        }
     }
     
     // MARK: - Pin data
@@ -89,10 +108,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 name = mountain.valueForKey("name") as? String,
                 lat = (mountain.valueForKey("lat") as? String)?.doubleValue(),
                 lon = (mountain.valueForKey("lon") as? String)?.doubleValue(),
-                ele = mountain.valueForKey("ele") as? String
+                ele = mountain.valueForKey("ele") as? String,
+                url = mountain.valueForKey("wikipedia") as? String
             {
                 
-                let mountainPin = MountainPin(coordinate: CLLocationCoordinate2DMake(lat, lon), title: name, subtitle: "\(ele)")
+                let mountainPin = MountainPin(coordinate: CLLocationCoordinate2DMake(lat, lon), title: name, subtitle: "Elevation: \(ele) m.", url: url)
                 
                 self.mapView.addAnnotation(mountainPin)
             }
