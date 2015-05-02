@@ -14,10 +14,10 @@
 		953FB5181983F91D00D2CE2F /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5151983F91D00D2CE2F /* ARView.m */; };
 		95876FBA1A8E6417008DEF0D /* muntanyes8.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95876FB91A8E6417008DEF0D /* muntanyes8.xml */; };
 		959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959023C119A12BEF00ACDD5F /* Images.xcassets */; };
+		9591623E1AF4CD4D000DB5D7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9591623D1AF4CD4D000DB5D7 /* DetailViewController.m */; };
 		959BB5A819ED890E0088251D /* TargetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959BB5A719ED890E0088251D /* TargetView.swift */; };
 		95A5DD641AE3AC4100CC8E0E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5DD631AE3AC4100CC8E0E /* MapViewController.swift */; };
 		95A5DD661AE3AC6C00CC8E0E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A5DD651AE3AC6C00CC8E0E /* MapKit.framework */; };
-		95A5DD6A1AE3C0C700CC8E0E /* muntanyes.json in Resources */ = {isa = PBXBuildFile; fileRef = 95A5DD691AE3C0C700CC8E0E /* muntanyes.json */; };
 		95A5DD6C1AE3C1E100CC8E0E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A5DD6B1AE3C1E100CC8E0E /* SwiftyJSON.framework */; };
 		95A5DD711AE3CABF00CC8E0E /* DataParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 95A5DD701AE3CABF00CC8E0E /* DataParser.m */; };
 		95A5DD731AE419E100CC8E0E /* MountainPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5DD721AE419E100CC8E0E /* MountainPin.swift */; };
@@ -72,10 +72,11 @@
 		9543242C1ADAF41F00579146 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
 		95876FB91A8E6417008DEF0D /* muntanyes8.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = muntanyes8.xml; sourceTree = "<group>"; };
 		959023C119A12BEF00ACDD5F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9591623C1AF4CD4D000DB5D7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		9591623D1AF4CD4D000DB5D7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		959BB5A719ED890E0088251D /* TargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
 		95A5DD631AE3AC4100CC8E0E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		95A5DD651AE3AC6C00CC8E0E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		95A5DD691AE3C0C700CC8E0E /* muntanyes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = muntanyes.json; sourceTree = "<group>"; };
 		95A5DD6B1AE3C1E100CC8E0E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		95A5DD6F1AE3CABF00CC8E0E /* DataParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataParser.h; sourceTree = "<group>"; };
 		95A5DD701AE3CABF00CC8E0E /* DataParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataParser.m; sourceTree = "<group>"; };
@@ -166,7 +167,6 @@
 			children = (
 				95876FB91A8E6417008DEF0D /* muntanyes8.xml */,
 				95DF13FD197AEED000991AAD /* muntanyes_dev.xml */,
-				95A5DD691AE3C0C700CC8E0E /* muntanyes.json */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -219,6 +219,8 @@
 				95FBABFF197AF30700160544 /* ARViewController.m */,
 				95A5DD631AE3AC4100CC8E0E /* MapViewController.swift */,
 				95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */,
+				9591623C1AF4CD4D000DB5D7 /* DetailViewController.h */,
+				9591623D1AF4CD4D000DB5D7 /* DetailViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -405,7 +407,6 @@
 			files = (
 				95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */,
 				95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */,
-				95A5DD6A1AE3C0C700CC8E0E /* muntanyes.json in Resources */,
 				959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */,
 				95876FBA1A8E6417008DEF0D /* muntanyes8.xml in Resources */,
 				95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */,
@@ -493,6 +494,7 @@
 				951A97731ADD7AD8007EC58C /* Constants.m in Sources */,
 				95A5DD751AE41E4A00CC8E0E /* String+DoubleValue.swift in Sources */,
 				95A5DD641AE3AC4100CC8E0E /* MapViewController.swift in Sources */,
+				9591623E1AF4CD4D000DB5D7 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

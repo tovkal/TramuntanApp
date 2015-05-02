@@ -84,7 +84,7 @@
     for (XMLElement *mountain in mountainList.subElements) {
         
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-        NSArray *attributeArray = @[@"name", @"alt_name", @"lat", @"lon", @"alt_lat", @"alt_lon", @"ele", @"alt_ele", @"postal_code"];
+        NSArray *attributeArray = @[@"name", @"alt_name", @"lat", @"lon", @"alt_lat", @"alt_lon", @"ele", @"alt_ele", @"wikipedia", @"postal_code"];
         
         for (XMLElement *attribute in mountain.subElements) {
             NSArray *values = [attribute.attributes allValues];
@@ -99,11 +99,12 @@
                 case 5: //alt_lon
                 case 6: //ele
                 case 7: //alt_ele
+                case 8: //wikipedia
                     if (attribute.text != nil) {
                         [dictionary setObject:attribute.text forKey:attributeArray[item]];
                     }
                     break;
-                case 8: //postal code
+                case 9: //postal code
                     [dictionary setObject:[attribute.text componentsSeparatedByString:@", "] forKey:attributeArray[item]];
                     break;
                 case NSIntegerMax: break;

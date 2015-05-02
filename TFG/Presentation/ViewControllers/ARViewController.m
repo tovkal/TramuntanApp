@@ -15,6 +15,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "DataParser.h"
 #import "LocationController.h"
+#import "DetailViewController.h"
 
 @interface ARViewController ()
 {
@@ -39,11 +40,6 @@
  */
 @property (strong, nonatomic) TargetView *targetView;
 
-/**
- *  Mountain info view
- */
-@property (strong, nonatomic) DetailView *detailView;
-
 // Previous location autorization status
 @property CLAuthorizationStatus previousStatus;
 
@@ -64,6 +60,11 @@
  *  Boolean to control if a SVProgressHUD is already on screen, to avoid having multiple HUDs. // TODO andres.piza 21/04/2015 - Check this is so, I'm not sure if there are more than one
  */
 @property BOOL isGPSHUDOn;
+
+#pragma mark Detail View
+@property (strong, nonatomic) UIView *detailViewContainer;
+
+@property (strong, nonatomic) DetailViewController *detailViewController;
 
 @end
 
@@ -95,9 +96,6 @@
                                              selector:@selector(updateTargetViewPosition:)
                                                  name:UIApplicationDidChangeStatusBarOrientationNotification
                                                object:nil];
-    
-    [self setupDetailViewConstraints];
-    [self.detailView fadeOut];
     
     LocationController *sharedInstance = [LocationController sharedInstance];
     sharedInstance.delegate = self;
@@ -188,6 +186,7 @@
                                                  alt:[[mountain valueForKey:@"ele"] doubleValue]
                                  alternativeAltitude:[[mountain valueForKey:@"alt_ele"] doubleValue]
                                           postalCode:[mountain valueForKey:@"postal code"]
+                                             wikiUrl:[mountain valueForKey:@"wikipedia"]
                                             withView:mountainView];
         
         [mountainArray addObject:m];
@@ -362,16 +361,22 @@
 
 - (void)setupDetailView
 {
-    self.detailView =[[[NSBundle mainBundle] loadNibNamed:@"DetailView" owner:self options:nil] lastObject];
-    [self.view addSubview:self.detailView];
-}
-
-- (void)setupDetailViewConstraints
-{
-    id topGuide = self.topLayoutGuide;
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_detailView, topGuide);
-    NSLayoutConstraint *constraint = [[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topGuide]-0-[_detailView]" options:0 metrics:nil views:viewsDictionary] firstObject];
-    [self.view addConstraint:constraint];
+    self.detailViewController = [[DetailViewController alloc] init];
+    UIView *detailView = self.detailViewController.view;
+    
+    self.detailViewContainer = [[UIView alloc] initWithFrame:detailView.frame];
+    self.detailViewContainer.opaque = NO;
+    [self.detailViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.view addSubview:self.detailViewContainer];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.detailViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:self.detailViewContainer.frame.size.width]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.detailViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:self.detailViewContainer.frame.size.height]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.detailViewContainer attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.detailViewContainer attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.topLayoutGuide attribute:NSLayoutAttributeBottom multiplier:1.0 constant:5.0]];
+    
+    [self.detailViewContainer addSubview:detailView];
+    [self.detailViewController didMoveToParentViewController:self];
 }
 
 - (NSInteger)viewIntersectsWithAnotherView:(UIView *)selectedView
@@ -411,14 +416,10 @@
 - (void)updateDetailViewForMountainIndex:(NSInteger)mountainIndex
 {
     if (mountainIndex != 0) {
-        Mountain *targeted = [self.pointsOfInterest objectAtIndex:(NSUInteger) mountainIndex - 1];
-        self.detailView.nameLabel.text = targeted.name;
-        self.detailView.distanceLabel.text = [NSString stringWithFormat:@"%f", targeted.distance];
-        self.detailView.altitudeLabel.text = [NSString stringWithFormat:@"%f", targeted.altitude];
-        self.detailView.alpha = 1.0f;
-        self.detailView.hidden = NO;
-    } else if (mountainIndex == 0 && !self.detailView.hidden && self.detailView.isNotFadingOut) {
-        [self.detailView fadeOut];
+        Mountain *mountain = [self.pointsOfInterest objectAtIndex:(NSUInteger) mountainIndex - 1];
+        [self.detailViewController showWithName:mountain.name distance:[NSString stringWithFormat:@"%f", mountain.distance] altitude:[NSString stringWithFormat:@"%f", mountain.altitude] wikiUrl:mountain.wikiUrl];
+    } else {
+        [self.detailViewController hide];
     }
 }
 

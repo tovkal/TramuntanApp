@@ -1,66 +1,116 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController">
+            <connections>
+                <outlet property="altitudeLabel" destination="WEw-ib-IcX" id="dlw-rz-J7Z"/>
+                <outlet property="distanceLabel" destination="3yB-8q-WQi" id="nMn-5j-RaS"/>
+                <outlet property="nameLabel" destination="aEG-nU-ajy" id="OCh-1j-zgI"/>
+                <outlet property="raidusIcon" destination="Hwn-TQ-Xwq" id="RLQ-J6-oKh"/>
+                <outlet property="view" destination="WFE-gX-Ixo" id="Y3y-OY-Q1m"/>
+                <outlet property="wikiIcon" destination="ZEp-oT-4hs" id="PTj-6g-atH"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCZ-e6-1X4" customClass="DetailView" customModule="TFG">
-            <rect key="frame" x="0.0" y="0.0" width="200" height="140"/>
+        <view clearsContextBeforeDrawing="NO" alpha="0.69999998807907104" contentMode="scaleToFill" id="WFE-gX-Ixo" customClass="DetailView" customModule="TFG" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="275" height="130"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJT-Nt-SIi">
-                    <rect key="frame" x="8" y="8" width="158" height="55"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEG-nU-ajy">
+                    <rect key="frame" x="8" y="8" width="209" height="55"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="158" id="8y1-IS-yoc"/>
-                        <constraint firstAttribute="height" constant="55" id="Yp1-Ve-UXX"/>
+                        <constraint firstAttribute="width" constant="209" id="kdq-sv-zrJ"/>
+                        <constraint firstAttribute="height" constant="55" id="xFn-BC-Fnf"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hea-0D-0hr">
-                    <rect key="frame" x="8" y="71" width="158" height="21"/>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wikipedia" translatesAutoresizingMaskIntoConstraints="NO" id="ZEp-oT-4hs">
+                    <rect key="frame" x="227" y="16" width="40" height="40"/>
+                    <gestureRecognizers/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="158" id="DzB-O0-6ff"/>
-                        <constraint firstAttribute="height" constant="21" id="vwC-LI-zSE"/>
+                        <constraint firstAttribute="width" constant="40" id="Eml-RZ-hZx"/>
+                        <constraint firstAttribute="height" constant="40" id="kfh-MS-gbd"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="rRx-Ug-4eB" appends="YES" id="0nh-KW-Vxb"/>
+                    </connections>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345.67 km." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-8q-WQi">
+                    <rect key="frame" x="8" y="100" width="105" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="105" id="OvX-f6-Za1"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altura" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XfW-Eg-wj9">
-                    <rect key="frame" x="8" y="100" width="158" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234.56 km." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEw-ib-IcX">
+                    <rect key="frame" x="121" y="100" width="97" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="158" id="06i-Y3-iEl"/>
-                        <constraint firstAttribute="height" constant="21" id="rp7-Oh-BDX"/>
+                        <constraint firstAttribute="width" constant="97" id="wVS-AT-gZg"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mountain_distance" translatesAutoresizingMaskIntoConstraints="NO" id="Sjd-3i-VCm">
+                    <rect key="frame" x="29" y="70" width="62" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="62" id="6zl-15-rqv"/>
+                        <constraint firstAttribute="height" constant="25" id="ZI6-f9-hte"/>
+                    </constraints>
+                </imageView>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radius" highlightedImage="radius_highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="Hwn-TQ-Xwq">
+                    <rect key="frame" x="227" y="70" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="0kJ-GN-Xzg"/>
+                        <constraint firstAttribute="width" constant="40" id="nkJ-IK-wBh"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mountain_height" translatesAutoresizingMaskIntoConstraints="NO" id="v9B-jC-nmb">
+                    <rect key="frame" x="151" y="70" width="37" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="37" id="pzH-6o-sFs"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="XfW-Eg-wj9" firstAttribute="leading" secondItem="sCZ-e6-1X4" secondAttribute="leading" constant="8" id="1xe-Ij-M75"/>
-                <constraint firstAttribute="height" constant="140" id="Lgq-zs-RaD"/>
-                <constraint firstAttribute="width" constant="200" id="WfR-qE-Zyn"/>
-                <constraint firstItem="IJT-Nt-SIi" firstAttribute="leading" secondItem="sCZ-e6-1X4" secondAttribute="leading" constant="8" id="atW-lY-5dz"/>
-                <constraint firstItem="XfW-Eg-wj9" firstAttribute="top" secondItem="hea-0D-0hr" secondAttribute="bottom" constant="8" id="dBx-zG-4Re"/>
-                <constraint firstItem="hea-0D-0hr" firstAttribute="top" secondItem="IJT-Nt-SIi" secondAttribute="bottom" constant="8" id="hhm-5x-pk5"/>
-                <constraint firstItem="IJT-Nt-SIi" firstAttribute="top" secondItem="sCZ-e6-1X4" secondAttribute="top" constant="8" id="ih8-dX-LO7"/>
-                <constraint firstItem="hea-0D-0hr" firstAttribute="leading" secondItem="sCZ-e6-1X4" secondAttribute="leading" constant="8" id="xk3-4p-ByA"/>
+                <constraint firstAttribute="trailing" secondItem="Hwn-TQ-Xwq" secondAttribute="trailing" constant="8" id="1Yr-CG-PTj"/>
+                <constraint firstItem="WEw-ib-IcX" firstAttribute="top" secondItem="v9B-jC-nmb" secondAttribute="bottom" constant="5" id="1bl-fO-FDb"/>
+                <constraint firstAttribute="trailing" secondItem="ZEp-oT-4hs" secondAttribute="trailing" constant="8" id="5Zu-iG-boG"/>
+                <constraint firstAttribute="bottom" secondItem="Hwn-TQ-Xwq" secondAttribute="bottom" constant="20" id="94m-Rx-Q4S"/>
+                <constraint firstItem="Sjd-3i-VCm" firstAttribute="leading" secondItem="WFE-gX-Ixo" secondAttribute="leading" constant="29" id="Jof-XE-6gT"/>
+                <constraint firstItem="v9B-jC-nmb" firstAttribute="leading" secondItem="Sjd-3i-VCm" secondAttribute="trailing" constant="60" id="QEf-5V-c1B"/>
+                <constraint firstItem="WEw-ib-IcX" firstAttribute="leading" secondItem="3yB-8q-WQi" secondAttribute="trailing" constant="8" id="Yhl-wH-kHk"/>
+                <constraint firstItem="v9B-jC-nmb" firstAttribute="top" secondItem="aEG-nU-ajy" secondAttribute="bottom" constant="7" id="Z2E-T9-Z1F"/>
+                <constraint firstItem="Sjd-3i-VCm" firstAttribute="top" secondItem="aEG-nU-ajy" secondAttribute="bottom" constant="7" id="bKi-oD-UrT"/>
+                <constraint firstItem="aEG-nU-ajy" firstAttribute="leading" secondItem="WFE-gX-Ixo" secondAttribute="leading" constant="8" id="eOq-ud-uRJ"/>
+                <constraint firstItem="aEG-nU-ajy" firstAttribute="top" secondItem="WFE-gX-Ixo" secondAttribute="top" constant="8" id="hiQ-b2-4XU"/>
+                <constraint firstItem="ZEp-oT-4hs" firstAttribute="top" secondItem="WFE-gX-Ixo" secondAttribute="top" constant="16" id="lK5-2X-zGv"/>
+                <constraint firstItem="3yB-8q-WQi" firstAttribute="top" secondItem="Sjd-3i-VCm" secondAttribute="bottom" constant="5" id="rcd-us-Kch"/>
+                <constraint firstItem="3yB-8q-WQi" firstAttribute="leading" secondItem="WFE-gX-Ixo" secondAttribute="leading" constant="8" id="tU7-8I-OPk"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="altitudeLabel" destination="XfW-Eg-wj9" id="l4p-61-AY6"/>
-                <outlet property="distanceLabel" destination="hea-0D-0hr" id="JKa-MI-2MJ"/>
-                <outlet property="nameLabel" destination="IJT-Nt-SIi" id="ova-FU-Jx8"/>
-            </connections>
-            <point key="canvasLocation" x="306" y="804"/>
+            <point key="canvasLocation" x="343.5" y="981"/>
         </view>
+        <tapGestureRecognizer id="rRx-Ug-4eB">
+            <connections>
+                <action selector="handleTap:" destination="-1" id="NQj-J8-qUh"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="mountain_distance" width="62" height="25"/>
+        <image name="mountain_height" width="37" height="25"/>
+        <image name="radius" width="40" height="40"/>
+        <image name="radius_highlighted" width="40" height="40"/>
+        <image name="wikipedia" width="40" height="40"/>
+    </resources>
 </document>

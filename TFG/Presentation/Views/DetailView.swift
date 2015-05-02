@@ -10,21 +10,22 @@ import UIKit
 
 class DetailView: UIView {
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var distanceLabel: UILabel!
-    @IBOutlet weak var altitudeLabel: UILabel!
+    var isFadingOut = false
     
-    var isNotFadingOut = true
+    override func drawRect(rect: CGRect) {
+        self.layer.cornerRadius = 5
+        self.layer.masksToBounds = true
+    }
     
     func fadeOut() {
         if (!self.hidden) {
             UIView.animateWithDuration(3, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
-                self.isNotFadingOut = false
+                self.isFadingOut = true
                 self.alpha = 0.0
                 }, completion: {
                     (value: Bool) in
                     self.hidden = true
-                    self.isNotFadingOut = true
+                    self.isFadingOut = false
             })
         }
     }
