@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-- phpMyAdmin XML Dump
-- version 4.1.6
-- http://www.phpmyadmin.net
--
-- Servidor: 127.0.0.1
-- Tiempo de generación: 27-06-2014 a las 13:09:14
-- Versión del servidor: 5.6.16
-- Versión de PHP: 5.5.9
--->
+ - phpMyAdmin XML Dump
+ - version 4.2.11
+ - http://www.phpmyadmin.net
+ -
+ - Servidor: localhost
+ - Tiempo de generación: 26-04-2015 a las 18:33:55
+ - Versión del servidor: 5.6.21
+ - Versión de PHP: 5.5.19
+ -->
 
 <pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
     <!--
-    - Structure schemas
-    -->
+     - Structure schemas
+     -->
     <pma:structure_schemas>
         <pma:database name="movedb" collation="latin1_swedish_ci" charset="latin1">
-            <pma:table name="muntanyes6">
-                CREATE TABLE `muntanyes6` (
-                  `id` double DEFAULT NULL COMMENT 'NGBE IGN ID',
-                  `name` varchar(255) DEFAULT NULL,
-                  `alt_name` varchar(100) DEFAULT NULL,
-                  `lat` double DEFAULT NULL,
-                  `lon` double DEFAULT NULL,
-                  `alt_lat` double DEFAULT NULL COMMENT 'LATITUD_ETRS89_REGCAN95',
-                  `alt_lon` double DEFAULT NULL COMMENT 'LONGITUD_ETRS89_REGCAN95',
-                  `ele` double DEFAULT NULL COMMENT 'Elevation',
-                  `alt_ele` double DEFAULT NULL COMMENT 'Conflicting elevation',
-                  `source` varchar(255) DEFAULT NULL,
-                  `ele_source` varchar(20) DEFAULT NULL,
-                  `postal_code` varchar(255) DEFAULT NULL COMMENT 'CODIGO_INE'
+            <pma:table name="muntanyes_dev">
+                CREATE TABLE `muntanyes_dev` (
+                `id` double DEFAULT NULL COMMENT 'NGBE IGN ID',
+                `name` varchar(255) DEFAULT NULL,
+                `alt_name` varchar(100) DEFAULT NULL,
+                `lat` double DEFAULT NULL,
+                `lon` double DEFAULT NULL,
+                `alt_lat` double DEFAULT NULL COMMENT 'LATITUD_ETRS89_REGCAN95',
+                `alt_lon` double DEFAULT NULL COMMENT 'LONGITUD_ETRS89_REGCAN95',
+                `ele` double DEFAULT NULL COMMENT 'Elevation',
+                `alt_ele` double DEFAULT NULL COMMENT 'Conflicting elevation',
+                `source` varchar(255) DEFAULT NULL,
+                `ele_source` varchar(20) DEFAULT NULL,
+                `postal_code` varchar(255) DEFAULT NULL COMMENT 'CODIGO_INE',
+                `wikipedia` varchar(150) DEFAULT NULL
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             </pma:table>
         </pma:database>
     </pma:structure_schemas>
-
+    
     <!--
-    - Base de datos: 'movedb'
-    -->
+     - Base de datos: 'movedb'
+     -->
     <database name="movedb">
-        <!-- Tabla muntanyes6 -->
-        <table name="muntanyes6">
-            <column name="id">2158703</column>
+        <!-- Tabla muntanyes_dev -->
+        <table name="muntanyes_dev">
+            <column name="id">1</column>
             <column name="name">Torre Asima</column>
             <column name="alt_name">NULL</column>
             <column name="lat">39.601748</column>
@@ -52,9 +53,10 @@
             <column name="alt_ele">NULL</column>
             <column name="source">BTN25</column>
             <column name="ele_source">NULL</column>
-            <column name="postal_code">07018</column>
+            <column name="postal_code">7018</column>
+            <column name="wikipedia">http://es.wikipedia.org/wiki/Torre_Asima</column>
         </table>
-        <table name="muntanyes6">
+        <table name="muntanyes_dev">
             <column name="id">2175845</column>
             <column name="name">Puig de Son Espanyol</column>
             <column name="alt_name">Puig des Corral Fals</column>
@@ -66,9 +68,10 @@
             <column name="alt_ele">209</column>
             <column name="source">BTN25</column>
             <column name="ele_source">NULL</column>
-            <column name="postal_code">07040</column>
+            <column name="postal_code">7040</column>
+            <column name="wikipedia">NULL</column>
         </table>
-        <table name="muntanyes6">
+        <table name="muntanyes_dev">
             <column name="id">2157962</column>
             <column name="name">Puig Major</column>
             <column name="alt_name">NULL</column>
@@ -80,9 +83,10 @@
             <column name="alt_ele">NULL</column>
             <column name="source">NGCE</column>
             <column name="ele_source">NULL</column>
-            <column name="postal_code">07019</column>
+            <column name="postal_code">7019</column>
+            <column name="wikipedia">http://ca.wikipedia.org/wiki/Puig_Major</column>
         </table>
-        <table name="muntanyes6">
+        <table name="muntanyes_dev">
             <column name="id">2175830</column>
             <column name="name">Pujol des Gat</column>
             <column name="alt_name">Puntals de Valldurgent</column>
@@ -95,8 +99,9 @@
             <column name="source">BTN25</column>
             <column name="ele_source">NULL</column>
             <column name="postal_code">07011, 07040</column>
+            <column name="wikipedia">NULL</column>
         </table>
-        <table name="muntanyes6">
+        <table name="muntanyes_dev">
             <column name="id">2158703</column>
             <column name="name">Sa Galera</column>
             <column name="alt_name">NULL</column>
@@ -108,9 +113,10 @@
             <column name="alt_ele">932</column>
             <column name="source">BTN25</column>
             <column name="ele_source">NULL</column>
-            <column name="postal_code">07018</column>
+            <column name="postal_code">7018</column>
+            <column name="wikipedia">http://ca.wikipedia.org/wiki/Sa_Galera</column>
         </table>
-        <table name="muntanyes6">
+        <table name="muntanyes_dev">
             <column name="id">2174890</column>
             <column name="name">Fita des Torrent des Pinotells</column>
             <column name="alt_name">NULL</column>
@@ -122,7 +128,8 @@
             <column name="alt_ele">595</column>
             <column name="source">BTN25</column>
             <column name="ele_source">NULL</column>
-            <column name="postal_code">07011</column>
+            <column name="postal_code">7011</column>
+            <column name="wikipedia">NULL</column>
         </table>
     </database>
 </pma_xml_export>
