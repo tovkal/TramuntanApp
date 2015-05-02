@@ -64,15 +64,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let reusableIdentifier = "mountainPin"
         
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reusableIdentifier) as? MKPinAnnotationView
+        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reusableIdentifier)
         
         if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reusableIdentifier)
-            annotationView?.canShowCallout = true
-            annotationView?.animatesDrop = true
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reusableIdentifier)
+            annotationView.image = UIImage(named: "mountain_pin")
+            annotationView.canShowCallout = true
         }
-        
-        annotationView?.pinColor = senderAnnotation.pinColor
         
         return annotationView
     }

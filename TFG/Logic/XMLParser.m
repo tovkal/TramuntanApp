@@ -82,4 +82,9 @@
     self.currentElementPointer = nil;
 }
 
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    NSLog(@"%@", parseError);
+}
+
 @end

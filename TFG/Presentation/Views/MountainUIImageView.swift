@@ -11,11 +11,11 @@ import UIKit
 class MountainUIImageView: UIImageView {
     
     init() {
-        let frame = CGRectMake(0, 0, 10, 10)
+        let frame = CGRectMake(0, 0, 12, 10)
         
         super.init(frame: frame)
         
-        let image = UIImage(named: "Icon")
+        let image = UIImage(named: "mountain")
         self.contentMode = UIViewContentMode.ScaleAspectFill
         self.image = image
     }

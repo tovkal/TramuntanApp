@@ -1,44 +1,44 @@
-s<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
- - phpMyAdmin XML Dump
- - version 4.2.11
- - http://www.phpmyadmin.net
- -
- - Servidor: localhost
- - Tiempo de generación: 27-04-2015 a las 19:21:31
- - Versión del servidor: 5.6.21
- - Versión de PHP: 5.5.19
- -->
+- phpMyAdmin XML Dump
+- version 4.2.11
+- http://www.phpmyadmin.net
+-
+- Servidor: localhost
+- Tiempo de generación: 02-05-2015 a las 20:08:21
+- Versión del servidor: 5.6.21
+- Versión de PHP: 5.5.19
+-->
 
 <pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
     <!--
-     - Structure schemas
-     -->
+    - Structure schemas
+    -->
     <pma:structure_schemas>
         <pma:database name="movedb" collation="latin1_swedish_ci" charset="latin1">
             <pma:table name="muntanyes6">
                 CREATE TABLE `muntanyes6` (
-                `id` double DEFAULT NULL COMMENT 'NGBE IGN ID',
-                `name` varchar(255) DEFAULT NULL,
-                `alt_name` varchar(100) DEFAULT NULL,
-                `lat` double DEFAULT NULL,
-                `lon` double DEFAULT NULL,
-                `alt_lat` double DEFAULT NULL COMMENT 'LATITUD_ETRS89_REGCAN95',
-                `alt_lon` double DEFAULT NULL COMMENT 'LONGITUD_ETRS89_REGCAN95',
-                `ele` double DEFAULT NULL COMMENT 'Elevation',
-                `alt_ele` double DEFAULT NULL COMMENT 'Conflicting elevation',
-                `source` varchar(255) DEFAULT NULL,
-                `ele_source` varchar(20) DEFAULT NULL,
-                `postal_code` varchar(255) DEFAULT NULL COMMENT 'CODIGO_INE',
-                `wikipedia` varchar(150) DEFAULT NULL
+                  `id` double DEFAULT NULL COMMENT 'NGBE IGN ID',
+                  `name` varchar(255) DEFAULT NULL,
+                  `alt_name` varchar(100) DEFAULT NULL,
+                  `lat` double DEFAULT NULL,
+                  `lon` double DEFAULT NULL,
+                  `alt_lat` double DEFAULT NULL COMMENT 'LATITUD_ETRS89_REGCAN95',
+                  `alt_lon` double DEFAULT NULL COMMENT 'LONGITUD_ETRS89_REGCAN95',
+                  `ele` double DEFAULT NULL COMMENT 'Elevation',
+                  `alt_ele` double DEFAULT NULL COMMENT 'Conflicting elevation',
+                  `source` varchar(255) DEFAULT NULL,
+                  `ele_source` varchar(20) DEFAULT NULL,
+                  `postal_code` varchar(255) DEFAULT NULL COMMENT 'CODIGO_INE',
+                  `wikipedia` varchar(150) DEFAULT NULL
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
             </pma:table>
         </pma:database>
     </pma:structure_schemas>
-    
+
     <!--
-     - Base de datos: 'movedb'
-     -->
+    - Base de datos: 'movedb'
+    -->
     <database name="movedb">
         <!-- Tabla muntanyes6 -->
         <table name="muntanyes6">
