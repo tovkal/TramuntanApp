@@ -984,7 +984,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastTestingUpgradeCheck = 0630;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					0B6BE74719FFD3B900762101 = {

@@ -22,9 +22,8 @@ class DetailView: UIView {
     }
     
     func showWithAnimation(point: CGFloat) {
-        if self.hiding {
-            self.layer.pop_removeAnimationForKey(hideAnimationKey)
-        }
+        self.layer.pop_removeAnimationForKey(hideAnimationKey)
+        
         
         if !self.showing {
             self.hidden = false
@@ -45,9 +44,7 @@ class DetailView: UIView {
     }
     
     func hideWithAnimation() {
-        if self.showing {
-            self.layer.pop_removeAnimationForKey(showAnimationKey)
-        }
+        self.layer.pop_removeAnimationForKey(showAnimationKey)
         
         if !self.hiding {
             self.hiding = true
