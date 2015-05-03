@@ -291,45 +291,6 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="General Settings" id="ZET-VI-CNE">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="83B-a4-rAD">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="83B-a4-rAD" id="G7x-tD-1eg">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Radius: 30 km." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emW-2n-XX6">
-                                                    <rect key="frame" x="8" y="11" width="115" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="5" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="pkL-XT-6wo">
-                                                    <rect key="frame" x="294" y="7" width="300" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="296" id="JSV-nq-XsD">
-                                                            <variation key="heightClass=compact" constant="400"/>
-                                                            <variation key="widthClass=compact" constant="200"/>
-                                                            <variation key="heightClass=compact-widthClass=compact" constant="250"/>
-                                                            <variation key="heightClass=compact-widthClass=regular" constant="400"/>
-                                                            <variation key="heightClass=regular-widthClass=compact" constant="150"/>
-                                                        </constraint>
-                                                    </constraints>
-                                                    <connections>
-                                                        <action selector="radiusDidChange:" destination="VxJ-nd-ktG" eventType="valueChanged" id="PZD-Om-3HB"/>
-                                                    </connections>
-                                                </slider>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="emW-2n-XX6" firstAttribute="centerY" secondItem="G7x-tD-1eg" secondAttribute="centerY" id="4Bi-0b-5Kw"/>
-                                                <constraint firstItem="pkL-XT-6wo" firstAttribute="top" secondItem="G7x-tD-1eg" secondAttribute="topMargin" constant="-1" id="AB0-4w-5GV"/>
-                                                <constraint firstItem="emW-2n-XX6" firstAttribute="leading" secondItem="G7x-tD-1eg" secondAttribute="leadingMargin" id="Ulq-af-teO"/>
-                                                <constraint firstItem="pkL-XT-6wo" firstAttribute="trailing" secondItem="G7x-tD-1eg" secondAttribute="trailingMargin" id="Xyo-by-h2o"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Augmented Reality Settings" id="ABd-4N-Xcu">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gcK-xG-dND">
@@ -425,8 +386,6 @@
                         <outlet property="horizontalFOVLabel" destination="lWZ-c8-DF7" id="hho-Vl-bGn"/>
                         <outlet property="ignoreGPSSignal" destination="IEc-3y-E35" id="CRE-zX-Ojo"/>
                         <outlet property="locationDebugSwitch" destination="BYb-vR-a15" id="Hxs-qr-vet"/>
-                        <outlet property="radiusLabel" destination="emW-2n-XX6" id="Wiq-hX-rzf"/>
-                        <outlet property="radiusSlider" destination="pkL-XT-6wo" id="eyc-P0-S6z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Th-Z3-fcb" userLabel="First Responder" sceneMemberID="firstResponder"/>

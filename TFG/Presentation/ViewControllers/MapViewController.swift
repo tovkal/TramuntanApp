@@ -11,8 +11,6 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     
-    var detailViewController: DetailViewController?
-    
     /// Map view outlet
     @IBOutlet weak var mapView: MKMapView! {
         didSet {

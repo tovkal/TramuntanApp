@@ -27,4 +27,20 @@ import Foundation
         
         return defaults.objectForKey(key)
     }
+    
+    /**
+    Get radius setting or default 30 in meters
+    
+    :returns: radius setting or default 30 * 1000
+    */
+    class func getRadiusInMeters() -> Float {
+        
+        var radius: Float = 30
+        
+        if let radiusSetting = getUserSetting(radiusSettingKey) as? Float where radiusSetting > 0 {
+            radius = radiusSetting
+        }
+        
+        return radius * 1000
+    }
 }

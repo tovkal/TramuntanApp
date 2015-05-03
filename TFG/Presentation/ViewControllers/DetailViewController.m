@@ -10,21 +10,33 @@
 #import "TFG-Swift.h"
 
 @interface DetailViewController ()
+#pragma mark Detail view
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *altitudeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *wikiIcon;
-@property (weak, nonatomic) IBOutlet UIImageView *raidusIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *radiusIcon;
 
 @property (strong, nonatomic) NSString *wikiUrl;
 
 @property (strong, nonatomic) DetailView *detailView;
 
-@property (strong, nonatomic) ARViewController *parent;
-
 @end
 
 @implementation DetailViewController
+
++ (DetailViewController *)sharedInstance
+{
+    static dispatch_once_t once;
+    static id sharedInstance;
+    dispatch_once(&once, ^{
+        sharedInstance = [[self alloc] init];
+    });
+    
+    return sharedInstance;
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -33,6 +45,14 @@
     self.detailView = (DetailView *)self.view;
 }
 
+/**
+ *  Update labels with mountain info
+ *
+ *  @param name     mountain name
+ *  @param distance mountain distance
+ *  @param altitude mountain altitude
+ *  @param url      mountain url to wikipedia
+ */
 - (void)showWithName:(NSString *)name distance:(NSString *)distance altitude:(NSString *)altitude wikiUrl:(NSString *)url
 {
     self.nameLabel.text = name;
@@ -51,13 +71,50 @@
     self.view.hidden = false;
 }
 
+/**
+ *  Handle tap in the wiki and radius icons
+ *
+ *  @param sender which icon was tapped
+ */
 - (IBAction)handleTap:(UITapGestureRecognizer *)sender
+{
+    switch (sender.view.tag) {
+        case 1:
+            [self handleWikiTap];
+            break;
+        case 2:
+            [self handleRadiusTap];
+            break;
+        default:
+            break;
+    }
+}
+
+/**
+ *  Handle tap on the wiki icon, opening page in web browser
+ */
+- (void)handleWikiTap
 {
     if (self.wikiUrl != nil) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.wikiUrl]];
     }
 }
 
+/**
+ *  Show or hide raidus view
+ */
+- (void)handleRadiusTap
+{
+    self.radiusIcon.highlighted = !self.radiusIcon.highlighted;
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(radiusMenuShouldHide:)]) {
+        [self.delegate radiusMenuShouldHide:!self.radiusIcon.highlighted];
+    }
+}
+
+/**
+ *  Hide detail view if visible
+ */
 - (void)hide
 {
     if (!self.detailView.hidden && !self.detailView.isFadingOut) {

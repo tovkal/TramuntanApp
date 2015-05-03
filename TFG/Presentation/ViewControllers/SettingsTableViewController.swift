@@ -16,8 +16,6 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
     @IBOutlet weak var enableGPSMessageSwitch: UISwitch!
     @IBOutlet weak var datasourceControl: UISegmentedControl!
     @IBOutlet weak var ignoreGPSSignal: UISwitch!
-    @IBOutlet weak var radiusSlider: UISlider!
-    @IBOutlet var radiusLabel: UILabel!
     @IBOutlet weak var horizontalFOVLabel: UILabel!
     
     override func viewDidLoad() {
@@ -52,11 +50,6 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
         
         if let ignoreGPSSignal = Utils.getUserSetting(ignoreGPSSignalSettingKey) as? Bool {
             self.ignoreGPSSignal.on = ignoreGPSSignal
-        }
-        
-        if let radius = Utils.getUserSetting(radiusSettingKey) as? Float {
-            self.radiusSlider.value = radius
-            updateRadiusLable(Int(self.radiusSlider.value))
         }
         
         if let fov = Utils.getUserSetting(fovSettingKey) as? Float {
@@ -104,14 +97,5 @@ class SettingsTableViewController: UITableViewController, UITabBarControllerDele
         default:
             break;
         }
-    }
-    
-    @IBAction func radiusDidChange(sender: UISlider) {
-        Utils.saveUserSetting(radiusSettingKey, value: sender.value)
-        updateRadiusLable(Int(sender.value))
-    }
-    
-    private func updateRadiusLable(value: Int) {
-        self.radiusLabel.text = "Radius: \(value) km."
     }
 }

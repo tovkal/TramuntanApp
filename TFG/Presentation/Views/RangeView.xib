@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RangeViewController">
+            <connections>
+                <outlet property="distanceLabel" destination="0Y5-30-iWB" id="ckR-6U-tus"/>
+                <outlet property="rangeSlider" destination="6KV-G8-0JV" id="bR9-A0-efP"/>
+                <outlet property="view" destination="AHr-vG-fJb" id="LOr-nx-h7c"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="AHr-vG-fJb" customClass="RangeView" customModule="TFG" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="275" height="73"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Y5-30-iWB">
+                    <rect key="frame" x="202" y="27" width="65" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="65" id="r8e-Pj-BLQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="1" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="6KV-G8-0JV">
+                    <rect key="frame" x="6" y="23" width="190" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="186" id="tOY-HH-stc"/>
+                    </constraints>
+                    <color key="maximumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <action selector="handleRangeChange:" destination="-1" eventType="valueChanged" id="ECh-CA-WSa"/>
+                    </connections>
+                </slider>
+            </subviews>
+            <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="0Y5-30-iWB" firstAttribute="leading" secondItem="6KV-G8-0JV" secondAttribute="trailing" constant="8" id="A8p-Q6-5mz"/>
+                <constraint firstItem="0Y5-30-iWB" firstAttribute="top" secondItem="AHr-vG-fJb" secondAttribute="top" constant="27" id="jF1-6z-tcp"/>
+                <constraint firstItem="6KV-G8-0JV" firstAttribute="leading" secondItem="AHr-vG-fJb" secondAttribute="leading" constant="8" id="tCx-Bm-rtt"/>
+                <constraint firstItem="6KV-G8-0JV" firstAttribute="top" secondItem="AHr-vG-fJb" secondAttribute="top" constant="23" id="vy1-bY-enQ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="461.5" y="69.5"/>
+        </view>
+    </objects>
+</document>

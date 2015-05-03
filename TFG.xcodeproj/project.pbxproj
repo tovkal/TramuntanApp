@@ -11,7 +11,10 @@
 		9515217A1984F364002244D8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 951521791984F364002244D8 /* AVFoundation.framework */; };
 		951A97731ADD7AD8007EC58C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 951A97721ADD7AD8007EC58C /* Constants.m */; };
 		9529062719F94CF1008CDB86 /* MountainUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9529062619F94CF1008CDB86 /* MountainUIImageView.swift */; };
+		9530819F1AF616B200304D3F /* RangeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9530819D1AF616B200304D3F /* RangeView.xib */; };
 		953FB5181983F91D00D2CE2F /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5151983F91D00D2CE2F /* ARView.m */; };
+		95816E3F1AF61833005B72E1 /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95816E3E1AF61833005B72E1 /* RangeView.swift */; };
+		95816E421AF6238D005B72E1 /* RangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95816E411AF6238D005B72E1 /* RangeViewController.m */; };
 		95876FBA1A8E6417008DEF0D /* muntanyes8.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95876FB91A8E6417008DEF0D /* muntanyes8.xml */; };
 		959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 959023C119A12BEF00ACDD5F /* Images.xcassets */; };
 		9591623E1AF4CD4D000DB5D7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9591623D1AF4CD4D000DB5D7 /* DetailViewController.m */; };
@@ -66,10 +69,14 @@
 		951521791984F364002244D8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		951A97721ADD7AD8007EC58C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		9529062619F94CF1008CDB86 /* MountainUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainUIImageView.swift; sourceTree = "<group>"; };
+		9530819D1AF616B200304D3F /* RangeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RangeView.xib; sourceTree = "<group>"; };
 		9533D3E21A91158D0045BE1F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		953FB5141983F91D00D2CE2F /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARView.h; sourceTree = "<group>"; };
 		953FB5151983F91D00D2CE2F /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARView.m; sourceTree = "<group>"; };
 		9543242C1ADAF41F00579146 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
+		95816E3E1AF61833005B72E1 /* RangeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeView.swift; sourceTree = "<group>"; };
+		95816E401AF6238D005B72E1 /* RangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeViewController.h; sourceTree = "<group>"; };
+		95816E411AF6238D005B72E1 /* RangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeViewController.m; sourceTree = "<group>"; };
 		95876FB91A8E6417008DEF0D /* muntanyes8.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = muntanyes8.xml; sourceTree = "<group>"; };
 		959023C119A12BEF00ACDD5F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9591623C1AF4CD4D000DB5D7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -208,6 +215,8 @@
 				953FB5141983F91D00D2CE2F /* ARView.h */,
 				953FB5151983F91D00D2CE2F /* ARView.m */,
 				95A5DD721AE419E100CC8E0E /* MountainPin.swift */,
+				9530819D1AF616B200304D3F /* RangeView.xib */,
+				95816E3E1AF61833005B72E1 /* RangeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -221,6 +230,8 @@
 				95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */,
 				9591623C1AF4CD4D000DB5D7 /* DetailViewController.h */,
 				9591623D1AF4CD4D000DB5D7 /* DetailViewController.m */,
+				95816E401AF6238D005B72E1 /* RangeViewController.h */,
+				95816E411AF6238D005B72E1 /* RangeViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -407,6 +418,7 @@
 			files = (
 				95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */,
 				95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */,
+				9530819F1AF616B200304D3F /* RangeView.xib in Resources */,
 				959023C219A12BEF00ACDD5F /* Images.xcassets in Resources */,
 				95876FBA1A8E6417008DEF0D /* muntanyes8.xml in Resources */,
 				95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */,
@@ -491,8 +503,10 @@
 				95FBAC00197AF30700160544 /* ARViewController.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,
 				959BB5A819ED890E0088251D /* TargetView.swift in Sources */,
+				95816E421AF6238D005B72E1 /* RangeViewController.m in Sources */,
 				951A97731ADD7AD8007EC58C /* Constants.m in Sources */,
 				95A5DD751AE41E4A00CC8E0E /* String+DoubleValue.swift in Sources */,
+				95816E3F1AF61833005B72E1 /* RangeView.swift in Sources */,
 				95A5DD641AE3AC4100CC8E0E /* MapViewController.swift in Sources */,
 				9591623E1AF4CD4D000DB5D7 /* DetailViewController.m in Sources */,
 			);

@@ -9,13 +9,13 @@
                 <outlet property="altitudeLabel" destination="WEw-ib-IcX" id="dlw-rz-J7Z"/>
                 <outlet property="distanceLabel" destination="3yB-8q-WQi" id="nMn-5j-RaS"/>
                 <outlet property="nameLabel" destination="aEG-nU-ajy" id="OCh-1j-zgI"/>
-                <outlet property="raidusIcon" destination="Hwn-TQ-Xwq" id="RLQ-J6-oKh"/>
+                <outlet property="radiusIcon" destination="Hwn-TQ-Xwq" id="eec-MG-Bed"/>
                 <outlet property="view" destination="WFE-gX-Ixo" id="Y3y-OY-Q1m"/>
                 <outlet property="wikiIcon" destination="ZEp-oT-4hs" id="PTj-6g-atH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" alpha="0.69999998807907104" contentMode="scaleToFill" id="WFE-gX-Ixo" customClass="DetailView" customModule="TFG" customModuleProvider="target">
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="WFE-gX-Ixo" customClass="DetailView" customModule="TFG" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="275" height="130"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -29,7 +29,7 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wikipedia" translatesAutoresizingMaskIntoConstraints="NO" id="ZEp-oT-4hs">
+                <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wikipedia" translatesAutoresizingMaskIntoConstraints="NO" id="ZEp-oT-4hs">
                     <rect key="frame" x="227" y="16" width="40" height="40"/>
                     <gestureRecognizers/>
                     <constraints>
@@ -40,17 +40,17 @@
                         <outletCollection property="gestureRecognizers" destination="rRx-Ug-4eB" appends="YES" id="0nh-KW-Vxb"/>
                     </connections>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345.67 km." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-8q-WQi">
-                    <rect key="frame" x="8" y="100" width="105" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345.67 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yB-8q-WQi">
+                    <rect key="frame" x="8" y="100" width="100" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="105" id="OvX-f6-Za1"/>
+                        <constraint firstAttribute="width" constant="100" id="OvX-f6-Za1"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234.56 km." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEw-ib-IcX">
-                    <rect key="frame" x="121" y="100" width="97" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234.56 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEw-ib-IcX">
+                    <rect key="frame" x="116" y="100" width="97" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="97" id="wVS-AT-gZg"/>
                     </constraints>
@@ -65,12 +65,15 @@
                         <constraint firstAttribute="height" constant="25" id="ZI6-f9-hte"/>
                     </constraints>
                 </imageView>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radius" highlightedImage="radius_highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="Hwn-TQ-Xwq">
+                <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radius" highlightedImage="radius_highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="Hwn-TQ-Xwq">
                     <rect key="frame" x="227" y="70" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="0kJ-GN-Xzg"/>
                         <constraint firstAttribute="width" constant="40" id="nkJ-IK-wBh"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="rRx-Ug-4eB" appends="YES" id="LRc-ur-fFr"/>
+                    </connections>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mountain_height" translatesAutoresizingMaskIntoConstraints="NO" id="v9B-jC-nmb">
                     <rect key="frame" x="151" y="70" width="37" height="25"/>
@@ -79,7 +82,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Hwn-TQ-Xwq" secondAttribute="trailing" constant="8" id="1Yr-CG-PTj"/>
                 <constraint firstItem="WEw-ib-IcX" firstAttribute="top" secondItem="v9B-jC-nmb" secondAttribute="bottom" constant="5" id="1bl-fO-FDb"/>

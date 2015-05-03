@@ -302,7 +302,7 @@
     int i = 0;
     for (Mountain *poi in [self.pointsOfInterest objectEnumerator]) {
         
-        if (self.radius > poi.distance) {
+        if ([Utils getRadiusInMeters] > poi.distance) {
             
             vec4f_t v;
             

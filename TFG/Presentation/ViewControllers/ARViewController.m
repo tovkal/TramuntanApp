@@ -16,6 +16,7 @@
 #import "DataParser.h"
 #import "LocationController.h"
 #import "DetailViewController.h"
+#import "RangeViewController.H"
 
 @interface ARViewController ()
 {
@@ -48,7 +49,6 @@
 @property BOOL debugAltitude;
 @property BOOL debugAttitude;
 @property BOOL enableGPSMessage;
-@property float radius;
 @property BOOL ignoreGPSSignal;
 
 /**
@@ -66,6 +66,11 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
+#pragma mark Range view
+@property (strong, nonatomic) UIView *rangeViewContainer;
+
+@property (strong, nonatomic) RangeViewController *rangeViewController;
+
 @end
 
 @implementation ARViewController
@@ -81,6 +86,7 @@
     [self initARData];
     
     [self setupDetailView];
+    [self setupRangeView];
     
     self.arView.pointsOfInterest = self.pointsOfInterest;
 }
@@ -126,8 +132,6 @@
     self.debugAltitude = [(NSNumber *) [Utils getUserSetting:debugAltitudeSettingKey] boolValue];
     self.debugAttitude = [(NSNumber *) [Utils getUserSetting:debugAttitudeSettingKey] boolValue];
     self.enableGPSMessage = [(NSNumber *) [Utils getUserSetting:showGPSMessageSettingKey] boolValue];
-    self.radius = [(NSNumber *) [Utils getUserSetting:radiusSettingKey] floatValue] * 1000;
-    
     self.ignoreGPSSignal = [(NSNumber *) [Utils getUserSetting:ignoreGPSSignalSettingKey] boolValue];
 }
 
@@ -341,27 +345,19 @@
         Mountain *poi = (Mountain *)[self.pointsOfInterest objectAtIndex:(NSUInteger) distanceAndIndex->index];
         poi.distance = distanceAndIndex->distance;
         
-        if (self.radius > poi.distance) {
+        if ([Utils getRadiusInMeters] > poi.distance) {
             [view.mountainContainer addSubview:poi.view];
         }
     }
     
     view->pointsOfInterestCoordinates = pointsOfInterestCoordinates;
-    
-    // Set painting radius
-    if (self.radius == 0.0) {
-        view.radius = 30.0;
-    } else {
-        view.radius = self.radius;
-    }
-    
 }
 
 #pragma mark - Detail View
 
 - (void)setupDetailView
 {
-    self.detailViewController = [[DetailViewController alloc] init];
+    self.detailViewController = [DetailViewController sharedInstance];
     UIView *detailView = self.detailViewController.view;
     
     self.detailViewContainer = [[UIView alloc] initWithFrame:detailView.frame];
@@ -421,6 +417,28 @@
     } else {
         [self.detailViewController hide];
     }
+}
+
+#pragma mark - Range view
+- (void)setupRangeView
+{
+    self.rangeViewController = [RangeViewController sharedInstance];
+    UIView *rangeView = self.rangeViewController.view;
+    
+    self.rangeViewContainer = [[UIView alloc] initWithFrame:rangeView.frame];
+    self.rangeViewContainer.opaque = NO;
+    [self.rangeViewContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.view addSubview:self.rangeViewContainer];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:self.rangeViewContainer.frame.size.width]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:self.rangeViewContainer.frame.size.height]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:-5.0]];
+    
+    
+    [self.rangeViewContainer addSubview:rangeView];
+    [self.rangeViewController didMoveToParentViewController:self];
 }
 
 #pragma mark - Small utils
