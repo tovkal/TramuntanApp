@@ -66,6 +66,8 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 
+@property NSInteger lastMountain;
+
 #pragma mark Range view
 @property (strong, nonatomic) UIView *rangeViewContainer;
 
@@ -110,6 +112,8 @@
     [self startMotion];
     
     self.mountainInTargetTimer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(detectMountainInsideTarget) userInfo:nil repeats:YES];
+    
+    self.lastMountain = -1;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -411,6 +415,13 @@
 
 - (void)updateDetailViewForMountainIndex:(NSInteger)mountainIndex
 {
+    
+    if (mountainIndex != self.lastMountain) {
+        self.lastMountain = mountainIndex;
+    } else {
+        return;
+    }
+    
     if (mountainIndex != 0) {
         Mountain *mountain = [self.pointsOfInterest objectAtIndex:(NSUInteger) mountainIndex - 1];
         [self.detailViewController showWithName:mountain.name distance:[NSString stringWithFormat:@"%f", mountain.distance] altitude:[NSString stringWithFormat:@"%f", mountain.altitude] wikiUrl:mountain.wikiUrl];

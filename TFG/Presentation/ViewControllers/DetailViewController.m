@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 #import "TFG-Swift.h"
+#import <Pop/Pop.h>
 
 @interface DetailViewController ()
 #pragma mark Detail view
@@ -21,6 +22,8 @@
 @property (strong, nonatomic) NSString *wikiUrl;
 
 @property (strong, nonatomic) DetailView *detailView;
+
+@property CGFloat centerY;
 
 @end
 
@@ -43,6 +46,8 @@
     [super viewWillAppear:animated];
     
     self.detailView = (DetailView *)self.view;
+    self.detailView.hidden = YES;
+    self.centerY = self.detailView.center.y;
 }
 
 /**
@@ -67,8 +72,7 @@
         self.wikiIcon.hidden = YES; // Maybe set some alpha?
     }
     
-    self.view.alpha = 1.0;
-    self.view.hidden = false;
+    [self.detailView showWithAnimation:self.centerY];
 }
 
 /**
@@ -117,8 +121,8 @@
  */
 - (void)hide
 {
-    if (!self.detailView.hidden && !self.detailView.isFadingOut) {
-        [self.detailView fadeOut];
+    if (!self.detailView.hidden) {
+        [self.detailView hideWithAnimation];
     }
 }
 @end
