@@ -7,45 +7,68 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RangeViewController">
             <connections>
                 <outlet property="distanceLabel" destination="0Y5-30-iWB" id="ckR-6U-tus"/>
+                <outlet property="radiusIcon" destination="pnD-XD-WWK" id="bhd-MH-8LQ"/>
                 <outlet property="rangeSlider" destination="6KV-G8-0JV" id="bR9-A0-efP"/>
                 <outlet property="view" destination="AHr-vG-fJb" id="LOr-nx-h7c"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="AHr-vG-fJb" customClass="RangeView" customModule="TFG" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="275" height="73"/>
+            <rect key="frame" x="0.0" y="0.0" width="275" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Y5-30-iWB">
-                    <rect key="frame" x="202" y="27" width="65" height="21"/>
+                    <rect key="frame" x="209" y="20" width="65" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="65" id="r8e-Pj-BLQ"/>
+                        <constraint firstAttribute="width" constant="65" id="VD5-cW-Yb3"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="1" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="6KV-G8-0JV">
-                    <rect key="frame" x="6" y="23" width="190" height="31"/>
+                    <rect key="frame" x="56" y="16" width="147" height="31"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="186" id="tOY-HH-stc"/>
+                        <constraint firstAttribute="width" constant="143" id="oif-GG-4dv"/>
                     </constraints>
                     <color key="maximumTrackTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <action selector="handleRangeChange:" destination="-1" eventType="valueChanged" id="ECh-CA-WSa"/>
                     </connections>
                 </slider>
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radius" highlightedImage="radius_highlighted" translatesAutoresizingMaskIntoConstraints="NO" id="pnD-XD-WWK">
+                    <rect key="frame" x="10" y="10" width="40" height="40"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="18U-gJ-rsN"/>
+                        <constraint firstAttribute="width" constant="40" id="bnl-1q-sZE"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="rC2-py-rAU" appends="YES" id="O6I-ox-s1g"/>
+                    </connections>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="0.75" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="0Y5-30-iWB" firstAttribute="leading" secondItem="6KV-G8-0JV" secondAttribute="trailing" constant="8" id="A8p-Q6-5mz"/>
-                <constraint firstItem="0Y5-30-iWB" firstAttribute="top" secondItem="AHr-vG-fJb" secondAttribute="top" constant="27" id="jF1-6z-tcp"/>
-                <constraint firstItem="6KV-G8-0JV" firstAttribute="leading" secondItem="AHr-vG-fJb" secondAttribute="leading" constant="8" id="tCx-Bm-rtt"/>
-                <constraint firstItem="6KV-G8-0JV" firstAttribute="top" secondItem="AHr-vG-fJb" secondAttribute="top" constant="23" id="vy1-bY-enQ"/>
+                <constraint firstItem="pnD-XD-WWK" firstAttribute="top" secondItem="AHr-vG-fJb" secondAttribute="top" constant="10" id="0Fy-7Q-xPt"/>
+                <constraint firstItem="6KV-G8-0JV" firstAttribute="leading" secondItem="pnD-XD-WWK" secondAttribute="trailing" constant="8" id="3Kd-4S-Y82"/>
+                <constraint firstItem="0Y5-30-iWB" firstAttribute="top" secondItem="AHr-vG-fJb" secondAttribute="top" constant="20" id="D5H-Pi-usW"/>
+                <constraint firstItem="0Y5-30-iWB" firstAttribute="leading" secondItem="6KV-G8-0JV" secondAttribute="trailing" constant="8" id="lct-GR-egP"/>
+                <constraint firstItem="pnD-XD-WWK" firstAttribute="leading" secondItem="AHr-vG-fJb" secondAttribute="leading" constant="10" id="nG1-Q3-uSk"/>
+                <constraint firstItem="6KV-G8-0JV" firstAttribute="top" secondItem="AHr-vG-fJb" secondAttribute="top" constant="16" id="xsP-dW-Zi9"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="461.5" y="69.5"/>
+            <point key="canvasLocation" x="457.5" y="70.5"/>
         </view>
+        <tapGestureRecognizer id="rC2-py-rAU">
+            <connections>
+                <action selector="handleRadiusIconTap:" destination="-1" id="ojV-j1-Nzw"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="radius" width="40" height="40"/>
+        <image name="radius_highlighted" width="40" height="40"/>
+    </resources>
 </document>

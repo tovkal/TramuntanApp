@@ -11,7 +11,6 @@ import UIKit
 class RangeView: UIView {
     
     override func drawRect(rect: CGRect) {
-        self.layer.cornerRadius = 5
         self.layer.masksToBounds = true
     }
 }

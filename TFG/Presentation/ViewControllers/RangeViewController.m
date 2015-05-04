@@ -9,11 +9,16 @@
 #import "RangeViewController.h"
 #import "TFG-Swift.h"
 #import "Constants.h"
+#import <Pop/Pop.h>
 
 @interface RangeViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *radiusIcon;
 @property (weak, nonatomic) IBOutlet UISlider *rangeSlider;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+
+@property CGRect realRangeViewFrame;
+@property CGRect dwarfedRangeViewFrame;
 
 @end
 
@@ -44,8 +49,78 @@
         
         self.rangeSlider.value = value.floatValue;
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+        
+    self.realRangeViewFrame = self.view.frame;
     
-    self.view.hidden = YES;
+    CGRect frame = self.view.frame;
+    frame.size.width = self.radiusIcon.frame.size.width + self.radiusIcon.frame.origin.x * 2;
+    self.view.frame = frame;
+    
+    self.dwarfedRangeViewFrame = frame;
+    
+    self.rangeSlider.hidden = YES;
+    self.distanceLabel.hidden = YES;
+    
+    self.view.layer.cornerRadius = self.view.frame.size.width / 2;
+}
+
+- (IBAction)handleRadiusIconTap:(UITapGestureRecognizer *)sender
+{
+    if (!self.radiusIcon.highlighted) {
+        
+        [self.view.layer pop_removeAnimationForKey:@"makeRound"];
+        [self.view pop_removeAnimationForKey:@"makeSmall"];
+        
+        POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+        animation.toValue = [NSValue valueWithCGRect:self.realRangeViewFrame];
+        animation.springBounciness = 10;
+        animation.springSpeed = 5;
+        animation.animationDidStartBlock = ^(POPAnimation *anim) {
+            self.rangeSlider.hidden = NO;
+            self.distanceLabel.hidden = NO;
+            self.radiusIcon.highlighted = YES;
+        };
+        animation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+            self.rangeSlider.hidden = NO;
+            self.distanceLabel.hidden = NO;
+            self.radiusIcon.highlighted = YES;
+        };
+        [self.view pop_addAnimation:animation forKey:@"makeBig"];
+        
+        POPSpringAnimation *cornerAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerCornerRadius];
+        cornerAnim.toValue = @(5.0f);
+        cornerAnim.springBounciness = 10;
+        cornerAnim.springSpeed = 6;
+        [self.view.layer pop_addAnimation:cornerAnim forKey:@"makeRoundedRect"];
+    } else {
+        
+        [self.view pop_removeAnimationForKey:@"makeBig"];
+        [self.view.layer pop_removeAnimationForKey:@"makeRoundedRect"];
+        
+        POPSpringAnimation *cornerRadiusAnim = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerCornerRadius];
+        cornerRadiusAnim.toValue = @(self.dwarfedRangeViewFrame.size.width / 2);
+        cornerRadiusAnim.springBounciness = 10;
+        cornerRadiusAnim.springSpeed = 5;
+        [self.view.layer pop_addAnimation:cornerRadiusAnim forKey:@"makeRound"];
+        
+        POPSpringAnimation *animation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+        animation.toValue = [NSValue valueWithCGRect:self.dwarfedRangeViewFrame];
+        animation.springBounciness = 10;
+        animation.springSpeed = 5;
+        animation.animationDidStartBlock = ^(POPAnimation *anim) {
+            self.rangeSlider.hidden = YES;
+            self.distanceLabel.hidden = YES;
+        };
+        animation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+            self.radiusIcon.highlighted = NO;
+        };
+        [self.view pop_addAnimation:animation forKey:@"makeSmall"];
+    }
 }
 
 - (IBAction)handleRangeChange:(UISlider *)sender

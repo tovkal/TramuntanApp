@@ -220,7 +220,6 @@
     }
     
     if (self.pointsOfInterest != nil && [self isAccuracyGoodForLocation:location]) {
-        NSLog(@"Location is good enough");
         [self updatePointsOfInterestCoordinatesWithLocation:location];
     }
 }
@@ -443,10 +442,9 @@
     [self.view addSubview:self.rangeViewContainer];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:self.rangeViewContainer.frame.size.width]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:self.rangeViewContainer.frame.size.height]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:-5.0]];
-    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:self.rangeViewContainer.frame.size.height]];    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:-10.0]];
     
     [self.rangeViewContainer addSubview:rangeView];
     [self.rangeViewController didMoveToParentViewController:self];
