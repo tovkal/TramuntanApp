@@ -43,7 +43,7 @@
     
     [DetailViewController sharedInstance].delegate = self;
     
-    NSNumber *value = [Utils getUserSetting:radiusSettingKey];
+    NSNumber *value = [[Utils sharedInstance] getUserSetting:radiusSettingKey];
     if (value != nil) {
         [self setDistance:value.floatValue];
         
@@ -54,7 +54,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-        
+    
     self.realRangeViewFrame = self.view.frame;
     
     CGRect frame = self.view.frame;
@@ -127,7 +127,7 @@
 {
     [self setDistance:sender.value];
     
-    [Utils saveUserSetting:radiusSettingKey value:[NSNumber numberWithFloat:sender.value]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:rangeNotification object:self userInfo:@{radiusSettingKey: [NSNumber numberWithFloat:sender.value]}];
 }
 
 /**

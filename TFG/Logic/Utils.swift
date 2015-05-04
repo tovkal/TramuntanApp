@@ -8,12 +8,37 @@
 
 import Foundation
 
-@objc class Utils {
+@objc class Utils: NSObject {
+    
+    private var lastRadius: Float?
     
     // class let datasourceSettingKey = "datasource" // Not suported yet, set in Constants.h
     
+    // swiftSharedInstance is not accessible from ObjC
+    class var swiftSharedInstance: Utils {
+        struct Singleton {
+            static let instance = Utils()
+        }
+        return Singleton.instance
+    }
+    
+    // the sharedInstance class method can be reached from ObjC
+    class func sharedInstance() -> Utils {
+        return Utils.swiftSharedInstance
+    }
+    
+    override init() {
+        super.init()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRangeSetting:", name: rangeNotification, object: nil)
+        
+        if let radius = getUserSetting(radiusSettingKey) as? Float where radius > 0 {
+            self.lastRadius = radius
+        }
+    }
+    
     // Save an object in NSUserDefaults for a given key
-    class func saveUserSetting(key: String, value: AnyObject) {
+    func saveUserSetting(key: String, value: AnyObject) {
         var defaults = NSUserDefaults.standardUserDefaults()
         
         defaults.setObject(value, forKey: key)
@@ -22,7 +47,7 @@ import Foundation
     }
     
     // Fetch an object in NSUSerDefaults for a given key
-    class func getUserSetting(key: String) -> AnyObject? {
+    func getUserSetting(key: String) -> AnyObject? {
         var defaults = NSUserDefaults.standardUserDefaults()
         
         return defaults.objectForKey(key)
@@ -33,14 +58,23 @@ import Foundation
     
     :returns: radius setting or default 30 * 1000
     */
-    class func getRadiusInMeters() -> Float {
+    func getRadiusInMeters() -> Float {
         
         var radius: Float = 30
         
-        if let radiusSetting = getUserSetting(radiusSettingKey) as? Float where radiusSetting > 0 {
-            radius = radiusSetting
+        if self.lastRadius != nil {
+            radius = self.lastRadius!
         }
         
         return radius * 1000
+    }
+    
+    @objc private func updateRangeSetting(notification: NSNotification) {
+        if let userInfo = notification.userInfo as? Dictionary<String, Float> {
+            if let newRadius = userInfo[radiusSettingKey] {
+                self.lastRadius = newRadius
+                saveUserSetting(radiusSettingKey, value: newRadius)
+            }
+        }
     }
 }

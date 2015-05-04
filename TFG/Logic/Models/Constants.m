@@ -16,3 +16,5 @@ NSString *const datasourceSettingKey = @"datasource";
 NSString *const ignoreGPSSignalSettingKey = @"ignoreGPSSignal";
 NSString *const radiusSettingKey = @"radius";
 NSString *const fovSettingKey = @"fovSettingKey";
+
+NSString *const rangeNotification = @"rangeNotification";

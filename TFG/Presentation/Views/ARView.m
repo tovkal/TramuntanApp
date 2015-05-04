@@ -288,8 +288,8 @@
     }
     
     if (!self.fovIsSaved) {
-        if ((NSString *)  [Utils getUserSetting:fovSettingKey] == nil) {
-            [Utils saveUserSetting:fovSettingKey value:[NSNumber numberWithFloat:self.videoDeviceInput.activeFormat.videoFieldOfView]];
+        if ((NSString *)  [[Utils sharedInstance] getUserSetting:fovSettingKey] == nil) {
+            [[Utils sharedInstance] saveUserSetting:fovSettingKey value:[NSNumber numberWithFloat:self.videoDeviceInput.activeFormat.videoFieldOfView]];
             self.fovIsSaved = FALSE;
         } else {
             self.fovIsSaved = YES;
@@ -302,7 +302,7 @@
     int i = 0;
     for (Mountain *poi in [self.pointsOfInterest objectEnumerator]) {
         
-        if ([Utils getRadiusInMeters] > poi.distance) {
+        if ([[Utils sharedInstance] getRadiusInMeters] > poi.distance) {
             
             vec4f_t v;
             

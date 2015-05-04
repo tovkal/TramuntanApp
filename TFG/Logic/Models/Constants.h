@@ -16,3 +16,6 @@ extern NSString *const datasourceSettingKey;
 extern NSString *const ignoreGPSSignalSettingKey;
 extern NSString *const radiusSettingKey;
 extern NSString *const fovSettingKey;
+
+extern NSString *const rangeNotification;
+

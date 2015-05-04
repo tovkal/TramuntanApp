@@ -132,11 +132,11 @@
 
 - (void)updateSettings
 {
-    self.debugLocation = [(NSNumber *) [Utils getUserSetting:debugLocationSettingKey] boolValue];
-    self.debugAltitude = [(NSNumber *) [Utils getUserSetting:debugAltitudeSettingKey] boolValue];
-    self.debugAttitude = [(NSNumber *) [Utils getUserSetting:debugAttitudeSettingKey] boolValue];
-    self.enableGPSMessage = [(NSNumber *) [Utils getUserSetting:showGPSMessageSettingKey] boolValue];
-    self.ignoreGPSSignal = [(NSNumber *) [Utils getUserSetting:ignoreGPSSignalSettingKey] boolValue];
+    self.debugLocation = [(NSNumber *) [[Utils sharedInstance] getUserSetting:debugLocationSettingKey] boolValue];
+    self.debugAltitude = [(NSNumber *) [[Utils sharedInstance] getUserSetting:debugAltitudeSettingKey] boolValue];
+    self.debugAttitude = [(NSNumber *) [[Utils sharedInstance] getUserSetting:debugAttitudeSettingKey] boolValue];
+    self.enableGPSMessage = [(NSNumber *) [[Utils sharedInstance] getUserSetting:showGPSMessageSettingKey] boolValue];
+    self.ignoreGPSSignal = [(NSNumber *) [[Utils sharedInstance] getUserSetting:ignoreGPSSignalSettingKey] boolValue];
 }
 
 #pragma mark - Target view
@@ -348,7 +348,7 @@
         Mountain *poi = (Mountain *)[self.pointsOfInterest objectAtIndex:(NSUInteger) distanceAndIndex->index];
         poi.distance = distanceAndIndex->distance;
         
-        if ([Utils getRadiusInMeters] > poi.distance) {
+        if ([[Utils sharedInstance] getRadiusInMeters] > poi.distance) {
             [view.mountainContainer addSubview:poi.view];
         }
     }

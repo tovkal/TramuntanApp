@@ -15,8 +15,8 @@
 
 -(BOOL) application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // If no default datasource is set, use muntanyes8
-    if ([Utils getUserSetting:datasourceSettingKey] == nil) {
-        [Utils saveUserSetting:datasourceSettingKey value:@"muntanyes8"];
+    if ([[Utils sharedInstance] getUserSetting:datasourceSettingKey] == nil) {
+        [[Utils sharedInstance] saveUserSetting:datasourceSettingKey value:@"muntanyes8"];
     }
     
     [[LocationController sharedInstance] startLocation];

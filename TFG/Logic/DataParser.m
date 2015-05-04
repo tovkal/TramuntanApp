@@ -43,7 +43,7 @@
 {
     if (self = [super init]) {
         
-        self.lastKnownDatasource = [Utils getUserSetting:datasourceSettingKey];
+        self.lastKnownDatasource = [[Utils sharedInstance] getUserSetting:datasourceSettingKey];
         
         [self parseData]; // Don't do this in a background thread, is part of AR init
         
@@ -126,7 +126,7 @@
  */
 - (void)defaultsChanged:(NSNotification *)notification
 {
-    if (![self.lastKnownDatasource isEqualToString:(NSString *)[Utils getUserSetting:datasourceSettingKey]]) {
+    if (![self.lastKnownDatasource isEqualToString:(NSString *)[[Utils  sharedInstance] getUserSetting:datasourceSettingKey]]) {
         exit(0);
     }
 }
