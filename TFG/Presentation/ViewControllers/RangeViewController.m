@@ -13,9 +13,13 @@
 
 @interface RangeViewController ()
 
+#pragma mark View outlets
+
 @property (weak, nonatomic) IBOutlet UIImageView *radiusIcon;
-@property (weak, nonatomic) IBOutlet UISlider *rangeSlider;
+@property (weak, nonatomic) IBOutlet UISlider *radiusSlider;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+
+#pragma mark Frame values
 
 @property CGRect realRangeViewFrame;
 @property CGRect dwarfedRangeViewFrame;
@@ -24,22 +28,13 @@
 
 @implementation RangeViewController
 
-+ (RangeViewController *)sharedInstance
-{
-    static dispatch_once_t once;
-    static id sharedInstance;
-    dispatch_once(&once, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    
-    return sharedInstance;
-}
+#pragma mark - View controller methods
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self.rangeSlider setMaximumTrackTintColor:[UIColor blackColor]];
+    [self.radiusSlider setMaximumTrackTintColor:[UIColor blackColor]];
     
     [DetailViewController sharedInstance].delegate = self;
     
@@ -47,15 +42,15 @@
     if (value != nil) {
         [self setDistance:value.floatValue];
         
-        self.rangeSlider.value = value.floatValue;
+        self.radiusSlider.value = value.floatValue;
     }
+    
+    self.realRangeViewFrame = self.view.frame;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    self.realRangeViewFrame = self.view.frame;
     
     CGRect frame = self.view.frame;
     frame.size.width = self.radiusIcon.frame.size.width + self.radiusIcon.frame.origin.x * 2;
@@ -63,11 +58,27 @@
     
     self.dwarfedRangeViewFrame = frame;
     
-    self.rangeSlider.hidden = YES;
+    self.radiusSlider.hidden = YES;
     self.distanceLabel.hidden = YES;
     
     self.view.layer.cornerRadius = self.view.frame.size.width / 2;
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    self.radiusIcon.highlighted = NO;
+}
+
+- (void)removeFromParentViewController
+{
+    [super removeFromParentViewController];
+    
+    self.radiusIcon.highlighted = NO;
+}
+
+# pragma mark - Gesture recognizers
 
 - (IBAction)handleRadiusIconTap:(UITapGestureRecognizer *)sender
 {
@@ -81,12 +92,12 @@
         animation.springBounciness = 10;
         animation.springSpeed = 5;
         animation.animationDidStartBlock = ^(POPAnimation *anim) {
-            self.rangeSlider.hidden = NO;
+            self.radiusSlider.hidden = NO;
             self.distanceLabel.hidden = NO;
             self.radiusIcon.highlighted = YES;
         };
         animation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
-            self.rangeSlider.hidden = NO;
+            self.radiusSlider.hidden = NO;
             self.distanceLabel.hidden = NO;
             self.radiusIcon.highlighted = YES;
         };
@@ -113,7 +124,7 @@
         animation.springBounciness = 10;
         animation.springSpeed = 5;
         animation.animationDidStartBlock = ^(POPAnimation *anim) {
-            self.rangeSlider.hidden = YES;
+            self.radiusSlider.hidden = YES;
             self.distanceLabel.hidden = YES;
         };
         animation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
@@ -129,6 +140,8 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:rangeNotification object:self userInfo:@{radiusSettingKey: [NSNumber numberWithFloat:sender.value]}];
 }
+
+#pragma mark - View methods
 
 /**
  *  Set distance label text

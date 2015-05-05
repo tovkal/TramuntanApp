@@ -70,7 +70,6 @@
 
 #pragma mark Range view
 @property (strong, nonatomic) UIView *rangeViewContainer;
-
 @property (strong, nonatomic) RangeViewController *rangeViewController;
 
 @end
@@ -114,6 +113,10 @@
     self.mountainInTargetTimer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(detectMountainInsideTarget) userInfo:nil repeats:YES];
     
     self.lastMountain = -1;
+    
+    [self addChildViewController:self.rangeViewController];
+    [self.rangeViewContainer addSubview:self.rangeViewController.view];
+    [self.rangeViewController didMoveToParentViewController:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -128,6 +131,10 @@
     [self.arView stop];
     [self stopMotion];
     [self dismissGPSHUD];
+    
+    [self.rangeViewController willMoveToParentViewController:nil];
+    [self.rangeViewController.view removeFromSuperview];
+    [self.rangeViewController removeFromParentViewController];
 }
 
 - (void)updateSettings
@@ -432,7 +439,8 @@
 #pragma mark - Range view
 - (void)setupRangeView
 {
-    self.rangeViewController = [RangeViewController sharedInstance];
+    self.rangeViewController = [[RangeViewController alloc] init];
+    
     UIView *rangeView = self.rangeViewController.view;
     
     self.rangeViewContainer = [[UIView alloc] initWithFrame:rangeView.frame];
@@ -442,12 +450,9 @@
     [self.view addSubview:self.rangeViewContainer];
     
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeWidth multiplier:1 constant:self.rangeViewContainer.frame.size.width]];
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:self.rangeViewContainer.frame.size.height]];    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:0]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeHeight multiplier:1 constant:self.rangeViewContainer.frame.size.height]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeadingMargin multiplier:1 constant:-5]];
     [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.rangeViewContainer attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.bottomLayoutGuide attribute:NSLayoutAttributeTop multiplier:1.0 constant:-10.0]];
-    
-    [self.rangeViewContainer addSubview:rangeView];
-    [self.rangeViewController didMoveToParentViewController:self];
 }
 
 #pragma mark - Small utils

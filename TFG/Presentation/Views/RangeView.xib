@@ -8,7 +8,7 @@
             <connections>
                 <outlet property="distanceLabel" destination="0Y5-30-iWB" id="ckR-6U-tus"/>
                 <outlet property="radiusIcon" destination="pnD-XD-WWK" id="bhd-MH-8LQ"/>
-                <outlet property="rangeSlider" destination="6KV-G8-0JV" id="bR9-A0-efP"/>
+                <outlet property="radiusSlider" destination="6KV-G8-0JV" id="CqR-12-xIs"/>
                 <outlet property="view" destination="AHr-vG-fJb" id="LOr-nx-h7c"/>
             </connections>
         </placeholder>

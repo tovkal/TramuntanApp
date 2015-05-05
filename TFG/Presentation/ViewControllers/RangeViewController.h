@@ -11,11 +11,4 @@
 
 @interface RangeViewController : UIViewController <RadiusIconTapped>
 
-/**
- *  Shared instance
- *
- *  @return Singleton instance
- */
-+ (RangeViewController *)sharedInstance;
-
 @end
