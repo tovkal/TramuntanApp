@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DetailViewController.h"
 
-@interface RangeViewController : UIViewController <RadiusIconTapped>
+@interface RangeViewController : UIViewController
 
 @end

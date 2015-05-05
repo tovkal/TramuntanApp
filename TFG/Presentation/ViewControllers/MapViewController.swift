@@ -37,6 +37,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         addMountainsToMap()
         
         setupRangeView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRangeSetting:", name: rangeNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -128,6 +130,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             annotationView.rightCalloutAccessoryView = nil
         }
         
+        annotationView.hidden = senderAnnotation.distance > (Utils.sharedInstance().getRadiusInMeters()) ? true : false
+        
         return annotationView
     }
     
@@ -145,20 +149,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     */
     private func addMountainsToMap() {
         
-        let mountains = DataParser.sharedParser().mountains as NSMutableArray
+        for element in Store.sharedInstance().getPointsOfInterest() {
+            if let mountain = element as? Mountain {
+                self.mapView.addAnnotation(MountainPin(coordinate: mountain.location.coordinate, title: mountain.name, subtitle: "Elevation: \(mountain.altitude) m.", url: mountain.wikiUrl, distance: mountain.distance))
+            }
+        }
+    }
+    
+    // MARK: - Range setting handler
+    @objc private func updateRangeSetting(notification: NSNotification) {
         
-        for mountain in mountains {
-            if let
-                name = mountain.valueForKey("name") as? String,
-                lat = (mountain.valueForKey("lat") as? String)?.doubleValue(),
-                lon = (mountain.valueForKey("lon") as? String)?.doubleValue(),
-                ele = mountain.valueForKey("ele") as? String,
-                url = mountain.valueForKey("wikipedia") as? String
-            {
-                
-                let mountainPin = MountainPin(coordinate: CLLocationCoordinate2DMake(lat, lon), title: name, subtitle: "Elevation: \(ele) m.", url: url)
-                
-                self.mapView.addAnnotation(mountainPin)
+        let annotations = self.mapView.annotations
+        for element in annotations {
+            if let annotation = element as? MountainPin {
+                if self.mapView.viewForAnnotation(annotation) != nil {
+                    self.mapView.viewForAnnotation(annotation).hidden = annotation.distance > Utils.sharedInstance().getRadiusInMeters() ? true : false
+                }
             }
         }
     }

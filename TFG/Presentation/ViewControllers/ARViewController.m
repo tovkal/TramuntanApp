@@ -16,7 +16,8 @@
 #import "DataParser.h"
 #import "LocationController.h"
 #import "DetailViewController.h"
-#import "RangeViewController.H"
+#import "RangeViewController.h"
+#import "Store.h"
 
 @interface ARViewController ()
 {
@@ -331,8 +332,10 @@
         distanceAndIndex.index = i;
         [orderedDistances insertObject:[NSData dataWithBytes:&distanceAndIndex length:sizeof(distanceAndIndex)] atIndex:(NSUInteger) i++];
         
-        poi.distance = [deviceLocation distanceFromLocation:poi.location] / 1000.0;
+        poi.distance = [deviceLocation distanceFromLocation:poi.location];
     }
+    
+    [[Store sharedInstance] setPointsOfInterest:self.pointsOfInterest];
     
     // Sort orderedDistances in ascending order based on distance from the user
     [orderedDistances sortUsingComparator:(NSComparator)^(NSData *a, NSData *b) {
@@ -353,7 +356,6 @@
     for (NSData *d in [orderedDistances reverseObjectEnumerator]) {
         const DistanceAndIndex *distanceAndIndex = (const DistanceAndIndex *)d.bytes;
         Mountain *poi = (Mountain *)[self.pointsOfInterest objectAtIndex:(NSUInteger) distanceAndIndex->index];
-        poi.distance = distanceAndIndex->distance;
         
         if ([[Utils sharedInstance] getRadiusInMeters] > poi.distance) {
             [view.mountainContainer addSubview:poi.view];

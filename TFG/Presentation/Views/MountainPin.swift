@@ -15,6 +15,7 @@ class MountainPin : NSObject, MKAnnotation {
     var title: String
     var subtitle: String
     var url: String
+    var distance: Double
     
     /**
     Initialitzer
@@ -26,10 +27,11 @@ class MountainPin : NSObject, MKAnnotation {
     
     :returns: MKAnnotation pin
     */
-    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, url: String) {
+    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, url: String, distance: Double) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
         self.url = url
+        self.distance = distance
     }
 }

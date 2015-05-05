@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *altitudeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *wikiIcon;
-@property (weak, nonatomic) IBOutlet UIImageView *radiusIcon;
 
 @property (strong, nonatomic) NSString *wikiUrl;
 
@@ -39,7 +38,6 @@
     
     return sharedInstance;
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -76,43 +74,14 @@
 }
 
 /**
- *  Handle tap in the wiki and radius icons
+ *  Handle tap on the wiki icon, opening page in web browser
  *
  *  @param sender which icon was tapped
  */
 - (IBAction)handleTap:(UITapGestureRecognizer *)sender
 {
-    switch (sender.view.tag) {
-        case 1:
-            [self handleWikiTap];
-            break;
-        case 2:
-            [self handleRadiusTap];
-            break;
-        default:
-            break;
-    }
-}
-
-/**
- *  Handle tap on the wiki icon, opening page in web browser
- */
-- (void)handleWikiTap
-{
     if (self.wikiUrl != nil) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.wikiUrl]];
-    }
-}
-
-/**
- *  Show or hide raidus view
- */
-- (void)handleRadiusTap
-{
-    self.radiusIcon.highlighted = !self.radiusIcon.highlighted;
-    
-    if (self.delegate && [self.delegate respondsToSelector:@selector(radiusMenuShouldHide:)]) {
-        [self.delegate radiusMenuShouldHide:!self.radiusIcon.highlighted];
     }
 }
 

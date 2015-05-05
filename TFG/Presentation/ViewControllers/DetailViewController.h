@@ -9,13 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ARViewController.h"
 
-@protocol RadiusIconTapped
-
-@required
-- (void)radiusMenuShouldHide:(BOOL)hide;
-
-@end
-
 @interface DetailViewController : UIViewController <UIGestureRecognizerDelegate>
 
 /**

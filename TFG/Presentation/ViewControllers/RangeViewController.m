@@ -35,14 +35,12 @@
     [super viewDidLoad];
     
     [self.radiusSlider setMaximumTrackTintColor:[UIColor blackColor]];
-    
-    [DetailViewController sharedInstance].delegate = self;
-    
+        
     NSNumber *value = [[Utils sharedInstance] getUserSetting:radiusSettingKey];
     if (value != nil) {
-        [self setDistance:value.floatValue];
+        [self setDistance:value.doubleValue];
         
-        self.radiusSlider.value = value.floatValue;
+        self.radiusSlider.value = (float) value.doubleValue;
     }
     
     self.realRangeViewFrame = self.view.frame;
@@ -136,7 +134,7 @@
 
 - (IBAction)handleRangeChange:(UISlider *)sender
 {
-    [self setDistance:sender.value];
+    [self setDistance:(double) sender.value];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:rangeNotification object:self userInfo:@{radiusSettingKey: [NSNumber numberWithFloat:sender.value]}];
 }
@@ -148,15 +146,9 @@
  *
  *  @param distance distance value to set
  */
-- (void)setDistance:(float)distance
+- (void)setDistance:(double)distance
 {
     self.distanceLabel.text = [NSString stringWithFormat:@"%i km", (int) distance];
-}
-
-#pragma mark - Radius icon protocol
-- (void)radiusMenuShouldHide:(BOOL)hide
-{
-    self.view.hidden = hide;
 }
 
 @end

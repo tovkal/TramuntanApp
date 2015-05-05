@@ -10,7 +10,7 @@ import Foundation
 
 @objc class Utils: NSObject {
     
-    private var lastRadius: Float?
+    private var lastRadius: Double?
     
     // class let datasourceSettingKey = "datasource" // Not suported yet, set in Constants.h
     
@@ -32,7 +32,7 @@ import Foundation
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRangeSetting:", name: rangeNotification, object: nil)
         
-        if let radius = getUserSetting(radiusSettingKey) as? Float where radius > 0 {
+        if let radius = getUserSetting(radiusSettingKey) as? Double where radius > 0 {
             self.lastRadius = radius
         }
     }
@@ -54,13 +54,13 @@ import Foundation
     }
     
     /**
-    Get radius setting or default 30 in meters
+    Get radius setting or default 30 km in meters
     
-    :returns: radius setting or default 30 * 1000
+    :returns: radius setting or default 30 km * 1000
     */
-    func getRadiusInMeters() -> Float {
+    func getRadiusInMeters() -> Double {
         
-        var radius: Float = 30
+        var radius: Double = 30
         
         if self.lastRadius != nil {
             radius = self.lastRadius!
@@ -70,7 +70,7 @@ import Foundation
     }
     
     @objc private func updateRangeSetting(notification: NSNotification) {
-        if let userInfo = notification.userInfo as? Dictionary<String, Float> {
+        if let userInfo = notification.userInfo as? Dictionary<String, Double> {
             if let newRadius = userInfo[radiusSettingKey] {
                 self.lastRadius = newRadius
                 saveUserSetting(radiusSettingKey, value: newRadius)
