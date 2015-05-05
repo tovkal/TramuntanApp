@@ -59,8 +59,8 @@
 - (void)showWithName:(NSString *)name distance:(NSString *)distance altitude:(NSString *)altitude wikiUrl:(NSString *)url
 {
     self.nameLabel.text = name;
-    self.distanceLabel.text = distance;
-    self.altitudeLabel.text = altitude;
+    self.distanceLabel.text = [distance doubleValue] > 999 ? [NSString stringWithFormat:@"%.2f km", [distance doubleValue]/1000.0] : [NSString stringWithFormat:@"%.2f m", [distance doubleValue]];
+    self.altitudeLabel.text = [NSString stringWithFormat:@"%.2f m", [altitude doubleValue]];
     
     if (url != nil && ![url  isEqual: @"NULL"]) {
         self.wikiUrl = url;
