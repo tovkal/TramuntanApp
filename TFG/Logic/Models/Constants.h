@@ -8,14 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const debugLocationSettingKey;
-extern NSString *const debugAltitudeSettingKey;
-extern NSString *const debugAttitudeSettingKey;
-extern NSString *const showGPSMessageSettingKey;
 extern NSString *const datasourceSettingKey;
 extern NSString *const ignoreGPSSignalSettingKey;
 extern NSString *const radiusSettingKey;
-extern NSString *const fovSettingKey;
 
 extern NSString *const rangeNotification;
 

@@ -45,11 +45,7 @@
 // Previous location autorization status
 @property CLAuthorizationStatus previousStatus;
 
-// Settings properties
-@property BOOL debugLocation;
-@property BOOL debugAltitude;
-@property BOOL debugAttitude;
-@property BOOL enableGPSMessage;
+#pragma mark Settings properties
 @property BOOL ignoreGPSSignal;
 
 /**
@@ -140,10 +136,6 @@
 
 - (void)updateSettings
 {
-    self.debugLocation = [(NSNumber *) [[Utils sharedInstance] getUserSetting:debugLocationSettingKey] boolValue];
-    self.debugAltitude = [(NSNumber *) [[Utils sharedInstance] getUserSetting:debugAltitudeSettingKey] boolValue];
-    self.debugAttitude = [(NSNumber *) [[Utils sharedInstance] getUserSetting:debugAttitudeSettingKey] boolValue];
-    self.enableGPSMessage = [(NSNumber *) [[Utils sharedInstance] getUserSetting:showGPSMessageSettingKey] boolValue];
     self.ignoreGPSSignal = [(NSNumber *) [[Utils sharedInstance] getUserSetting:ignoreGPSSignalSettingKey] boolValue];
 }
 
@@ -219,14 +211,6 @@
  */
 - (void)locationUpdate:(CLLocation *)location
 {
-    // Debugging traces
-    if (self.debugLocation) {
-        NSLog(@"Current location (lat, lon) = %f, %f; horizontal accuracy = %f", location.coordinate.latitude, location.coordinate.longitude, location.horizontalAccuracy);
-    }
-    if (self.debugAltitude) {
-        NSLog(@"Current altitude = %f, vertical accuracy = %f", location.altitude, location.verticalAccuracy);
-    }
-    
     if (self.pointsOfInterest != nil && [self isAccuracyGoodForLocation:location]) {
         [self updatePointsOfInterestCoordinatesWithLocation:location];
     }
@@ -283,9 +267,6 @@
 
 - (CMAttitude *)fetchAttitude
 {
-    if (self.debugAttitude) {
-        NSLog(@"Fetching Attitude for View");
-    }
     return self.motionManager.deviceMotion.attitude;
 }
 

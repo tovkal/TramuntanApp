@@ -287,15 +287,6 @@
         return;
     }
     
-    if (!self.fovIsSaved) {
-        if ((NSString *)  [[Utils sharedInstance] getUserSetting:fovSettingKey] == nil) {
-            [[Utils sharedInstance] saveUserSetting:fovSettingKey value:[NSNumber numberWithFloat:self.videoDeviceInput.activeFormat.videoFieldOfView]];
-            self.fovIsSaved = FALSE;
-        } else {
-            self.fovIsSaved = YES;
-        }
-    }
-    
     mat4f_t projectionCameraTransform;
     multiplyMatrixAndMatrix(projectionCameraTransform, projectionTransform, cameraTransform);
     
