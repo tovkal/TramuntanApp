@@ -20,7 +20,7 @@
 
 @property (nonatomic, weak) id  delegate;
 
-- (void)showWithName:(NSString *)name distance:(NSString *)distance altitude:(NSString *)altitude wikiUrl:(NSString *)url;
+- (void)showWithName:(NSString *)name distance:(NSString *)distance elevation:(NSString *)elevation wikiUrl:(NSString *)url;
 - (void)hide;
 
 @end

@@ -191,8 +191,8 @@
                                                  lon:[[mountain valueForKey:@"lon"] doubleValue]
                                       alternativeLat:[[mountain valueForKey:@"alt_lat"] doubleValue]
                                       alternativeLon:[[mountain valueForKey:@"alt_lon"] doubleValue]
-                                                 alt:[[mountain valueForKey:@"ele"] doubleValue]
-                                 alternativeAltitude:[[mountain valueForKey:@"alt_ele"] doubleValue]
+                                           elevation:[[mountain valueForKey:@"ele"] doubleValue]
+                                alternativeElevation:[[mountain valueForKey:@"alt_ele"] doubleValue]
                                           postalCode:[mountain valueForKey:@"postal code"]
                                              wikiUrl:[mountain valueForKey:@"wikipedia"]
                                             withView:mountainView];
@@ -299,7 +299,7 @@
     for (Mountain *poi in self.pointsOfInterest) {
         double poiX, poiY, poiZ, e, n, u;
         
-        latLonToEcef(poi.location.coordinate.latitude, poi.location.coordinate.longitude, poi.altitude, &poiX, &poiY, &poiZ);
+        latLonToEcef(poi.location.coordinate.latitude, poi.location.coordinate.longitude, poi.elevation, &poiX, &poiY, &poiZ);
         ecefToEnu(deviceLocation.coordinate.latitude, deviceLocation.coordinate.longitude, myX, myY, myZ, poiX, poiY, poiZ, &e, &n, &u);
         
         pointsOfInterestCoordinates[i][0] = (float)n;
@@ -413,7 +413,7 @@
     
     if (mountainIndex != 0) {
         Mountain *mountain = [self.pointsOfInterest objectAtIndex:(NSUInteger) mountainIndex - 1];
-        [self.detailViewController showWithName:mountain.name distance:[NSString stringWithFormat:@"%f", mountain.distance] altitude:[NSString stringWithFormat:@"%f", mountain.altitude] wikiUrl:mountain.wikiUrl];
+        [self.detailViewController showWithName:mountain.name distance:[NSString stringWithFormat:@"%f", mountain.distance] elevation:[NSString stringWithFormat:@"%f", mountain.elevation] wikiUrl:mountain.wikiUrl];
     } else {
         [self.detailViewController hide];
     }
