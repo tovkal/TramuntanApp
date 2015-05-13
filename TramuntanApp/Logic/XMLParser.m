@@ -25,9 +25,7 @@
     self.xmlParser = [[NSXMLParser alloc] initWithData:xml];
     self.xmlParser.delegate = self;
     
-    if ([self.xmlParser parse]) {
-        NSLog(@"The XML is parsed");
-    } else {
+    if (![self.xmlParser parse]) {
         NSLog(@"Failed to parse XML");
     }
     

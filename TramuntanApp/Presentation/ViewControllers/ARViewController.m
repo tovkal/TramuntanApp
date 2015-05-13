@@ -23,12 +23,6 @@
 {
     vec4f_t *pointsOfInterestCoordinates;
 }
-
-/**
- *  Array of mountains for augmented reality
- */
-@property (strong, atomic) NSArray *pointsOfInterest;
-
 //Motion
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
@@ -47,9 +41,11 @@
 
 #pragma mark Settings properties
 /**
- *  Process the first time the points of interest (Store) while still showing the HUD in case the user goes to the Map View.
+ *  Used in isAccuracyGoodForLocation: to allow a first array init with distances
+ *  in case the user switches to the map view before a good GPS fix,
+ *  so that the radius works in the map instead of all distances being zero.
  */
-@property BOOL isSecondCheck;
+@property BOOL isSecondOrLaterCheck;
 
 /**
  *  Mountain inside crosshairs timer
@@ -84,12 +80,8 @@
     self.arView.delegate = self;
     self.view = self.arView;
     
-    [self initARData];
-    
     [self setupDetailView];
     [self setupRangeView];
-    
-    self.arView.pointsOfInterest = self.pointsOfInterest;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -102,8 +94,7 @@
                                                  name:UIApplicationDidChangeStatusBarOrientationNotification
                                                object:nil];
     
-    LocationController *sharedInstance = [LocationController sharedInstance];
-    sharedInstance.delegate = self;
+    [LocationController sharedInstance].delegate = self;
     
     [self.arView start];
     [self startMotion];
@@ -115,6 +106,8 @@
     [self addChildViewController:self.rangeViewController];
     [self.rangeViewContainer addSubview:self.rangeViewController.view];
     [self.rangeViewController didMoveToParentViewController:self];
+    
+    [self locationUpdate:[LocationController sharedInstance].location];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -123,8 +116,7 @@
     
     [self.mountainInTargetTimer invalidate];
     
-    LocationController *sharedInstance = [LocationController sharedInstance];
-    sharedInstance.delegate = nil;
+    [LocationController sharedInstance].delegate = nil;
     
     [self.arView stop];
     [self stopMotion];
@@ -167,38 +159,6 @@
     }
 }
 
-#pragma mark - Augmented reality data
-- (void)initARData
-{
-    NSMutableArray *mountainArray = [[NSMutableArray alloc] init];
-    DataParser *sharedParser = [DataParser sharedParser];
-    for (NSDictionary *mountain in sharedParser.mountains) {
-        
-        MountainUIImageView *mountainView = [[MountainUIImageView alloc] init];
-        mountainView.tag = (NSInteger) ([mountainArray count] + 1);
-        
-        if ([mountain valueForKey:@"name"] == nil || [mountain valueForKey:@"lat"] == nil || [mountain valueForKey:@"lon"] == nil || [mountain valueForKey:@"ele"] == nil) {
-            continue;
-        }
-        
-        Mountain *m = [[Mountain alloc] initWithName:[mountain valueForKey:@"name"]
-                                     alternativeName:[mountain valueForKey:@"alt_name"]
-                                                 lat:[[mountain valueForKey:@"lat"] doubleValue]
-                                                 lon:[[mountain valueForKey:@"lon"] doubleValue]
-                                      alternativeLat:[[mountain valueForKey:@"alt_lat"] doubleValue]
-                                      alternativeLon:[[mountain valueForKey:@"alt_lon"] doubleValue]
-                                           elevation:[[mountain valueForKey:@"ele"] doubleValue]
-                                alternativeElevation:[[mountain valueForKey:@"alt_ele"] doubleValue]
-                                          postalCode:[mountain valueForKey:@"postal code"]
-                                             wikiUrl:[mountain valueForKey:@"wikipedia"]
-                                            withView:mountainView];
-        
-        [mountainArray addObject:m];
-    }
-    
-    self.pointsOfInterest = mountainArray;
-}
-
 #pragma mark - Core Location controller delegate
 /**
  *  Delegate method with new gps location
@@ -207,7 +167,7 @@
  */
 - (void)locationUpdate:(CLLocation *)location
 {
-    if (self.pointsOfInterest != nil && [self isAccuracyGoodForLocation:location]) {
+    if ([[Store sharedInstance] getPointsOfInterest] != nil && [self isAccuracyGoodForLocation:location]) {
         [self updatePointsOfInterestCoordinatesWithLocation:location];
     }
 }
@@ -221,15 +181,19 @@
  */
 - (BOOL)isAccuracyGoodForLocation:(CLLocation *)location
 {
-    if (self.isSecondCheck) {
-        self.isSecondCheck = YES;
-        return YES;
-    }
-    
     if (location.verticalAccuracy < 15 && location.horizontalAccuracy < 20) {
         [self dismissGPSHUD];
+        
+        self.arView.displayMountains = YES;
+        
         return YES;
     } else if (!self.isGPSHUDOn) {
+        
+        if (!self.isSecondOrLaterCheck) {
+            self.isSecondOrLaterCheck = YES;
+            return YES;
+        }
+        
         [SVProgressHUD showWithStatus:@"Getting GPS position..."];
         self.isGPSHUDOn = YES;
     }
@@ -272,7 +236,7 @@
         free(pointsOfInterestCoordinates);
     }
     
-    pointsOfInterestCoordinates = (vec4f_t *)malloc(sizeof(vec4f_t)*self.pointsOfInterest.count);
+    pointsOfInterestCoordinates = (vec4f_t *)malloc(sizeof(vec4f_t)*[[Store sharedInstance] getPointsOfInterest].count);
     
     int i = 0;
     
@@ -286,10 +250,10 @@
         float distance;
         int index;
     } DistanceAndIndex;
-    NSMutableArray *orderedDistances = [NSMutableArray arrayWithCapacity:[self.pointsOfInterest count]];
+    NSMutableArray *orderedDistances = [NSMutableArray arrayWithCapacity:[[[Store sharedInstance] getPointsOfInterest] count]];
     
     // Compute the world coordinates of each place-of-interest
-    for (Mountain *poi in self.pointsOfInterest) {
+    for (Mountain *poi in [[Store sharedInstance] getPointsOfInterest]) {
         double poiX, poiY, poiZ, e, n, u;
         
         latLonToEcef(poi.location.coordinate.latitude, poi.location.coordinate.longitude, poi.elevation, &poiX, &poiY, &poiZ);
@@ -309,7 +273,7 @@
         poi.distance = [deviceLocation distanceFromLocation:poi.location];
     }
     
-    [[Store sharedInstance] setPointsOfInterest:self.pointsOfInterest];
+    [[Store sharedInstance] setPointsOfInterest:[[Store sharedInstance] getPointsOfInterest]];
     
     // Sort orderedDistances in ascending order based on distance from the user
     [orderedDistances sortUsingComparator:(NSComparator)^(NSData *a, NSData *b) {
@@ -329,9 +293,10 @@
     // Add subviews in descending Z-order so they overlap properly
     for (NSData *d in [orderedDistances reverseObjectEnumerator]) {
         const DistanceAndIndex *distanceAndIndex = (const DistanceAndIndex *)d.bytes;
-        Mountain *poi = (Mountain *)[self.pointsOfInterest objectAtIndex:(NSUInteger) distanceAndIndex->index];
+        Mountain *poi = (Mountain *)[[[Store sharedInstance] getPointsOfInterest] objectAtIndex:(NSUInteger) distanceAndIndex->index];
         
         if ([[Utils sharedInstance] getRadiusInMeters] > poi.distance) {
+            poi.view.hidden = YES;
             [view.mountainContainer addSubview:poi.view];
         }
     }
@@ -397,7 +362,6 @@
 
 - (void)updateDetailViewForMountainIndex:(NSInteger)mountainIndex
 {
-    
     if (mountainIndex != self.lastMountain) {
         self.lastMountain = mountainIndex;
     } else {
@@ -405,7 +369,7 @@
     }
     
     if (mountainIndex != 0) {
-        Mountain *mountain = [self.pointsOfInterest objectAtIndex:(NSUInteger) mountainIndex - 1];
+        Mountain *mountain = [[[Store sharedInstance] getPointsOfInterest] objectAtIndex:(NSUInteger) mountainIndex - 1];
         [self.detailViewController showWithName:mountain.name distance:[NSString stringWithFormat:@"%f", mountain.distance] elevation:[NSString stringWithFormat:@"%f", mountain.elevation] wikiUrl:mountain.wikiUrl];
     } else {
         [self.detailViewController hide];

@@ -13,6 +13,7 @@
 #import "UIDeviceHardware.h"
 #import "TramuntanApp-Swift.h"
 #import "Constants.h"
+#import "Store.h"
 
 @interface ARView()
 {
@@ -57,6 +58,8 @@
     
     self.mountainContainer = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:self.mountainContainer];
+    
+    self.displayMountains = NO;
 }
 
 - (void)start
@@ -123,7 +126,7 @@
     
     [self setFOV];
     // Initialize projection matrix
-    [self createProjectionMatrixWithCurrentOrientation:UIDeviceOrientationPortrait];
+    [self createProjectionMatrixWithCurrentOrientation:[[UIDevice currentDevice] orientation]];
 }
 
 - (void)stop
@@ -281,7 +284,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    if (pointsOfInterestCoordinates == nil) {
+    if (pointsOfInterestCoordinates == nil || !self.displayMountains) {
         return;
     }
     
@@ -289,7 +292,7 @@
     multiplyMatrixAndMatrix(projectionCameraTransform, projectionTransform, cameraTransform);
     
     int i = 0;
-    for (Mountain *poi in [self.pointsOfInterest objectEnumerator]) {
+    for (Mountain *poi in [[[Store sharedInstance] getPointsOfInterest] objectEnumerator]) {
         
         if ([[Utils sharedInstance] getRadiusInMeters] > poi.distance) {
             

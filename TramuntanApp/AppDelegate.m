@@ -10,6 +10,7 @@
 #import "TramuntanApp-Swift.h"
 #import "Constants.h"
 #import "LocationController.h"
+#import "Store.h"
 
 @implementation AppDelegate
 
@@ -20,6 +21,7 @@
     }
     
     [[LocationController sharedInstance] startLocation];
+    [Store sharedInstance];
     
     return YES;
 }

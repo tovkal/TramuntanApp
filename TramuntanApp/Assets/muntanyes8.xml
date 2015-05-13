@@ -3796,7 +3796,7 @@
             <column name="name">Puig de Son Roca</column>
             <column name="alt_name">NULL</column>
             <column name="lat">39.623668</column>
-            <column name="lon">0.55681</column>
+            <column name="lon">2.55681</column>
             <column name="alt_lat">39.6237180940001</column>
             <column name="alt_lon">2.55688486200006</column>
             <column name="ele">405.69</column>

@@ -25,9 +25,9 @@
 
 @property (strong, atomic) UIView *mountainContainer;
 
-@property (strong, nonatomic) NSArray *pointsOfInterest;
-
 @property (assign, nonatomic) id<AttitudeDelegate> delegate;
+
+@property BOOL displayMountains;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)start;
