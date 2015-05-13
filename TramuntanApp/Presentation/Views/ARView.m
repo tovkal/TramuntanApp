@@ -159,7 +159,6 @@
     CMAttitude *a = [self.delegate performSelector:@selector(fetchAttitude)];
     if (a != nil) {
         CMRotationMatrix r = a.rotationMatrix;
-        //transformFromCMRotationMatrix(cameraTransform, &r); // TODO - se puede borrar esto? Porque luego abajo se sobreescribe siempre
         
         //Landscape support from: http://stackoverflow.com/a/15457305/1283228
         UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -218,7 +217,6 @@
 
 - (void)setFOV
 {
-    
     // If available, use the format's FOV and calculate the vertical
     if (self.videoDeviceInput != nil && self.videoDeviceInput.activeFormat.videoFieldOfView != 0) {
         

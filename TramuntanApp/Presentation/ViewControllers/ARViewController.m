@@ -236,10 +236,7 @@
     } else if (!self.isGPSHUDOn) {
         [SVProgressHUD showWithStatus:@"Getting GPS position..."];
         self.isGPSHUDOn = YES;
-        NSLog(@"GPS accuracy not enough, the HDU showing... right?");
     }
-    
-    NSLog(@"Ver, Hor: %f, %f", location.verticalAccuracy, location.horizontalAccuracy);
     
     return NO;
 }

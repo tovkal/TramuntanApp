@@ -54,7 +54,7 @@
         case kCLAuthorizationStatusNotDetermined:
             [self.locationManager requestWhenInUseAuthorization]; // TODO andres.piza 21/04/2015 - Test this is right
         default:
-            NSLog(@"No permissions"); // TODO andres.piza 21/04/2015 - Do something about it, show screen of why we need permission
+            // TODO andres.piza 21/04/2015 - Do something about it, show screen of why we need permission
             break;
     }
 }
