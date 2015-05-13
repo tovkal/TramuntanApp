@@ -46,7 +46,10 @@
 @property CLAuthorizationStatus previousStatus;
 
 #pragma mark Settings properties
-@property BOOL ignoreGPSSignal;
+/**
+ *  Process the first time the points of interest (Store) while still showing the HUD in case the user goes to the Map View.
+ */
+@property BOOL isSecondCheck;
 
 /**
  *  Mountain inside crosshairs timer
@@ -93,8 +96,6 @@
 {
     [super viewWillAppear:animated];
     
-    [self updateSettings];
-    
     [self drawTarget];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateTargetViewPosition:)
@@ -132,11 +133,6 @@
     [self.rangeViewController willMoveToParentViewController:nil];
     [self.rangeViewController.view removeFromSuperview];
     [self.rangeViewController removeFromParentViewController];
-}
-
-- (void)updateSettings
-{
-    self.ignoreGPSSignal = [(NSNumber *) [[Utils sharedInstance] getUserSetting:ignoreGPSSignalSettingKey] boolValue];
 }
 
 #pragma mark - Target view
@@ -225,8 +221,8 @@
  */
 - (BOOL)isAccuracyGoodForLocation:(CLLocation *)location
 {
-    if (self.ignoreGPSSignal) {
-        [self dismissGPSHUD];
+    if (self.isSecondCheck) {
+        self.isSecondCheck = YES;
         return YES;
     }
     

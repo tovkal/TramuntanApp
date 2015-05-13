@@ -149,9 +149,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     */
     private func addMountainsToMap() {
         
-        for element in Store.sharedInstance().getPointsOfInterest() {
-            if let mountain = element as? Mountain {
-                self.mapView.addAnnotation(MountainPin(coordinate: mountain.location.coordinate, title: mountain.name, subtitle: NSString(format: "Elevation: %.2f m", mountain.elevation) as String, url: mountain.wikiUrl, distance: mountain.distance))
+        if let pointsOfInterest = Store.sharedInstance().getPointsOfInterest() {
+            for element in pointsOfInterest {
+                if let mountain = element as? Mountain {
+                    self.mapView.addAnnotation(MountainPin(coordinate: mountain.location.coordinate, title: mountain.name, subtitle: NSString(format: "Elevation: %.2f m", mountain.elevation) as String, url: mountain.wikiUrl, distance: mountain.distance))
+                }
             }
         }
     }
