@@ -195,6 +195,7 @@
         }
         
         [SVProgressHUD showWithStatus:@"Getting GPS position..."];
+        
         self.isGPSHUDOn = YES;
     }
     
