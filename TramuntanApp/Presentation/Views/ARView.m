@@ -174,10 +174,6 @@
         
         [self createProjectionMatrixWithCurrentOrientation:orientation];
         
-        mat4f_t rotation;
-        
-        makeRotationMatrix(rotation, deviceOrientationRadians, 0.0f, 0.0f, 1.0f);
-        
         GLKMatrix4 baseRotation = GLKMatrix4MakeRotation(deviceOrientationRadians, 0.0f, 0.0f, 1.0f);
         GLKMatrix4 deviceMotionAttitudeMatrix = GLKMatrix4Make((float) r.m11, (float) r.m21, (float) r.m31, 0.0f,
                                                                (float) r.m12, (float) r.m22, (float) r.m32, 0.0f,
