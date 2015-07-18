@@ -45,7 +45,6 @@
 		95C6EA71197AD7C300721CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA50197AD7C300721CEC /* Foundation.framework */; };
 		95C6EA72197AD7C300721CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA54197AD7C300721CEC /* UIKit.framework */; };
 		95C6EA7A197AD7C300721CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA78197AD7C300721CEC /* InfoPlist.strings */; };
-		95C6EA7C197AD7C300721CEC /* TramuntanAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA7B197AD7C300721CEC /* TramuntanAppTests.m */; };
 		95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA92197ADA8C00721CEC /* CoreLocation.framework */; };
 		95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CF2B1F19CF2A7800312B49 /* Main.storyboard */; };
 		95CF2B2519CF2E6300312B49 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */; };
@@ -54,6 +53,8 @@
 		95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95DF13FD197AEED000991AAD /* muntanyes_dev.xml */; };
 		95DF1403197AEED000991AAD /* XMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF13FF197AEED000991AAD /* XMLElement.m */; };
 		95DF1404197AEED000991AAD /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 95DF1401197AEED000991AAD /* XMLParser.m */; };
+		95E6E2181B5A3A2D0015A649 /* ARUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E6E2171B5A3A2D0015A649 /* ARUtilsTests.m */; };
+		95E6E2201B5A55CD0015A649 /* StoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95E6E21F1B5A55CD0015A649 /* StoreTests.m */; };
 		95FBAC00197AF30700160544 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95FBABFF197AF30700160544 /* ARViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -175,7 +176,6 @@
 		95C6EA6F197AD7C300721CEC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		95C6EA77197AD7C300721CEC /* TramuntanAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TramuntanAppTests-Info.plist"; sourceTree = "<group>"; };
 		95C6EA79197AD7C300721CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		95C6EA7B197AD7C300721CEC /* TramuntanAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TramuntanAppTests.m; sourceTree = "<group>"; };
 		95C6EA92197ADA8C00721CEC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		95CF2B1F19CF2A7800312B49 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		95CF2B2119CF2B4A00312B49 /* TramuntanApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TramuntanApp-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -189,6 +189,8 @@
 		95DF13FF197AEED000991AAD /* XMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLElement.m; sourceTree = "<group>"; };
 		95DF1400197AEED000991AAD /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
 		95DF1401197AEED000991AAD /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		95E6E2171B5A3A2D0015A649 /* ARUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARUtilsTests.m; sourceTree = "<group>"; };
+		95E6E21F1B5A55CD0015A649 /* StoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreTests.m; sourceTree = "<group>"; };
 		95FBABFE197AF30700160544 /* ARViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
 		95FBABFF197AF30700160544 /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -407,7 +409,8 @@
 		95C6EA75197AD7C300721CEC /* TramuntanAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				95C6EA7B197AD7C300721CEC /* TramuntanAppTests.m */,
+				95E6E2171B5A3A2D0015A649 /* ARUtilsTests.m */,
+				95E6E21F1B5A55CD0015A649 /* StoreTests.m */,
 				95C6EA76197AD7C300721CEC /* Supporting Files */,
 			);
 			path = TramuntanAppTests;
@@ -650,7 +653,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95C6EA7C197AD7C300721CEC /* TramuntanAppTests.m in Sources */,
+				95E6E2181B5A3A2D0015A649 /* ARUtilsTests.m in Sources */,
+				95E6E2201B5A55CD0015A649 /* StoreTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,6 +837,7 @@
 				INFOPLIST_FILE = "TramuntanAppTests/Supporting Files/TramuntanAppTests-Info.plist";
 				PRODUCT_NAME = TramuntanAppTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"\n\n\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"\n\n\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"\n\n\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -852,6 +857,7 @@
 				INFOPLIST_FILE = "TramuntanAppTests/Supporting Files/TramuntanAppTests-Info.plist";
 				PRODUCT_NAME = TramuntanAppTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

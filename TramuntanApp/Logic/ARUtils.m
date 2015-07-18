@@ -11,22 +11,6 @@
 
 @implementation ARUtils
 
-#pragma mark - ARView helpers
-
-+ (vec4f_t *)getCoordinatesForIndex:(int)i inArray:(NSArray *)array
-{
-    vec4f_t *coordinates = malloc(sizeof(vec4f_t));
-    
-    NSArray *poiCoordinates = [array objectAtIndex: (NSUInteger) i];
-    
-    coordinates[0][0] = [[poiCoordinates objectAtIndex:0] floatValue];
-    coordinates[0][1] = [[poiCoordinates objectAtIndex:1] floatValue];
-    coordinates[0][2] = [[poiCoordinates objectAtIndex:2] floatValue];
-    coordinates[0][3] = [[poiCoordinates objectAtIndex:3] floatValue];
-    
-    return coordinates;
-}
-
 #pragma mark - Matrix helpers
 
 + (BOOL) rotationMatrixIsEmpty:(CMRotationMatrix)r
