@@ -69,7 +69,7 @@
                                       alternativeLon:[[mountain valueForKey:@"alt_lon"] doubleValue]
                                            elevation:[[mountain valueForKey:@"ele"] doubleValue]
                                 alternativeElevation:[[mountain valueForKey:@"alt_ele"] doubleValue]
-                                          postalCode:[mountain valueForKey:@"postal code"]
+                                          postalCode:[mountain valueForKey:@"postal_code"]
                                              wikiUrl:[mountain valueForKey:@"wikipedia"]
                                             withView:mountainView];
         
