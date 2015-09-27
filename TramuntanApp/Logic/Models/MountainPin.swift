@@ -12,20 +12,20 @@ import MapKit
 class MountainPin : NSObject, MKAnnotation {
     
     var coordinate: CLLocationCoordinate2D
-    var title: String
-    var subtitle: String
+    var title: String?
+    var subtitle: String?
     var url: String
     var distance: Double
     
     /**
     Initialitzer
     
-    :param: coordinate Coordinates for the pin
-    :param: title      Title for the pin
-    :param: subtitle   Subtitle for the pin
+    - parameter coordinate: Coordinates for the pin
+    - parameter title:      Title for the pin
+    - parameter subtitle:   Subtitle for the pin
     :param  url        Wiki url
     
-    :returns: MKAnnotation pin
+    - returns: MKAnnotation pin
     */
     init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, url: String, distance: Double) {
         self.coordinate = coordinate

@@ -12,7 +12,7 @@ extension String {
     /**
     Get double from string
     
-    :returns: Double value or nil if not a double
+    - returns: Double value or nil if not a double
     */
     func doubleValue() -> Double? {
         let scanner = NSScanner(string: self)

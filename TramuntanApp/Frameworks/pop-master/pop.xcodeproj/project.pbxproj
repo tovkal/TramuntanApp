@@ -983,6 +983,7 @@
 		EC19120F162FB53A00E0CC76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
 				LastTestingUpgradeCheck = 0640;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = Facebook;

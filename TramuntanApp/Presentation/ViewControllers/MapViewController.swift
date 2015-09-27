@@ -65,7 +65,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         self.rangeViewContainer = UIView(frame: rangeView.frame)
         self.rangeViewContainer?.opaque = false
-        self.rangeViewContainer?.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.rangeViewContainer?.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(self.rangeViewContainer!)
         
@@ -80,10 +80,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     /**
     Update map region after user location update, to center map above the location
     
-    :param: mapView      the map view
-    :param: userLocation the new user location
+    - parameter mapView:      the map view
+    - parameter userLocation: the new user location
     */
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
         
         if !self.mapCentered {
             
@@ -98,7 +98,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
         
         if !annotation.isKindOfClass(MountainPin) {
             return nil
@@ -121,7 +121,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         if !senderAnnotation.url.isEmpty && senderAnnotation.url != "NULL" {
-            let button = UIButton.buttonWithType(UIButtonType.Custom) as! UIButton
+            let button = UIButton(type: UIButtonType.Custom)
             let buttonImage = UIImage(named: "wikipedia")!
             button.setImage(buttonImage, forState: UIControlState.Normal)
             button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)
@@ -135,7 +135,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return annotationView
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if let annotation = view.annotation as? MountainPin {
             UIApplication.sharedApplication().openURL(NSURL(string: annotation.url)!)

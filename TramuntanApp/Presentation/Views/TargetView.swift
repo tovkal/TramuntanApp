@@ -25,7 +25,7 @@ class TargetView: UIView {
     /**
     Create a TargetView with as a 27x27 view
     
-    :returns: Instance
+    - returns: Instance
     */
     convenience init() {
         self.init(frame: CGRectMake(0, 0, 27, 27))
@@ -36,18 +36,18 @@ class TargetView: UIView {
         super.init(frame: frame)
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     /**
     Draw code
     
-    :param: rect Where to draw
+    - parameter rect: Where to draw
     */
     override func drawRect(rect: CGRect) {
-        var rectangleView = UIBezierPath(roundedRect: CGRectMake(1, 1, size, size), cornerRadius: cornerRadius)
-        var filling = UIColor.redColor()
+        let rectangleView = UIBezierPath(roundedRect: CGRectMake(1, 1, size, size), cornerRadius: cornerRadius)
+        let filling = UIColor.redColor()
         filling.setStroke()
         rectangleView.lineWidth = 1
         rectangleView.stroke()

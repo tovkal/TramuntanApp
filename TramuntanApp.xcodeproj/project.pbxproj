@@ -474,7 +474,9 @@
 		95C6EA45197AD7C300721CEC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Tovkal;
 				TargetAttributes = {
 					95C6EA4C197AD7C300721CEC = {
@@ -714,6 +716,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -785,6 +788,7 @@
 				INFOPLIST_FILE = "TramuntanApp/Supporting Files/TramuntanApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tovkal.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TramuntanApp;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TramuntanApp/TramuntanApp-Bridging-Header.h";
@@ -811,6 +815,7 @@
 				INFOPLIST_FILE = "TramuntanApp/Supporting Files/TramuntanApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tovkal.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TramuntanApp;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TramuntanApp/TramuntanApp-Bridging-Header.h";
@@ -835,6 +840,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "TramuntanAppTests/Supporting Files/TramuntanAppTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tovkal.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TramuntanAppTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"\n\n\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"\n\n\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"\n\n\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"";
@@ -855,6 +861,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TramuntanApp/Supporting Files/TramuntanApp-Prefix.pch";
 				INFOPLIST_FILE = "TramuntanAppTests/Supporting Files/TramuntanAppTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tovkal.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TramuntanAppTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "\"$(TARGET_TEMP_DIR)/../$(PROJECT_NAME).build/DerivedSources\"";

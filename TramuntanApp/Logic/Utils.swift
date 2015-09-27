@@ -39,7 +39,7 @@ import Foundation
     
     // Save an object in NSUserDefaults for a given key
     func saveUserSetting(key: String, value: AnyObject) {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
         defaults.setObject(value, forKey: key)
         
@@ -48,7 +48,7 @@ import Foundation
     
     // Fetch an object in NSUSerDefaults for a given key
     func getUserSetting(key: String) -> AnyObject? {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
         return defaults.objectForKey(key)
     }
@@ -56,7 +56,7 @@ import Foundation
     /**
     Get radius setting or default 30 km in meters
     
-    :returns: radius setting or default 30 km * 1000
+    - returns: radius setting or default 30 km * 1000
     */
     func getRadiusInMeters() -> Double {
         

@@ -30,7 +30,7 @@ class DetailView: UIView {
             
             self.showing = true
             
-            var animation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+            let animation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
             animation.fromValue = self.center.y
             animation.toValue = point
             animation.springSpeed = 15
@@ -49,7 +49,7 @@ class DetailView: UIView {
         if !self.hiding {
             self.hiding = true
             
-            var animation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
+            let animation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
             animation.toValue = -(self.center.y + self.frame.size.height/2)
             animation.springSpeed = 15
             animation.springBounciness = 10
