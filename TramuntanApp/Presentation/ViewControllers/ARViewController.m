@@ -182,6 +182,10 @@
  */
 - (BOOL)isAccuracyGoodForLocation:(CLLocation *)location
 {
+    if (location == nil) {
+        return NO;
+    }
+    
     if (location.verticalAccuracy < 15 && location.horizontalAccuracy < 20) {
         [self dismissGPSHUD];
         
