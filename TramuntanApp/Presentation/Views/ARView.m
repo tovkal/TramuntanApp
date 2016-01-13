@@ -14,6 +14,7 @@
 #import "TramuntanApp-Swift.h"
 #import "Constants.h"
 #import "Store.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface ARView()
 {
@@ -70,7 +71,7 @@
     self.videoDeviceInput = inputDevice;
     
     if (!captureInput || deviceInputError != nil) {
-        NSLog(@"Error during init of AVView");
+        [CrashlyticsKit recordError:[NSError errorWithDomain:@"AR View setup" code:2 userInfo:@{NSLocalizedDescriptionKey: @"captureInput or deviceInputError are null", NSUnderlyingErrorKey: deviceInputError}]];
     }
     
     AVCaptureVideoDataOutput *captureOutput = [[AVCaptureVideoDataOutput alloc] init];

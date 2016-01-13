@@ -18,6 +18,7 @@
 #import "DetailViewController.h"
 #import "RangeViewController.h"
 #import "Store.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface ARViewController ()
 {
@@ -339,7 +340,7 @@
         subViewsInMountainContainerView = [[view.mountainContainer subviews] copy];
     });
     if (subViewsInMountainContainerView == nil) {
-        NSLog(@"ContainerView reference is broken, can't look for target intersection.");
+        [CrashlyticsKit recordError:[NSError errorWithDomain:@"AR View controller - intersection" code:2 userInfo:@{NSLocalizedDescriptionKey: @"ContainerView reference is broken, can't look for target intersection."}]];
     } else {
         for (UIView *aView in subViewsInMountainContainerView) {
             

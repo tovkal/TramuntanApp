@@ -7,6 +7,7 @@
 //
 
 #import "XMLParser.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface XMLParser()
 
@@ -26,7 +27,7 @@
     self.xmlParser.delegate = self;
     
     if (![self.xmlParser parse]) {
-        NSLog(@"Failed to parse XML");
+        [CrashlyticsKit recordError:[NSError errorWithDomain:@"XML parsing" code:1 userInfo:@{NSLocalizedDescriptionKey: @"Failed to parse xml."}]];
     }
     
     return self.rootElement;
@@ -82,7 +83,8 @@
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
 {
-    NSLog(@"%@", parseError);
+    [CrashlyticsKit recordError:[NSError errorWithDomain:@"XML parsing" code:3 userInfo:@{NSUnderlyingErrorKey: parseError}]];
+
 }
 
 @end

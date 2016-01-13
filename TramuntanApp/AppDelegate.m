@@ -11,10 +11,14 @@
 #import "Constants.h"
 #import "LocationController.h"
 #import "Store.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
 -(BOOL) application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Fabric with:@[[Crashlytics class]]];
+
     // If no default datasource is set, use muntanyes8
     if ([[Utils sharedInstance] getUserSetting:datasourceSettingKey] == nil) {
         [[Utils sharedInstance] saveUserSetting:datasourceSettingKey value:@"muntanyes8"];

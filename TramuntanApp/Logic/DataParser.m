@@ -10,6 +10,7 @@
 #import "XMLParser.h"
 #import "TramuntanApp-Swift.h"
 #import "Constants.h"
+#import <Crashlytics/Crashlytics.h>
 
 @interface DataParser()
 
@@ -109,7 +110,7 @@
                     break;
                 case NSIntegerMax: break;
                 default:
-                    NSLog(@"Error converting XML Data to Array, attribute key not found: %@", attribute.attributes);
+                    [CrashlyticsKit recordError:[NSError errorWithDomain:@"XML parsing" code:2 userInfo:@{NSLocalizedDescriptionKey: @"Error converting XML Data to Array, attribute key not found.", NSLocalizedFailureReasonErrorKey: attribute.attributes}]];
                     break;
             }
         }
