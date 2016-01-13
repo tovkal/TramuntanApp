@@ -47,7 +47,6 @@
 		95C6EA7A197AD7C300721CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA78197AD7C300721CEC /* InfoPlist.strings */; };
 		95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA92197ADA8C00721CEC /* CoreLocation.framework */; };
 		95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CF2B1F19CF2A7800312B49 /* Main.storyboard */; };
-		95CF2B2519CF2E6300312B49 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */; };
 		95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */; };
 		95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DF13F7197ADDE000991AAD /* QuartzCore.framework */; };
 		95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95DF13FD197AEED000991AAD /* muntanyes_dev.xml */; };
@@ -179,7 +178,6 @@
 		95C6EA92197ADA8C00721CEC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		95CF2B1F19CF2A7800312B49 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		95CF2B2119CF2B4A00312B49 /* TramuntanApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TramuntanApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		95D2D2111ADEDB5400AF311B /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		95D3FE7319C7725000B82EBB /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 				95FBABFE197AF30700160544 /* ARViewController.h */,
 				95FBABFF197AF30700160544 /* ARViewController.m */,
 				95A5DD631AE3AC4100CC8E0E /* MapViewController.swift */,
-				95CF2B2419CF2E6300312B49 /* SettingsTableViewController.swift */,
 				9591623C1AF4CD4D000DB5D7 /* DetailViewController.h */,
 				9591623D1AF4CD4D000DB5D7 /* DetailViewController.m */,
 				95816E401AF6238D005B72E1 /* RangeViewController.h */,
@@ -638,7 +635,6 @@
 				95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */,
 				95A5DD731AE419E100CC8E0E /* MountainPin.swift in Sources */,
 				95DF1403197AEED000991AAD /* XMLElement.m in Sources */,
-				95CF2B2519CF2E6300312B49 /* SettingsTableViewController.swift in Sources */,
 				95FBAC00197AF30700160544 /* ARViewController.m in Sources */,
 				95C6EA5D197AD7C300721CEC /* main.m in Sources */,
 				959BB5A819ED890E0088251D /* TargetView.swift in Sources */,
