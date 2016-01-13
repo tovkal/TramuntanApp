@@ -98,7 +98,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         if !annotation.isKindOfClass(MountainPin) {
             return nil
@@ -116,8 +116,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reusableIdentifier)
-            annotationView.image = UIImage(named: "mountain_pin")
-            annotationView.canShowCallout = true
+            annotationView!.image = UIImage(named: "mountain_pin")
+            annotationView!.canShowCallout = true
         }
         
         if !senderAnnotation.url.isEmpty && senderAnnotation.url != "NULL" {
@@ -125,12 +125,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             let buttonImage = UIImage(named: "wikipedia")!
             button.setImage(buttonImage, forState: UIControlState.Normal)
             button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)
-            annotationView.rightCalloutAccessoryView = button
+            annotationView!.rightCalloutAccessoryView = button
         } else {
-            annotationView.rightCalloutAccessoryView = nil
+            annotationView!.rightCalloutAccessoryView = nil
         }
         
-        annotationView.hidden = senderAnnotation.distance > (Utils.sharedInstance().getRadiusInMeters()) ? true : false
+        annotationView!.hidden = senderAnnotation.distance > (Utils.sharedInstance().getRadiusInMeters()) ? true : false
         
         return annotationView
     }
@@ -163,10 +163,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let annotations = self.mapView.annotations
         for element in annotations {
-            if let annotation = element as? MountainPin {
-                if self.mapView.viewForAnnotation(annotation) != nil {
-                    self.mapView.viewForAnnotation(annotation).hidden = annotation.distance > Utils.sharedInstance().getRadiusInMeters() ? true : false
-                }
+            if let annotation = element as? MountainPin, let annotationView = self.mapView.viewForAnnotation(annotation) {
+                annotationView.hidden = annotation.distance > Utils.sharedInstance().getRadiusInMeters() ? true : false
             }
         }
     }
