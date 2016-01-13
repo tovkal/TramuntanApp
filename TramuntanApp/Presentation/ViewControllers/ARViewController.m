@@ -182,7 +182,7 @@
  */
 - (BOOL)isAccuracyGoodForLocation:(CLLocation *)location
 {
-    /*if (location.verticalAccuracy < 15 && location.horizontalAccuracy < 20) {
+    if (location.verticalAccuracy < 15 && location.horizontalAccuracy < 20) {
         [self dismissGPSHUD];
         
         self.arView.displayMountains = YES;
@@ -198,7 +198,7 @@
         [SVProgressHUD showWithStatus:@"Getting GPS position..."];
         
         self.isGPSHUDOn = YES;
-    }*/
+    }
     
     return YES;
 }
@@ -226,9 +226,6 @@
 
 - (CMAttitude *)fetchAttitude
 {
-    // deviceMotionActive = YES
-    // deviceMotionAvailable = YES
-    // deviceMotion = nil
     return self.motionManager.deviceMotion.attitude;
 }
 
