@@ -40,6 +40,25 @@
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location is used to make the proper calculations to show you the mountain on the Augmented Reality view or to show your location on the map</string>
+	<key>UIApplicationShortcutItems</key>
+    <array>
+        <dict>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>ar</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Augmented Reality</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>com.tovkal.TramuntanApp.OpenAR</string>
+        </dict>
+        <dict>
+            <key>UIApplicationShortcutItemIconFile</key>
+            <string>map</string>
+            <key>UIApplicationShortcutItemTitle</key>
+            <string>Map</string>
+            <key>UIApplicationShortcutItemType</key>
+            <string>com.tovkal.TramuntanApp.OpenMap</string>
+        </dict>
+    </array>
 	<key>UILaunchStoryboardName</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile</key>

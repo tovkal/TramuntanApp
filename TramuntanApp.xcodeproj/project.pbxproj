@@ -41,14 +41,14 @@
 		95C6EA53197AD7C300721CEC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA52197AD7C300721CEC /* CoreGraphics.framework */; };
 		95C6EA55197AD7C300721CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA54197AD7C300721CEC /* UIKit.framework */; };
 		95C6EA5B197AD7C300721CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA59197AD7C300721CEC /* InfoPlist.strings */; };
-		95C6EA5D197AD7C300721CEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA5C197AD7C300721CEC /* main.m */; };
-		95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95C6EA60197AD7C300721CEC /* AppDelegate.m */; };
 		95C6EA70197AD7C300721CEC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA6F197AD7C300721CEC /* XCTest.framework */; };
 		95C6EA71197AD7C300721CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA50197AD7C300721CEC /* Foundation.framework */; };
 		95C6EA72197AD7C300721CEC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA54197AD7C300721CEC /* UIKit.framework */; };
 		95C6EA7A197AD7C300721CEC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 95C6EA78197AD7C300721CEC /* InfoPlist.strings */; };
 		95C6EA93197ADA8C00721CEC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C6EA92197ADA8C00721CEC /* CoreLocation.framework */; };
 		95CF2B2019CF2A7800312B49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95CF2B1F19CF2A7800312B49 /* Main.storyboard */; };
+		95D3BD631C468E1700DA63C8 /* QuickAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3BD621C468E1700DA63C8 /* QuickAction.swift */; };
+		95D3BDA31C46914E00DA63C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D3BDA21C46914E00DA63C8 /* AppDelegate.swift */; };
 		95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */; };
 		95DF13F8197ADDE000991AAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95DF13F7197ADDE000991AAD /* QuartzCore.framework */; };
 		95DF1402197AEED000991AAD /* muntanyes_dev.xml in Resources */ = {isa = PBXBuildFile; fileRef = 95DF13FD197AEED000991AAD /* muntanyes_dev.xml */; };
@@ -171,10 +171,7 @@
 		95C6EA54197AD7C300721CEC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		95C6EA58197AD7C300721CEC /* TramuntanApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TramuntanApp-Info.plist"; sourceTree = "<group>"; };
 		95C6EA5A197AD7C300721CEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		95C6EA5C197AD7C300721CEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95C6EA5E197AD7C300721CEC /* TramuntanApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TramuntanApp-Prefix.pch"; sourceTree = "<group>"; };
-		95C6EA5F197AD7C300721CEC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		95C6EA60197AD7C300721CEC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		95C6EA6E197AD7C300721CEC /* TramuntanAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TramuntanAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C6EA6F197AD7C300721CEC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		95C6EA77197AD7C300721CEC /* TramuntanAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TramuntanAppTests-Info.plist"; sourceTree = "<group>"; };
@@ -183,6 +180,8 @@
 		95CF2B1F19CF2A7800312B49 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		95CF2B2119CF2B4A00312B49 /* TramuntanApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TramuntanApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		95D2D2111ADEDB5400AF311B /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		95D3BD621C468E1700DA63C8 /* QuickAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickAction.swift; sourceTree = "<group>"; };
+		95D3BDA21C46914E00DA63C8 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95D3FE7319C7725000B82EBB /* UIDeviceHardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDeviceHardware.h; sourceTree = "<group>"; };
 		95D3FE7419C7725000B82EBB /* UIDeviceHardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDeviceHardware.m; sourceTree = "<group>"; };
 		95DF13F7197ADDE000991AAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -264,6 +263,7 @@
 				9504E6D51AF93A9800F0AD57 /* Store.m */,
 				951A977C1ADD811C007EC58C /* Extensions */,
 				9543242B1ADAEFF600579146 /* Models */,
+				95D3BD621C468E1700DA63C8 /* QuickAction.swift */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -391,8 +391,7 @@
 				954324281ADAEFD500579146 /* Presentation */,
 				95CF2B1F19CF2A7800312B49 /* Main.storyboard */,
 				95CF2B2119CF2B4A00312B49 /* TramuntanApp-Bridging-Header.h */,
-				95C6EA5F197AD7C300721CEC /* AppDelegate.h */,
-				95C6EA60197AD7C300721CEC /* AppDelegate.m */,
+				95D3BDA21C46914E00DA63C8 /* AppDelegate.swift */,
 				959023C119A12BEF00ACDD5F /* Images.xcassets */,
 				9543242C1ADAF41F00579146 /* Warnings.xcconfig */,
 				95C6EA57197AD7C300721CEC /* Supporting Files */,
@@ -405,7 +404,6 @@
 			children = (
 				95C6EA58197AD7C300721CEC /* TramuntanApp-Info.plist */,
 				95C6EA59197AD7C300721CEC /* InfoPlist.strings */,
-				95C6EA5C197AD7C300721CEC /* main.m */,
 				95C6EA5E197AD7C300721CEC /* TramuntanApp-Prefix.pch */,
 			);
 			path = "Supporting Files";
@@ -653,15 +651,15 @@
 				9504E6D61AF93A9800F0AD57 /* Store.m in Sources */,
 				950E64CB1A910F0B00F173C6 /* Utils.swift in Sources */,
 				953FB5181983F91D00D2CE2F /* ARView.m in Sources */,
-				95C6EA61197AD7C300721CEC /* AppDelegate.m in Sources */,
 				95D3FE7519C7725000B82EBB /* UIDeviceHardware.m in Sources */,
 				95A5DD731AE419E100CC8E0E /* MountainPin.swift in Sources */,
+				95D3BDA31C46914E00DA63C8 /* AppDelegate.swift in Sources */,
 				95DF1403197AEED000991AAD /* XMLElement.m in Sources */,
 				95FBAC00197AF30700160544 /* ARViewController.m in Sources */,
-				95C6EA5D197AD7C300721CEC /* main.m in Sources */,
 				959BB5A819ED890E0088251D /* TargetView.swift in Sources */,
 				95816E421AF6238D005B72E1 /* RangeViewController.m in Sources */,
 				951A97731ADD7AD8007EC58C /* Constants.m in Sources */,
+				95D3BD631C468E1700DA63C8 /* QuickAction.swift in Sources */,
 				95A5DD751AE41E4A00CC8E0E /* String+DoubleValue.swift in Sources */,
 				95816E3F1AF61833005B72E1 /* RangeView.swift in Sources */,
 				95A5DD641AE3AC4100CC8E0E /* MapViewController.swift in Sources */,
@@ -805,7 +803,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TramuntanApp/Supporting Files/TramuntanApp-Prefix.pch";
 				INFOPLIST_FILE = "TramuntanApp/Supporting Files/TramuntanApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tovkal.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TramuntanApp;
@@ -833,7 +831,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TramuntanApp/Supporting Files/TramuntanApp-Prefix.pch";
 				INFOPLIST_FILE = "TramuntanApp/Supporting Files/TramuntanApp-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tovkal.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TramuntanApp;

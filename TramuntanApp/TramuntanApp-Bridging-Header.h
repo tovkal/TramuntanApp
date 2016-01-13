@@ -7,3 +7,4 @@
 #import "RangeViewController.h"
 #import "Store.h"
 #import "Mountain.h"
+#import "LocationController.h"
