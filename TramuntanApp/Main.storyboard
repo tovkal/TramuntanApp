@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OAR-Bu-7hk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--AR-->
@@ -17,10 +18,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AR view is loading..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="108" translatesAutoresizingMaskIntoConstraints="NO" id="FcV-W2-8Ny">
-                                <rect key="frame" x="245" y="262" width="110" height="75"/>
+                                <rect key="frame" x="20" y="262" width="560" height="75"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="Cb7-xo-8kh"/>
-                                    <constraint firstAttribute="width" constant="110" id="bGY-5e-ZIF"/>
+                                    <constraint firstAttribute="height" constant="75" id="Zja-6Q-CCA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -30,7 +30,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="FcV-W2-8Ny" firstAttribute="centerX" secondItem="KiW-UB-Pn0" secondAttribute="centerX" id="5T0-ug-bjd"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="FcV-W2-8Ny" secondAttribute="leading" id="O8D-Cc-YV4"/>
                             <constraint firstItem="FcV-W2-8Ny" firstAttribute="centerY" secondItem="KiW-UB-Pn0" secondAttribute="centerY" id="YBM-ww-aGR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FcV-W2-8Ny" secondAttribute="trailing" id="qFt-S1-zwy"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="AR" image="ar" id="XJN-wK-416"/>

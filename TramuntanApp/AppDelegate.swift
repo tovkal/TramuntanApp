@@ -77,9 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Crashlytics.sharedInstance().recordError(NSError(domain: "AppDelegate", code: 1, userInfo: [NSLocalizedDescriptionKey: "RootviewController is not a UITabBarController"]))
             return false
         }
-        
-        print(quickAction)
-        
+                
         switch(quickAction) {
         case .OpenAR:
             tabBar.selectedIndex = 0
