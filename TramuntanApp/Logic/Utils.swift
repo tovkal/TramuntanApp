@@ -10,7 +10,7 @@ import Foundation
 
 @objc class Utils: NSObject {
     
-    private var lastRadius: Double?
+    fileprivate var lastRadius: Double?
     
     // class let datasourceSettingKey = "datasource" // Not suported yet, set in Constants.h
     
@@ -30,27 +30,27 @@ import Foundation
     override init() {
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRangeSetting:", name: rangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(Utils.updateRangeSetting(_:)), name: NSNotification.Name.range, object: nil)
         
-        if let radius = getUserSetting(radiusSettingKey) as? Double where radius > 0 {
+        if let radius = getUserSetting(radiusSettingKey) as? Double , radius > 0 {
             self.lastRadius = radius
         }
     }
     
     // Save an object in NSUserDefaults for a given key
-    func saveUserSetting(key: String, value: AnyObject) {
-        let defaults = NSUserDefaults.standardUserDefaults()
+    func saveUserSetting(_ key: String, value: AnyObject) {
+        let defaults = UserDefaults.standard
         
-        defaults.setObject(value, forKey: key)
+        defaults.set(value, forKey: key)
         
         defaults.synchronize()
     }
     
     // Fetch an object in NSUSerDefaults for a given key
-    func getUserSetting(key: String) -> AnyObject? {
-        let defaults = NSUserDefaults.standardUserDefaults()
+    func getUserSetting(_ key: String) -> AnyObject? {
+        let defaults = UserDefaults.standard
         
-        return defaults.objectForKey(key)
+        return defaults.object(forKey: key) as AnyObject?
     }
     
     /**
@@ -69,11 +69,11 @@ import Foundation
         return radius * 1000
     }
     
-    @objc private func updateRangeSetting(notification: NSNotification) {
-        if let userInfo = notification.userInfo as? Dictionary<String, Double> {
+    @objc fileprivate func updateRangeSetting(_ notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo as? Dictionary<String, Double> {
             if let newRadius = userInfo[radiusSettingKey] {
                 self.lastRadius = newRadius
-                saveUserSetting(radiusSettingKey, value: newRadius)
+                saveUserSetting(radiusSettingKey, value: newRadius as AnyObject)
             }
         }
     }

@@ -15,7 +15,7 @@ extension String {
     - returns: Double value or nil if not a double
     */
     func doubleValue() -> Double? {
-        let scanner = NSScanner(string: self)
+        let scanner = Scanner(string: self)
         var double: Double = 0
         
         if scanner.scanDouble(&double) {

@@ -28,8 +28,8 @@ class TargetView: UIView {
     - returns: Instance
     */
     convenience init() {
-        self.init(frame: CGRectMake(0, 0, 27, 27))
-        self.opaque = false
+        self.init(frame: CGRect(x: 0, y: 0, width: 27, height: 27))
+        self.isOpaque = false
     }
     
     override init(frame: CGRect) {
@@ -45,9 +45,9 @@ class TargetView: UIView {
     
     - parameter rect: Where to draw
     */
-    override func drawRect(rect: CGRect) {
-        let rectangleView = UIBezierPath(roundedRect: CGRectMake(1, 1, size, size), cornerRadius: cornerRadius)
-        let filling = UIColor.redColor()
+    override func draw(_ rect: CGRect) {
+        let rectangleView = UIBezierPath(roundedRect: CGRect(x: 1, y: 1, width: size, height: size), cornerRadius: cornerRadius)
+        let filling = UIColor.red
         filling.setStroke()
         rectangleView.lineWidth = 1
         rectangleView.stroke()

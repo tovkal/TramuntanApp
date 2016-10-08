@@ -13,7 +13,7 @@ enum QuickAction: String {
     case OpenMap
     
     init?(fullIdentifier: String) {
-        guard let shortIdentifier = fullIdentifier.componentsSeparatedByString(".").last else {
+        guard let shortIdentifier = fullIdentifier.components(separatedBy: ".").last else {
             return nil
         }
                 

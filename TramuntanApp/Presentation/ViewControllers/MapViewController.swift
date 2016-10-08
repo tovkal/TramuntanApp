@@ -22,11 +22,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     /// Only want to center map over user location once, ignore further location updates
-    private var mapCentered = false
+    fileprivate var mapCentered = false
     
     // MARK: RangeView
-    private var rangeViewContainer: UIView?
-    private var rangeViewController: RangeViewController?
+    fileprivate var rangeViewContainer: UIView?
+    fileprivate var rangeViewController: RangeViewController?
     
     // MARK: -
     // MARK: View setup
@@ -38,41 +38,41 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         setupRangeView()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateRangeSetting:", name: rangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapViewController.updateRangeSetting(_:)), name: NSNotification.Name.range, object: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.addChildViewController(self.rangeViewController!)
         self.rangeViewContainer?.addSubview(self.rangeViewController!.view)
-        self.rangeViewController?.didMoveToParentViewController(self)
+        self.rangeViewController?.didMove(toParentViewController: self)
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        self.rangeViewController?.willMoveToParentViewController(nil)
+        self.rangeViewController?.willMove(toParentViewController: nil)
         self.rangeViewController?.view.removeFromSuperview()
         self.rangeViewController?.removeFromParentViewController()
     }
     
-    private func setupRangeView() {
+    fileprivate func setupRangeView() {
         
         self.rangeViewController = RangeViewController()
         
         let rangeView = self.rangeViewController!.view
         
-        self.rangeViewContainer = UIView(frame: rangeView.frame)
-        self.rangeViewContainer?.opaque = false
+        self.rangeViewContainer = UIView(frame: (rangeView?.frame)!)
+        self.rangeViewContainer?.isOpaque = false
         self.rangeViewContainer?.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(self.rangeViewContainer!)
         
-        self.view.addConstraint(NSLayoutConstraint(item: self.rangeViewContainer!, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .Width, multiplier: 1, constant: self.rangeViewContainer!.frame.size.width))
-        self.view.addConstraint(NSLayoutConstraint(item: self.rangeViewContainer!, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1, constant: self.rangeViewContainer!.frame.size.height))
-        self.view.addConstraint(NSLayoutConstraint(item: self.rangeViewContainer!, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .LeadingMargin, multiplier: 1, constant: -5))
-        self.view.addConstraint(NSLayoutConstraint(item: self.rangeViewContainer!, attribute: .Bottom, relatedBy: .Equal, toItem: self.bottomLayoutGuide, attribute: .Top, multiplier: 1, constant: -10))
+        self.view.addConstraint(NSLayoutConstraint(item: self.rangeViewContainer!, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: self.rangeViewContainer!.frame.size.width))
+        self.view.addConstraint(NSLayoutConstraint(item: self.rangeViewContainer!, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: self.rangeViewContainer!.frame.size.height))
+        self.view.addConstraint(NSLayoutConstraint(item: self.rangeViewContainer!, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1, constant: -5))
+        self.view.addConstraint(NSLayoutConstraint(item: self.rangeViewContainer!, attribute: .bottom, relatedBy: .equal, toItem: self.bottomLayoutGuide, attribute: .top, multiplier: 1, constant: -10))
     }
     
     // MARK: - MKMapView delegate methods
@@ -83,7 +83,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     - parameter mapView:      the map view
     - parameter userLocation: the new user location
     */
-    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         
         if !self.mapCentered {
             
@@ -98,9 +98,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if !annotation.isKindOfClass(MountainPin) {
+        if !annotation.isKind(of: MountainPin.self) {
             return nil
         }
         
@@ -112,7 +112,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let reusableIdentifier = "mountainPin"
         
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reusableIdentifier)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reusableIdentifier)
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reusableIdentifier)
@@ -121,24 +121,24 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
         
         if !senderAnnotation.url.isEmpty && senderAnnotation.url != "NULL" {
-            let button = UIButton(type: UIButtonType.Custom)
+            let button = UIButton(type: UIButtonType.custom)
             let buttonImage = UIImage(named: "wikipedia")!
-            button.setImage(buttonImage, forState: UIControlState.Normal)
-            button.frame = CGRectMake(0, 0, buttonImage.size.width, buttonImage.size.height)
+            button.setImage(buttonImage, for: UIControlState())
+            button.frame = CGRect(x: 0, y: 0, width: buttonImage.size.width, height: buttonImage.size.height)
             annotationView!.rightCalloutAccessoryView = button
         } else {
             annotationView!.rightCalloutAccessoryView = nil
         }
         
-        annotationView!.hidden = senderAnnotation.distance > (Utils.sharedInstance().getRadiusInMeters()) ? true : false
+        annotationView!.isHidden = senderAnnotation.distance > (Utils.sharedInstance().getRadiusInMeters()) ? true : false
         
         return annotationView
     }
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         if let annotation = view.annotation as? MountainPin {
-            UIApplication.sharedApplication().openURL(NSURL(string: annotation.url)!)
+            UIApplication.shared.openURL(URL(string: annotation.url)!)
         }
     }
     
@@ -147,7 +147,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     /**
     Adds mountain pints to the map
     */
-    private func addMountainsToMap() {
+    fileprivate func addMountainsToMap() {
         
         if let pointsOfInterest = Store.sharedInstance().getPointsOfInterest() {
             for element in pointsOfInterest {
@@ -159,12 +159,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     // MARK: - Range setting handler
-    @objc private func updateRangeSetting(notification: NSNotification) {
+    @objc fileprivate func updateRangeSetting(_ notification: Notification) {
         
         let annotations = self.mapView.annotations
         for element in annotations {
-            if let annotation = element as? MountainPin, let annotationView = self.mapView.viewForAnnotation(annotation) {
-                annotationView.hidden = annotation.distance > Utils.sharedInstance().getRadiusInMeters() ? true : false
+            if let annotation = element as? MountainPin, let annotationView = self.mapView.view(for: annotation) {
+                annotationView.isHidden = annotation.distance > Utils.sharedInstance().getRadiusInMeters() ? true : false
             }
         }
     }

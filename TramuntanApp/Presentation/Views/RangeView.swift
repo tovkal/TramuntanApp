@@ -10,7 +10,7 @@ import UIKit
 
 class RangeView: UIView {
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         self.layer.masksToBounds = true
     }
 }

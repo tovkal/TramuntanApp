@@ -985,7 +985,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastTestingUpgradeCheck = 0640;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					0B6BE74719FFD3B900762101 = {
@@ -1291,7 +1291,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1316,6 +1316,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.$(PRODUCT_NAME:rfc1034identifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1341,7 +1342,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1360,6 +1361,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.$(PRODUCT_NAME:rfc1034identifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1386,7 +1388,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1405,6 +1407,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.$(PRODUCT_NAME:rfc1034identifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1431,7 +1434,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -1450,6 +1453,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.$(PRODUCT_NAME:rfc1034identifier)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1462,11 +1466,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECC1DB1318CA291B008C7DEA /* Project-GCOV.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = GCOV;
 		};
@@ -1476,6 +1484,8 @@
 			buildSettings = {
 				GCC_PREFIX_HEADER = "pop/pop-Prefix.pch";
 				INFOPLIST_FILE = "pop/pop-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = pop;
 				PUBLIC_HEADERS_FOLDER_PATH = ../Headers/POP;
 			};
@@ -1485,11 +1495,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECC1DB1618CA291B008C7DEA /* Project-Profile.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Profile;
 		};
@@ -1499,6 +1513,8 @@
 			buildSettings = {
 				GCC_PREFIX_HEADER = "pop/pop-Prefix.pch";
 				INFOPLIST_FILE = "pop/pop-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = pop;
 				PUBLIC_HEADERS_FOLDER_PATH = ../Headers/POP;
 			};
@@ -1508,11 +1524,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECC1DB1218CA291B008C7DEA /* Project-Debug.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
@@ -1521,11 +1542,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECC1DB1718CA291B008C7DEA /* Project-Release.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};
@@ -1535,6 +1560,8 @@
 			buildSettings = {
 				GCC_PREFIX_HEADER = "pop/pop-Prefix.pch";
 				INFOPLIST_FILE = "pop/pop-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = pop;
 				PUBLIC_HEADERS_FOLDER_PATH = ../Headers/POP;
 			};
@@ -1546,6 +1573,8 @@
 			buildSettings = {
 				GCC_PREFIX_HEADER = "pop/pop-Prefix.pch";
 				INFOPLIST_FILE = "pop/pop-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = pop;
 				PUBLIC_HEADERS_FOLDER_PATH = ../Headers/POP;
 			};
@@ -1561,6 +1590,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/$(PRODUCT_NAME)-Prefix.pch";
 				INFOPLIST_FILE = "pop/pop-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = pop;
 			};
 			name = Debug;
@@ -1575,6 +1605,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/$(PRODUCT_NAME)-Prefix.pch";
 				INFOPLIST_FILE = "pop/pop-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = pop;
 			};
 			name = GCOV;
@@ -1589,6 +1620,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/$(PRODUCT_NAME)-Prefix.pch";
 				INFOPLIST_FILE = "pop/pop-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = pop;
 			};
 			name = Release;
@@ -1603,6 +1635,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/$(PRODUCT_NAME)-Prefix.pch";
 				INFOPLIST_FILE = "pop/pop-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = pop;
 			};
 			name = Profile;
@@ -1650,6 +1683,7 @@
 				INFOPLIST_FILE = "pop-tests-osx/pop-tests-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests-osx";
 				SDKROOT = macosx;
 			};
@@ -1692,6 +1726,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "pop-tests-osx/pop-tests-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests-osx";
 				SDKROOT = macosx;
 			};
@@ -1734,6 +1769,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "pop-tests-osx/pop-tests-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests-osx";
 				SDKROOT = macosx;
 			};
@@ -1776,6 +1812,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "pop-tests-osx/pop-tests-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests-osx";
 				SDKROOT = macosx;
 			};
@@ -1816,8 +1853,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 			};
 			name = Debug;
@@ -1854,7 +1892,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 			};
 			name = GCOV;
@@ -1891,7 +1930,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 			};
 			name = Release;
@@ -1928,7 +1968,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "pop-tests";
 			};
 			name = Profile;

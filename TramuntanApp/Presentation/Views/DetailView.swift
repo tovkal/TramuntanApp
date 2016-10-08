@@ -10,56 +10,56 @@ import UIKit
 
 class DetailView: UIView {
     
-    private let showAnimationKey = "detail_show_animation"
-    private let hideAnimationKey = "detail_hide_animation"
+    fileprivate let showAnimationKey = "detail_show_animation"
+    fileprivate let hideAnimationKey = "detail_hide_animation"
     
-    private var showing = false
-    private var hiding = false
+    fileprivate var showing = false
+    fileprivate var hiding = false
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true
     }
     
-    func showWithAnimation(point: CGFloat) {
-        self.layer.pop_removeAnimationForKey(hideAnimationKey)
+    func showWithAnimation(_ point: CGFloat) {
+        self.layer.pop_removeAnimation(forKey: hideAnimationKey)
         
         
         if !self.showing {
-            self.hidden = false
+            self.isHidden = false
             
             self.showing = true
             
             let animation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
-            animation.fromValue = self.center.y
-            animation.toValue = point
-            animation.springSpeed = 15
-            animation.springBounciness = 10
-            animation.completionBlock = {(animation, finished) in
+            animation?.fromValue = self.center.y
+            animation?.toValue = point
+            animation?.springSpeed = 15
+            animation?.springBounciness = 10
+            animation?.completionBlock = {(animation, finished) in
                 self.showing = false;
             }
             
-            self.layer.pop_addAnimation(animation, forKey: showAnimationKey)
+            self.layer.pop_add(animation, forKey: showAnimationKey)
         }
     }
     
     func hideWithAnimation() {
-        self.layer.pop_removeAnimationForKey(showAnimationKey)
+        self.layer.pop_removeAnimation(forKey: showAnimationKey)
         
         if !self.hiding {
             self.hiding = true
             
             let animation = POPSpringAnimation(propertyNamed: kPOPLayerPositionY)
-            animation.toValue = -(self.center.y + self.frame.size.height/2)
-            animation.springSpeed = 15
-            animation.springBounciness = 10
-            animation.beginTime = CACurrentMediaTime() + 3
-            animation.completionBlock = {(animation, finished) in
-                self.hidden = true
+            animation?.toValue = -(self.center.y + self.frame.size.height/2)
+            animation?.springSpeed = 15
+            animation?.springBounciness = 10
+            animation?.beginTime = CACurrentMediaTime() + 3
+            animation?.completionBlock = {(animation, finished) in
+                self.isHidden = true
                 self.hiding = false
             }
             
-            self.layer.pop_addAnimation(animation, forKey: hideAnimationKey)
+            self.layer.pop_add(animation, forKey: hideAnimationKey)
         }
     }
 }
