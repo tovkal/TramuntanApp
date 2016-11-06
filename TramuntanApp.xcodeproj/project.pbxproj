@@ -14,9 +14,8 @@
 		952536231AFF85FE0016B21B /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D2D2111ADEDB5400AF311B /* SVProgressHUD.framework */; };
 		9529062719F94CF1008CDB86 /* MountainUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9529062619F94CF1008CDB86 /* MountainUIImageView.swift */; };
 		9530819F1AF616B200304D3F /* RangeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9530819D1AF616B200304D3F /* RangeView.xib */; };
+		953B35B71DD122FB00B36AA9 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 953B35B61DD122FB00B36AA9 /* pop.framework */; };
 		953FB5181983F91D00D2CE2F /* ARView.m in Sources */ = {isa = PBXBuildFile; fileRef = 953FB5151983F91D00D2CE2F /* ARView.m */; };
-		955413C51AFE37D2008639D6 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 955413C01AFE376B008639D6 /* pop.framework */; };
-		955413C61AFE37D2008639D6 /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 955413C01AFE376B008639D6 /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		95816E3F1AF61833005B72E1 /* RangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95816E3E1AF61833005B72E1 /* RangeView.swift */; };
 		95816E421AF6238D005B72E1 /* RangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95816E411AF6238D005B72E1 /* RangeViewController.m */; };
 		9582C13E1AFFBFAC006A9561 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9582C13D1AFFBFAC006A9561 /* CoreMotion.framework */; };
@@ -60,48 +59,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		955413BB1AFE376B008639D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95A4924A1AF6888300154741 /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EC191218162FB53A00E0CC76;
-			remoteInfo = pop;
-		};
-		955413BD1AFE376B008639D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95A4924A1AF6888300154741 /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EC68857F18C7B60000C6194C;
-			remoteInfo = "pop-osx";
-		};
-		955413BF1AFE376B008639D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95A4924A1AF6888300154741 /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 0B6BE74819FFD3B900762101;
-			remoteInfo = "pop-embedded";
-		};
-		955413C11AFE376B008639D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95A4924A1AF6888300154741 /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = ECF01ED318C92B7F009E0AD1;
-			remoteInfo = "pop-tests";
-		};
-		955413C31AFE376B008639D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95A4924A1AF6888300154741 /* pop.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EC7E319918C93D6500B38170;
-			remoteInfo = "pop-tests-osx";
-		};
-		955413C71AFE37D2008639D6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 95A4924A1AF6888300154741 /* pop.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0B6BE74719FFD3B900762101;
-			remoteInfo = "pop-embedded";
-		};
 		95C6EA73197AD7C300721CEC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 95C6EA45197AD7C300721CEC /* Project object */;
@@ -118,7 +75,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				955413C61AFE37D2008639D6 /* pop.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,6 +90,7 @@
 		9529062619F94CF1008CDB86 /* MountainUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MountainUIImageView.swift; sourceTree = "<group>"; };
 		9530819D1AF616B200304D3F /* RangeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RangeView.xib; sourceTree = "<group>"; };
 		9533D3E21A91158D0045BE1F /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		953B35B61DD122FB00B36AA9 /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		953FB5141983F91D00D2CE2F /* ARView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARView.h; sourceTree = "<group>"; };
 		953FB5151983F91D00D2CE2F /* ARView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARView.m; sourceTree = "<group>"; };
 		9543242C1ADAF41F00579146 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
@@ -146,7 +103,6 @@
 		9591623C1AF4CD4D000DB5D7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		9591623D1AF4CD4D000DB5D7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		959BB5A719ED890E0088251D /* TargetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TargetView.swift; sourceTree = "<group>"; };
-		95A4924A1AF6888300154741 /* pop.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = pop.xcodeproj; path = "pop-master/pop.xcodeproj"; sourceTree = "<group>"; };
 		95A5DD631AE3AC4100CC8E0E /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		95A5DD651AE3AC6C00CC8E0E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		95A5DD6B1AE3C1E100CC8E0E /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -211,7 +167,7 @@
 				95C6EA53197AD7C300721CEC /* CoreGraphics.framework in Frameworks */,
 				95C6EA55197AD7C300721CEC /* UIKit.framework in Frameworks */,
 				95C6EA51197AD7C300721CEC /* Foundation.framework in Frameworks */,
-				955413C51AFE37D2008639D6 /* pop.framework in Frameworks */,
+				953B35B71DD122FB00B36AA9 /* pop.framework in Frameworks */,
 				952536231AFF85FE0016B21B /* SVProgressHUD.framework in Frameworks */,
 				95C31B881C466EBA00365F87 /* Fabric.framework in Frameworks */,
 			);
@@ -322,26 +278,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		954E04B11AF670500006B1BE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				95A4924A1AF6888300154741 /* pop.xcodeproj */,
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
-		955413B41AFE376B008639D6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				955413BC1AFE376B008639D6 /* libpop.a */,
-				955413BE1AFE376B008639D6 /* pop.framework */,
-				955413C01AFE376B008639D6 /* pop.framework */,
-				955413C21AFE376B008639D6 /* pop-tests.xctest */,
-				955413C41AFE376B008639D6 /* pop-tests-osx.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		95C6EA44197AD7C300721CEC = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +300,7 @@
 		95C6EA4F197AD7C300721CEC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				953B35B61DD122FB00B36AA9 /* pop.framework */,
 				95C31B861C466EBA00365F87 /* Fabric.framework */,
 				95C31B871C466EBA00365F87 /* Crashlytics.framework */,
 				9582C13D1AFFBFAC006A9561 /* CoreMotion.framework */,
@@ -385,7 +322,6 @@
 		95C6EA56197AD7C300721CEC /* TramuntanApp */ = {
 			isa = PBXGroup;
 			children = (
-				954E04B11AF670500006B1BE /* Frameworks */,
 				954324261ADAEFB900579146 /* Assets */,
 				954324271ADAEFCA00579146 /* Logic */,
 				954324281ADAEFD500579146 /* Presentation */,
@@ -447,7 +383,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				955413C81AFE37D2008639D6 /* PBXTargetDependency */,
 			);
 			name = TramuntanApp;
 			productName = TFG;
@@ -504,12 +439,6 @@
 			mainGroup = 95C6EA44197AD7C300721CEC;
 			productRefGroup = 95C6EA4E197AD7C300721CEC /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 955413B41AFE376B008639D6 /* Products */;
-					ProjectRef = 95A4924A1AF6888300154741 /* pop.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				95C6EA4C197AD7C300721CEC /* TramuntanApp */,
@@ -517,44 +446,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		955413BC1AFE376B008639D6 /* libpop.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libpop.a;
-			remoteRef = 955413BB1AFE376B008639D6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		955413BE1AFE376B008639D6 /* pop.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = pop.framework;
-			remoteRef = 955413BD1AFE376B008639D6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		955413C01AFE376B008639D6 /* pop.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = pop.framework;
-			remoteRef = 955413BF1AFE376B008639D6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		955413C21AFE376B008639D6 /* pop-tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "pop-tests.xctest";
-			remoteRef = 955413C11AFE376B008639D6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		955413C41AFE376B008639D6 /* pop-tests-osx.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "pop-tests-osx.xctest";
-			remoteRef = 955413C31AFE376B008639D6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		95C6EA4B197AD7C300721CEC /* Resources */ = {
@@ -629,6 +520,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/pop.framework",
 			);
 			outputPaths = (
 			);
@@ -681,11 +573,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		955413C81AFE37D2008639D6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "pop-embedded";
-			targetProxy = 955413C71AFE37D2008639D6 /* PBXContainerItemProxy */;
-		};
 		95C6EA74197AD7C300721CEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 95C6EA4C197AD7C300721CEC /* TramuntanApp */;
@@ -819,6 +706,10 @@
 				INFOPLIST_FILE = "TramuntanApp/Supporting Files/TramuntanApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tovkal.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TramuntanApp;
 				PROVISIONING_PROFILE = "";
@@ -849,6 +740,10 @@
 				INFOPLIST_FILE = "TramuntanApp/Supporting Files/TramuntanApp-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tovkal.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = TramuntanApp;
 				PROVISIONING_PROFILE = "";

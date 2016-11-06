@@ -1,1 +1,2 @@
-github "SVProgressHUD/SVProgressHUD" "1.1.3"
+github "SVProgressHUD/SVProgressHUD" "2.0.3"
+github "facebook/pop" "1.0.9"
